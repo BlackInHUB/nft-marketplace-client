@@ -24,9 +24,6 @@ export const Nav = styled.nav`
 
 export const NavList = styled.ul`
     text-align: center;
-    font-size: ${p => p.theme.fontSizes.body};
-    line-height: ${p => p.theme.lineHeights.body};
-    font-weight: ${p => p.theme.fontWeights.bold};
     margin-bottom: 10px;
     
     @media (min-width: 1280px) {
@@ -52,11 +49,18 @@ export const NavListItem = styled.li`
 
 export const NavListItemLink = styled(NavLink)`
     display: block;
+    font-size: ${p => p.theme.fontSizes.body};
+    line-height: ${p => p.theme.lineHeights.body};
+    font-weight: ${p => p.theme.fontWeights.bold};
     padding: 12px 20px;
     transition: all 150ms linear;
 
-    &:hover,
+    :hover,
     :focus-visible {
+        color: ${p => p.theme.colors.purple};
+    }
+
+    &.active {
         color: ${p => p.theme.colors.purple};
     }
 `

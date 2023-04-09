@@ -27,3 +27,14 @@ export const logout = async () => {
 
     return true;
 };
+
+export const update = async (userData) => {
+    const {data} = await instance.patch('/user/update', userData);
+    return data;
+};
+
+export const refresh = async (token) => {
+    setToken(token);
+    const {data} = await instance.get('/user/current')
+    return data;
+};

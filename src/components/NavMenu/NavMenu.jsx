@@ -40,14 +40,22 @@ export const NavMenu = () => {
     return (
         <>
         <Header>
-            <LogoLink href="#">
+            <LogoLink to='/'>
                 <Logo />
             </LogoLink>
             {!isDesktop ?
                 (<IconButton iconType='menu' onClick={menuToggle} />) :
                 (<Navigation registerToggle={registerToggle} loginToggle={loginToggle} />)}
         </Header>
-        {!isDesktop && isMenuOpen && <MenuModal isOpen={isMenuOpen} children={<Navigation loginToggle={loginToggle} registerToggle={registerToggle} />} menuToggle={menuToggle} />}
+        {!isDesktop && isMenuOpen && <MenuModal 
+                                        isOpen={isMenuOpen} 
+                                        children={<Navigation 
+                                        loginToggle={loginToggle} 
+                                        registerToggle={registerToggle} 
+                                        menuToggle={menuToggle}
+                                        />}
+                                        menuToggle={menuToggle}
+                                    />}
         {isRegisterOpen && <Register isOpen={isRegisterOpen} registerToggle={registerToggle} />}
         {isLoginOpen && <Login isOpen={isLoginOpen} loginToggle={loginToggle} />}
         </>

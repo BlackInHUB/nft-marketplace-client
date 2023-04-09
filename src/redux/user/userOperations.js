@@ -27,12 +27,37 @@ const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
     };
+});
+
+const update = createAsyncThunk('users/update', async (userData, thunkAPI) => {
+    try {
+        const result = await userApi.update(userData);
+        return result
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const refresh = createAsyncThunk('users/refresh', async (_, thunkAPI) => {
+    const {token} = thunkAPI.getState().users;
+
+    if (!token) {
+        return
+    };
+
+    try {
+        return await userApi.refresh(token);
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
 })
 
 const userOperations = {
     register,
     login,
-    logout
+    logout,
+    update,
+    refresh
 };
 
 export default userOperations;

@@ -3,7 +3,6 @@ import { UserData } from "../components/UserData/UserData";
 
 const UserPage = () => {
     const {user} = useUsers();
-    console.log(user)
 
     return (
         <>

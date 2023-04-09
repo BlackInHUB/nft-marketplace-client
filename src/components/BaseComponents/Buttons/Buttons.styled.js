@@ -5,6 +5,8 @@ import {ReactComponent as User} from '../../../images/icons/User.svg';
 import {ReactComponent as Mail} from '../../../images/icons/EyeSlash.svg';
 import {ReactComponent as Eye} from '../../../images/icons/Eye.svg';
 import {ReactComponent as Menu} from '../../../images/icons/List.svg';
+import {ReactComponent as Plus} from '../../../images/icons/Plus.svg';
+import {AiOutlineEdit} from 'react-icons/ai';
 import {VscChromeClose} from 'react-icons/vsc';
 
 export const Btn = styled.button`
@@ -17,8 +19,8 @@ export const Btn = styled.button`
     font-weight: ${p => p.theme.fontWeights.bold};
     gap: 12px;
     font-family: inherit;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: ${p => p.pl ? p.pl + 'px' : '50px'};
+    padding-right: ${p => p.pr ? p.pr + 'px' : '50px'};
     padding-top: ${p => p.type === 'submit' ? '12px' : '19px'};
     padding-bottom: ${p => p.type === 'submit' ? '12px' : '19px'};
     width: 100%;
@@ -48,26 +50,12 @@ export const Btn = styled.button`
     }
 
     &:hover,
-    &:focus {
+    &:focus-visible {
         ${p => p.borderColor === 'transparent' ? 
             `color: ${p.theme.colors.purple};` :
             `::before {width: 100%;}`
         }
     }
-`
-
-export const IconBtn = styled.button`
-position: absolute;
-top: ${p => p.top ? p.top + 'px' : '15px'};
-right: ${p => p.right ? p.right + 'px' : '30px'};
-outline: none;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: transparent;
-border: none;
-transition: all 250ms ease;
 `
 
 export const UserIcon = styled(User)`
@@ -126,34 +114,6 @@ export const EyeIcon = styled(Eye)`
     }
 `
 
-export const CloseIcon = styled(VscChromeClose)`
-    fill: ${p => p.theme.colors.white};
-    width: ${p => p.width ? p.width + 'px' : '24px'};
-    height: ${p => p.height ? p.height + 'px' : '24px'};
-    transition: inherit;
-
-    ${IconBtn}:hover & {
-        fill: ${p => p.theme.colors.purple};
-    };
-    ${IconBtn}:focus-visible & {
-        fill: ${p => p.theme.colors.purple};
-    };
-`
-
-export const MenuIcon = styled(Menu)`
-    fill: ${p => p.theme.colors.white};
-    width: ${p => p.width ? p.width + 'px' : '24px'};
-    height: ${p => p.height ? p.height + 'px' : '24px'};
-    transition: inherit;
-
-    ${IconBtn}:hover & {
-        fill: ${p => p.theme.colors.purple};
-    };
-    ${IconBtn}:focus-visible & {
-        fill: ${p => p.theme.colors.purple};
-    };
-`
-
 export const RocketLaunchIcon = styled(RocketLaunch)`
     width: 20px;
     height: 20px;
@@ -166,4 +126,78 @@ export const RocketLaunchIcon = styled(RocketLaunch)`
     ${Btn}:focus-visible & {
         fill: ${p => p.theme.colors.white};
     }
+`
+
+export const PlusIcon = styled(Plus)`
+    width: 25px;
+    height: 25px;
+    fill: ${p => p.theme.colors.purple};
+    transition: inherit;
+
+    ${Btn}:hover & {
+        fill: ${p => p.theme.colors.white};
+    }
+    ${Btn}:focus-visible & {
+        fill: ${p => p.theme.colors.white};
+    }
+`
+
+
+//-------IconBtn-----------//
+
+export const IconBtn = styled.button`
+position: ${p => p.position ? p.position : 'absolute'};
+top: ${p => p.top ? p.top + 'px' : '15px'};
+right: ${p => p.right ? p.right + 'px' : '30px'};
+outline: none;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+border: none;
+transition: all 250ms ease;
+margin-left: ${p => p.ml ? p.ml : '0'}
+`
+
+export const CloseIcon = styled(VscChromeClose)`
+    fill: ${p => p.theme.colors.white};
+    width: ${p => p.width ? p.width + 'px' : '24px'};
+    height: ${p => p.height ? p.height + 'px' : '24px'};
+    transition: inherit;
+
+    ${IconBtn}, ${Btn}:hover & {
+        fill: ${p => p.theme.colors.purple};
+    };
+    ${IconBtn}, ${Btn}:focus-visible & {
+        fill: ${p => p.theme.colors.purple};
+    };
+`
+
+export const MenuIcon = styled(Menu)`
+    fill: ${p => p.theme.colors.white};
+    width: ${p => p.width ? p.width + 'px' : '25px'};
+    height: ${p => p.height ? p.height + 'px' : '25px'};
+    transition: inherit;
+
+    ${IconBtn}:hover & {
+        fill: ${p => p.theme.colors.purple};
+    };
+    ${IconBtn}:focus-visible & {
+        fill: ${p => p.theme.colors.purple};
+    };
+`
+
+export const EditIcon = styled(AiOutlineEdit)`
+    fill: ${p => p.theme.colors.white};
+    width: ${p => p.width ? p.width + 'px' : '24px'};
+    height: ${p => p.height ? p.height + 'px' : '24px'};
+    transition: inherit;
+
+    ${IconBtn}:hover & {
+        fill: ${p => p.theme.colors.purple};
+    };
+    ${IconBtn}:focus-visible & {
+        fill: ${p => p.theme.colors.purple};
+    };
 `

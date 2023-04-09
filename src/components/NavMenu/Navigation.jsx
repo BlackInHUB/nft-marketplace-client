@@ -1,13 +1,11 @@
 import {BtnsList, BtnsListItem, Nav, NavList, NavListItem, NavListItemLink } from './NavMenu.styled';
 import { Button } from '../BaseComponents/Buttons/Buttons';
 import { useUsers } from '../../hooks/useUsers';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import userOperations from '../../redux/user/userOperations';
 
-export const Navigation = ({registerToggle, loginToggle}) => {
+export const Navigation = ({registerToggle, loginToggle, menuToggle}) => {
     const {isLoggedIn} = useUsers();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
@@ -18,13 +16,13 @@ export const Navigation = ({registerToggle, loginToggle}) => {
         <Nav>
             <NavList>
                 <NavListItem>
-                    <NavListItemLink>Marketplace</NavListItemLink>
+                    <NavListItemLink to='/marketplace'>Marketplace</NavListItemLink>
                 </NavListItem>
                 <NavListItem>
-                    <NavListItemLink>Rankings</NavListItemLink>
+                    <NavListItemLink to='/rankings'>Rankings</NavListItemLink>
                 </NavListItem>
                 <NavListItem>
-                    <NavListItemLink>Connect a wallet</NavListItemLink>
+                    <NavListItemLink to='/wallet'>Connect a wallet</NavListItemLink>
                 </NavListItem>
             </NavList>
             <BtnsList>
@@ -38,14 +36,7 @@ export const Navigation = ({registerToggle, loginToggle}) => {
                         type={'button'} 
                         iconType={'user'}
                     />) : 
-                    (<Button
-                        onClick={() => navigate('/userpage')} 
-                        content={'My profile'} 
-                        color={'white'} 
-                        bg={'purple'} 
-                        type={'button'} 
-                        // iconType={'user'}
-                    />)}
+                    (<NavListItemLink to='/userpage' onClick={menuToggle}>My profile</NavListItemLink>)}
                 </BtnsListItem>
                 <BtnsListItem>
                     {!isLoggedIn ? 
@@ -60,7 +51,6 @@ export const Navigation = ({registerToggle, loginToggle}) => {
                         onClick={handleLogout} 
                         content={'Log Out'} 
                         color={'white'} 
-                        borderColor={'transparent'}
                         type={'button'} 
                     />)
                 }

@@ -1,10 +1,8 @@
 import {
     Container, 
     CoverWrapper, 
-    Cover,
     AvatarWrapper, 
     Avatar,
-    BtnsWrapper,
     UsernameBtnsWrapper,
     InfoWrapper,
     Username,
@@ -16,50 +14,91 @@ import {
     DetailsTitle,
     BioText,
     SocialList,
-    SocialListItem    
+    SocialListItem,
+    FileInputLabel,
+    FileInput,
+    EditIcon,
+    EditWrapper
 } from './UserData.styled';
+import { Button, IconButton } from '../BaseComponents/Buttons/Buttons';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import userOperations from '../../redux/user/userOperations';
+
 
 export const UserData = ({user}) => {
+    const {name, bio, avatarUrl, socialLinks, followers, profileCover, owned} = user;
+    const [edit, setEdit] = useState(false)
+    const dispatch = useDispatch();
+
+    const handleEditorOpen = () => {
+        setEdit(!edit);
+    };
+
+    const handleImageEdit = (e) => {
+        const newImage = new FormData();
+
+        newImage.append(e.target.name, e.target.files[0]);
+
+        dispatch(userOperations.update(newImage))
+    };
 
     return (
         <Container>
-            <CoverWrapper>
-                <Cover />
+            <CoverWrapper background={profileCover}>
+                {edit && <FileInputLabel><EditIcon /><FileInput name='profileCover' type='file' onChange={handleImageEdit}/></FileInputLabel>}
             </CoverWrapper>
             <InfoWrapper>
                 <AvatarWrapper>
-                    <Avatar />
+                    <Avatar src={avatarUrl}/>
+                    {edit && <FileInputLabel><EditIcon /><FileInput name='avatarUrl' type='file' onChange={handleImageEdit}/></FileInputLabel>}
                 </AvatarWrapper>
                 <UsernameBtnsWrapper>
-                    <Username></Username>
-                    <BtnsWrapper>
-                        
-                    </BtnsWrapper>
+                    <EditWrapper>
+                        <Username>{name}</Username>
+                        {edit && <IconButton iconType='edit' position='static' ml='10px'/>}
+                    </EditWrapper>
+                    <Button type={'button'} iconType={'plus'} content={'Add NFT'}/>
                 </UsernameBtnsWrapper>
                 <InfoList>
                     <InfoListItem>
-                        <InfoListItemNumber></InfoListItemNumber>
-                        <InfoListItemText></InfoListItemText>
+                        <InfoListItemNumber>0</InfoListItemNumber>
+                        <InfoListItemText>Volume</InfoListItemText>
                     </InfoListItem>
                     <InfoListItem>
-                        <InfoListItemNumber></InfoListItemNumber>
-                        <InfoListItemText></InfoListItemText>
+                        <InfoListItemNumber>0</InfoListItemNumber>
+                        <InfoListItemText>NFTs sold</InfoListItemText>
                     </InfoListItem>
                     <InfoListItem>
-                        <InfoListItemNumber></InfoListItemNumber>
-                        <InfoListItemText></InfoListItemText>
+                        <InfoListItemNumber>{followers ? followers.length : 0}</InfoListItemNumber>
+                        <InfoListItemText>Followers</InfoListItemText>
                     </InfoListItem>
                 </InfoList>
                 <DetailsWrapper>
-                    <DetailsTitle>Bio</DetailsTitle>
-                    <BioText></BioText>
+                    <EditWrapper>
+                        <DetailsTitle>Bio</DetailsTitle>
+                        {edit && <IconButton iconType='edit' position='static' ml='10px'/>}
+                    </EditWrapper>
+                    <BioText>{bio}</BioText>
                 </DetailsWrapper>
                 <DetailsWrapper>
-                    <DetailsTitle>Links</DetailsTitle>
+                    <EditWrapper>
+                        <DetailsTitle>Links</DetailsTitle>
+                        {edit && <IconButton iconType='edit' position='static' ml='10px' />}
+                    </EditWrapper>
                     <SocialList>
                         <SocialListItem></SocialListItem>
                     </SocialList>
                 </DetailsWrapper>
+                <Button 
+                    type='button' 
+                    iconType={edit ? 'close' : 'edit'} 
+                    borderColor='transparent' 
+                    content={edit ? 'Close editor' : 'Edit profile'} 
+                    pr='0' 
+                    pl='0'
+                    onClick={handleEditorOpen}
+                />
             </InfoWrapper>
         </Container>
     )

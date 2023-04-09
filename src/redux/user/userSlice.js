@@ -59,6 +59,36 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.error = payload;
             })
+            .addCase(userOperations.update.pending, state => {
+                state.isLoading = true;
+                state.error = null
+            })
+            .addCase(userOperations.update.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = null;
+                state.user = {...state.user, ...payload};
+            })
+            .addCase(userOperations.update.rejected, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(userOperations.refresh.pending, state => {
+                state.isLoading = true;
+                state.error = null
+            })
+            .addCase(userOperations.refresh.fulfilled, (state, {payload}) => {
+                if (!payload) {
+                    return state = initialState;
+                };
+                state.isLoading = false;
+                state.error = null;
+                state.isLoggedIn = true;
+                state.user = payload;
+            })
+            .addCase(userOperations.refresh.rejected, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
     }
 });
 
