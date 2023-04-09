@@ -74,7 +74,6 @@ export const Username = styled.h2`
     font-size: ${p => p.theme.fontSizes.h4};
     line-height: ${p => p.theme.lineHeights.h4};
     font-weight: ${p => p.theme.fontWeights.bold};
-    margin-bottom: 30px;
 
     @media (min-width: 768px) {
         font-size: ${p => p.theme.fontSizes.h3};
@@ -82,7 +81,6 @@ export const Username = styled.h2`
     }
 
     @media (min-width: 1280px) {
-        margin-bottom: 0px;
         font-size: ${p => p.theme.fontSizes.h2};
         line-height: ${p => p.theme.lineHeights.h2};
     }
@@ -144,14 +142,10 @@ export const DetailsTitle = styled.p`
 
 export const BioText = styled.p`
 
-`
-
-export const SocialList = styled.ul`
-
-`
-
-export const SocialListItem = styled.li`
-
+    @media (min-width: 1280px) {
+        font-size: ${p => p.theme.fontSizes.h5};
+        line-height: ${p => p.theme.lineHeights.h5};
+    }
 `
 
 export const FileInputLabel = styled.label`
@@ -195,4 +189,33 @@ export const EditWrapper = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    margin-bottom: ${p => p.mb ? p.mb : 0};
+
+    @media (min-width: 1280px) {
+        margin-bottom: ${p => p.mb === '30px' ? 0 : '10px'};
+    }
+`
+
+export const EditBtnWrapper = styled.div`
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+
+    @media (min-width: 768px) {
+        right: 72px;
+    }
+
+    @media (min-width: 1280px) {
+        right: 115px;
+    }
+`
+
+export const AddLinkWrapper = styled.div`
+
+`
+
+export const BtnsWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
 `

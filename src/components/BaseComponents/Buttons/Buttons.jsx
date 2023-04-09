@@ -1,9 +1,9 @@
-import { Btn, RocketIcon, MailIcon, EyeIcon, UserIcon, IconBtn, CloseIcon, MenuIcon, EditIcon, RocketLaunchIcon, PlusIcon } from "./Buttons.styled"
+import { Btn, RocketIcon, MailIcon, EyeIcon, UserIcon, IconBtn, CloseIcon, MenuIcon, EditIcon, RocketLaunchIcon, PlusIcon, DoneIcon } from "./Buttons.styled"
 
-export const Button = ({content, color, bg, type, iconType, onClick, width, borderColor, pr, pl}) => {
+export const Button = ({content, color, bg, type, iconType, onClick, width, borderColor, pr, pl, pb, pt}) => {
 
     return (
-        <Btn onClick={onClick} type={type} color={color} bg={bg} width={width} borderColor={borderColor} pr={pr} pl={pl}>
+        <Btn onClick={onClick} type={type} color={color} bg={bg} width={width} borderColor={borderColor} pr={pr} pl={pl} pt={pt} pb={pb}>
             {iconType === 'user' ?
             <UserIcon /> :
             iconType === 'rocket' ?
@@ -27,15 +27,19 @@ export const Button = ({content, color, bg, type, iconType, onClick, width, bord
     )
 };
 
-export const IconButton = ({iconType, onClick, width, height, top, right, position, ml}) => {
+export const IconButton = ({iconType, onClick, w, h, top, right, position, ml, iconColor}) => {
     return (
-        <IconBtn onClick={onClick} type='button' top={top} right={right} position={position} ml={ml}>
+        <IconBtn onClick={onClick} type='button' top={top} right={right} position={position} ml={ml} iconColor={iconColor}>
             {iconType === 'menu' ?
-            <MenuIcon width={width} height={height}/> :
+            <MenuIcon w={w} h={h}/> :
             iconType === 'close' ?
-            <CloseIcon width={width} height={height} /> :
+            <CloseIcon w={w} h={h} /> :
             iconType === 'edit' ?
-            <EditIcon width={width} height={height} /> :
+            <EditIcon w={w} h={h} /> :
+            iconType === 'done' ?
+            <DoneIcon /> :
+            iconType === 'plus' ?
+            <PlusIcon w={w} h={h} /> :
             null
             }
         </IconBtn>
