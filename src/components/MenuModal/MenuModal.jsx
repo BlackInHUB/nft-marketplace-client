@@ -1,34 +1,33 @@
-import { ModalContainer, Modal } from "./MenuModal.styled";
-import { IconButton } from "../BaseComponents/Buttons/Buttons";
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { ModalContainer, Modal  } from "./MenuModal.styled";
+import { IconButton } from "../BaseComponents/Buttons/IconButton";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
+import { useEffect } from "react";
+import { useRef } from "react";
 
-export const MenuModal = ({children, menuToggle, isOpen}) => {
-    const [show, setShow] = useState(false);
+export const MenuModal = ({children, menuToggle, position, type, menuShow}) => {
+
+    const ref = useRef();
+
+    useEscapeKey(menuToggle);
 
     useEffect(() => {
-        setShow(isOpen)
-    }, [isOpen])
+        const handleClick = (e) => {
+            if (menuShow && ref.current && !ref.current.contains(e.target)) {
+                menuToggle();
+            };
+        };
 
-    const handleClose = () => {
-        setShow(!show)
-        setTimeout(() => {
-            menuToggle();
-        }, 500);
-    };
+        document.addEventListener('mousedown', handleClick);
 
-    useEscapeKey(handleClose);
-
+        return () => document.removeEventListener('mousedown', handleClick);
+    }, [menuShow, menuToggle])
+    
     return (
-        createPortal(
-            <ModalContainer show={show}>
-                <Modal>
-                    <IconButton iconType='close' onClick={handleClose} />
-                    {children}
-                </Modal>
-            </ModalContainer>,
-            document.querySelector('#modal-root')
-        )
+        <ModalContainer ref={ref} name='modal' show={menuShow} position={position} type={type}>
+            <Modal>
+                {!type && <IconButton iconType='close' fill='white' onClick={menuToggle} />}
+                {children}
+            </Modal>
+        </ModalContainer>
     )
 }

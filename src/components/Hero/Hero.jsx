@@ -7,7 +7,7 @@ import { HeroSection,
     HeroInfoListItemNumber,
     HeroInfoListItemText
 } from "./Hero.styled";
-import { Button } from "../BaseComponents/Buttons/Buttons";
+import { Button } from "../BaseComponents/Buttons/Button";
 import { Highlight } from "../Highlight/Highlight";
 import { useMQ } from "../../hooks/useMQ";
 import { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ export const Hero = () => {
                 <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
                 <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
                 {isMobile && <Highlight show={hlShow} />}
-                    <Button content={'Get Started'} iconType={'rocketlaunch'} />
+                    <Button content='Get Started' iconType='rocketlaunch' />
                 <HeroInfoList>
                     <HeroInfoListItem>
                         <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>

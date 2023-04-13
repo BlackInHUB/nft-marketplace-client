@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import {ReactComponent as LogoIcon} from '../../images/icons/logo.svg'
 
 export const Header = styled.header`
+    position: relative;
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -29,7 +30,6 @@ export const NavList = styled.ul`
     @media (min-width: 1280px) {
         display: flex;
         margin-bottom: 0;
-        margin-right: 10px;
     }
 `
 
@@ -103,4 +103,11 @@ export const BtnsListItem = styled.li`
             margin-right: 10px;
         }
     }
+`
+
+export const Wrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* overflow: hidden; */
 `

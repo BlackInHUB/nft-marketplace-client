@@ -1,16 +1,9 @@
 import {BtnsList, BtnsListItem, Nav, NavList, NavListItem, NavListItemLink } from './NavMenu.styled';
-import { Button } from '../BaseComponents/Buttons/Buttons';
+import { Button } from '../BaseComponents/Buttons/Button';
 import { useUsers } from '../../hooks/useUsers';
-import { useDispatch } from 'react-redux';
-import userOperations from '../../redux/user/userOperations';
 
-export const Navigation = ({registerToggle, loginToggle, menuToggle}) => {
+export const Navigation = ({registerToggle, loginToggle}) => {
     const {isLoggedIn} = useUsers();
-    const dispatch = useDispatch();
-
-    const handleLogout = () => {
-        dispatch(userOperations.logout());
-    };
 
     return (
         <Nav>
@@ -21,41 +14,27 @@ export const Navigation = ({registerToggle, loginToggle, menuToggle}) => {
                 <NavListItem>
                     <NavListItemLink to='/rankings'>Rankings</NavListItemLink>
                 </NavListItem>
-                <NavListItem>
-                    <NavListItemLink to='/wallet'>Connect a wallet</NavListItemLink>
-                </NavListItem>
             </NavList>
+            {!isLoggedIn &&
             <BtnsList>
                 <BtnsListItem>
-                    {!isLoggedIn ? 
-                    (<Button 
+                    <Button 
                         onClick={registerToggle} 
-                        content={'Sign Up'} 
-                        color={'white'} 
-                        bg={'purple'} 
-                        type={'button'} 
-                        iconType={'user'}
-                    />) : 
-                    (<NavListItemLink to='/userpage' onClick={menuToggle}>My profile</NavListItemLink>)}
+                        content='Sign Up'
+                        type='button'
+                        iconType='user'
+                    />
                 </BtnsListItem>
                 <BtnsListItem>
-                    {!isLoggedIn ? 
-                    (<Button 
+                    <Button 
                         onClick={loginToggle} 
-                        content={'Log In'} 
-                        color={'white'} 
-                        borderColor={'transparent'}
-                        type={'button'} 
-                    />) :
-                    (<Button 
-                        onClick={handleLogout} 
-                        content={'Log Out'} 
-                        color={'white'} 
-                        type={'button'} 
-                    />)
-                }
+                        content='Log In' 
+                        borderColor='transparent'
+                        type='button'
+                    />
                 </BtnsListItem>
             </BtnsList>
+            }
         </Nav>
     )
 }

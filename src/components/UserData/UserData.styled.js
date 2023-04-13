@@ -210,10 +210,6 @@ export const EditBtnWrapper = styled.div`
     }
 `
 
-export const AddLinkWrapper = styled.div`
-
-`
-
 export const BtnsWrapper = styled.div`
     display: flex;
     align-items: center;

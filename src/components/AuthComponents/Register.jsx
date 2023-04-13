@@ -1,5 +1,5 @@
 import { ContentWrapper, ImgWrapper, RegisterContainer, RegisterTitle, RegisterDescription } from "./AuthComponents.styled";
-import { IconButton } from "../BaseComponents/Buttons/Buttons";
+import { IconButton } from "../BaseComponents/Buttons/IconButton";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
@@ -67,6 +67,10 @@ export const Register = ({isOpen, registerToggle}) => {
             return alert('Entered passwords must match!');
         };
 
+        if (!userData) {
+            return alert('Insert valid data!')
+        }
+
         handleClose();
 
         dispatch(userOperations.register(userData));
@@ -77,7 +81,7 @@ export const Register = ({isOpen, registerToggle}) => {
             <RegisterContainer>
                 <ImgWrapper show={show} />
                 <ContentWrapper show={show} >
-                    <IconButton iconType='close' onClick={handleClose} />
+                    <IconButton iconType='close' fill='white' onClick={handleClose} />
                     <RegisterTitle>Create account</RegisterTitle>
                     <RegisterDescription>Welcome! enter your details and start creating, collecting and selling NFTs.</RegisterDescription>
                     <Forms onSubmit={handleSubmit} inputs={inputs} initialState={initialState} buttonText={'Create account'} />

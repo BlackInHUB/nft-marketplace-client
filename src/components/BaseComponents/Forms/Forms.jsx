@@ -1,6 +1,6 @@
 import { Form } from "./Forms.styled";
 import { Input } from "./Input";
-import { Button } from "../Buttons/Buttons";
+import { Button } from "../Buttons/Button";
 import { useForm } from "../../../hooks/useForm";
 
 export const Forms = ({inputs, onSubmit, initialState, buttonText}) => {
@@ -18,7 +18,7 @@ export const Forms = ({inputs, onSubmit, initialState, buttonText}) => {
                     onChange={handleChange}
                 />
             )}
-            <Button content={buttonText} type='submit' width={'100%'} />
+            <Button content={buttonText} type='submit' width='100%' pt='12px' pb='12px' />
         </Form>
     )
 }

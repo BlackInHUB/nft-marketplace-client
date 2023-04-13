@@ -5,6 +5,7 @@ export const useForm = ({initialState, onSubmit}) => {
 
     const handleChange = (e) => {
         const {value, type, name, files} = e.target;
+
         const newValue = type === 'file' ? files : value;
 
         setState(prevState => ({...prevState, [name]: newValue}));
@@ -12,7 +13,7 @@ export const useForm = ({initialState, onSubmit}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         onSubmit(state);
         setState(initialState);
     };

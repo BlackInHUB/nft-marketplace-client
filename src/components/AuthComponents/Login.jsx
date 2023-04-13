@@ -1,5 +1,5 @@
 import { ContentWrapper, ImgWrapper, RegisterContainer, RegisterTitle, RegisterDescription } from "./AuthComponents.styled";
-import { IconButton } from "../BaseComponents/Buttons/Buttons";
+import { IconButton } from "../BaseComponents/Buttons/IconButton";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
@@ -51,6 +51,9 @@ export const Login = ({isOpen, loginToggle}) => {
     useEscapeKey(handleClose);
 
     const handleSubmit = (userData) => {
+        if (!userData) {
+            return alert('Insert valid data!')
+        }
         handleClose();
         dispatch(userOperations.login(userData));
     };
@@ -60,7 +63,7 @@ export const Login = ({isOpen, loginToggle}) => {
             <RegisterContainer>
                 <ImgWrapper show={show} />
                 <ContentWrapper show={show} >
-                    <IconButton iconType='close' onClick={handleClose} />
+                    <IconButton iconType='close' fill='white' onClick={handleClose} />
                     <RegisterTitle>Log In</RegisterTitle>
                     <RegisterDescription>Welcome! Enter your email & password, please.</RegisterDescription>
                     <Forms onSubmit={handleSubmit} inputs={inputs} initialState={initialState} buttonText={'Log In'} />

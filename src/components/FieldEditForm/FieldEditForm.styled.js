@@ -8,6 +8,7 @@ export const Form = styled.form`
 `
 
 export const FormInput = styled.input`
+    font-family: ${p => p.theme.fontFamily.workSans};
     width: 100%;
     outline: none;
     font-size: ${p => p.theme.fontSizes.body};
@@ -32,9 +33,14 @@ export const FormInput = styled.input`
     :hover {
         border-color: ${p => p.theme.colors.purple};
     }
+
+    :not(:last-child) {
+        margin-bottom: 10px;
+    }
 `
 
 export const FormTextArea = styled.textarea`
+    font-family: ${p => p.theme.fontFamily.workSans};
     resize: none;
     width: 100%;
     height: 100px;
