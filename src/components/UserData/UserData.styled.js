@@ -119,11 +119,8 @@ export const InfoListItemText = styled.p`
 `
 
 export const DetailsWrapper = styled.div`
-    margin-top: 30px;
-
-    &:last-of-type {
-        margin-bottom: 30px;
-    }
+    margin-bottom: ${p => p.mb};
+    margin-top: ${p => p.mt};
 `
 
 export const DetailsTitle = styled.p`
@@ -189,11 +186,7 @@ export const EditWrapper = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: ${p => p.mb ? p.mb : 0};
-
-    @media (min-width: 1280px) {
-        margin-bottom: ${p => p.mb === '30px' ? 0 : '10px'};
-    }
+    margin-bottom: 10px;
 `
 
 export const EditBtnWrapper = styled.div`

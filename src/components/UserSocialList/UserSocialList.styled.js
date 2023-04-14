@@ -2,15 +2,20 @@ import styled from "styled-components";
 
 export const List = styled.ul`
     display: flex;
+    flex-direction: ${p => p.editing ? 'column' : 'row'};
     gap: 10px;
+    margin-bottom: ${p => p.addLink ? '10px' : 0};
 `
 
 export const ListItem = styled.li`
-
+    display: flex;
+    gap: 10px;
+    align-items: center;
 `
 
 export const ListItemLink = styled.a`
-
+    display: flex;
+    align-items: center;
 `
 
 export const StyledIcon = styled.svg`
@@ -34,4 +39,9 @@ export const StyledIcon = styled.svg`
 
 export const AddLinkWrapper = styled.div`
 
+`
+
+export const EditBtnsWrapper = styled.div`
+    display: flex;
+    gap: 10px;
 `

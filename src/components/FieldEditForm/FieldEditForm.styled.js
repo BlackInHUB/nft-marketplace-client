@@ -33,10 +33,6 @@ export const FormInput = styled.input`
     :hover {
         border-color: ${p => p.theme.colors.purple};
     }
-
-    :not(:last-child) {
-        margin-bottom: 10px;
-    }
 `
 
 export const FormTextArea = styled.textarea`

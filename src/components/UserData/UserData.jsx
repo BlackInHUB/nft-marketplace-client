@@ -104,8 +104,8 @@ export const UserData = ({user}) => {
                         <InfoListItemText>Followers</InfoListItemText>
                     </InfoListItem>
                 </InfoList>
-                <DetailsWrapper>
-                    <EditWrapper mb='10px'>
+                <DetailsWrapper mt='30px' mb='30px'>
+                    <EditWrapper>
                         <DetailsTitle>Bio</DetailsTitle>
                         {(edit && !edField) && <IconButton type='button' fill='white' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('bio')}/>}
                     </EditWrapper>
@@ -115,7 +115,7 @@ export const UserData = ({user}) => {
                     }
                 </DetailsWrapper>
                 <DetailsWrapper>
-                    <EditWrapper mb='10px'>
+                    <EditWrapper>
                         <DetailsTitle>Links</DetailsTitle>
                         {edField === 'socialLinks' &&
                             <BtnsWrapper>
