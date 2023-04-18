@@ -5,12 +5,9 @@ export const List = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: start;
+    gap: 10px;
 `
 
 export const ListItem = styled.li`
     width: 100%;
-    
-    :not(:last-child) {
-        margin-bottom: 10px;
-    }
 `

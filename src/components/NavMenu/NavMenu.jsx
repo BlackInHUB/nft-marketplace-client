@@ -1,10 +1,10 @@
-import { Header, Logo, LogoLink, Wrapper } from "./NavMenu.styled";
+import { Header, LogoLink, LogoText, LogoIcon, Wrapper } from "./NavMenu.styled";
 import { IconButton } from "../BaseComponents/Buttons/IconButton";
 import { Navigation } from "./Navigation";
-import { MenuModal } from "../MenuModal/MenuModal";
+import { Modal } from "../Modal/Modal";
 import { useState } from "react";
 import { Register } from "../AuthComponents/Register";
-import {Login} from "../AuthComponents/Login";
+import { Login } from "../AuthComponents/Login";
 import { useMQ } from '../../hooks/useMQ';
 import { useUsers } from "../../hooks/useUsers";
 import { createPortal } from "react-dom";
@@ -64,13 +64,16 @@ export const NavMenu = ({edit, setEdit}) => {
         <>
         <Header>
             <LogoLink to='/'>
-                <Logo />
+                <LogoIcon />
+                <LogoText />
             </LogoLink>
             <Wrapper>
                 {!isDesktop ?
                     <IconButton
+                        type='button'
                         position='static'
-                        fill='white'
+                        w='25px'
+                        h='25px'
                         iconType='menu'
                         onClick={() => menuToggle('mainMenu')} 
                     /> :
@@ -78,15 +81,15 @@ export const NavMenu = ({edit, setEdit}) => {
                 }
                 {isLoggedIn && 
                     <IconButton
+                        type='button'
                         onClick={() => menuToggle('userMenu')}
                         ml='15px'
                         position='static'
                         iconType='avatar'
                         avatarUrl={user.avatarUrl}
-                        type='button' 
                     />}
                 {menuOpen.userMenu && 
-                    <MenuModal 
+                    <Modal 
                         position='absolute'
                         menuShow={menuShow}
                         children={<UserMenuList menuToggle={menuToggle} setEdit={setEdit} edit={edit} />}
@@ -98,7 +101,7 @@ export const NavMenu = ({edit, setEdit}) => {
         </Header>
         {!isDesktop && menuOpen.mainMenu && 
             createPortal(
-                <MenuModal 
+                <Modal 
                     menuShow={menuShow}
                     children={<Navigation 
                     loginToggle={loginToggle} 

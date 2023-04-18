@@ -15,14 +15,15 @@ export const FormInput = styled.input`
     padding: 12px 20px 12px 50px;
     border: ${p => p.theme.borders.main} ${p => p.theme.colors.grey};
     border-radius: ${p => p.theme.radii.normal};
-    transition: all 150ms ease;
+    transition: all 250ms ease;
 
     &::placeholder {
         font-family: ${p => p.theme.fontFamily.workSans};
         color: ${p => p.theme.colors.mainBlack};
     };
 
-    &:focus {
+    :hover,
+    :focus-visible {
         border-color: ${p => p.theme.colors.purple};
     }
 `

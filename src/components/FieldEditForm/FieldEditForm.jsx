@@ -26,10 +26,10 @@ export const FieldEditForm = ({onSubmit, name, value, onClose, old, linkChange, 
             null
             }
             {name === 'linkEdit' ? 
-            <IconButton iconType='done' fill='white' type='submit' position='static' onClick={editLinkSubmit} /> :
-            <IconButton iconType='done' fill='white' type='submit' position='static' onClick={handleSubmit} />
+            <IconButton iconType='done' type='submit' position='static' onClick={editLinkSubmit} /> :
+            <IconButton iconType='done' type='submit' position='static' onClick={handleSubmit} />
             }
-            <IconButton iconType='close' fill='white' type='button' position='static' ml='10px' onClick={() => onClose(null)}/>
+            <IconButton iconType='close' type='button' position='static' ml='10px' onClick={() => onClose(null)}/>
         </Form>
     )
 };

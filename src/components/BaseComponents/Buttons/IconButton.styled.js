@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const IconBtn = styled.button`
 position: ${p => p.position ? p.position : 'absolute'};
-top: ${p => p.top ? p.top + 'px' : '15px'};
-right: ${p => p.right ? p.right + 'px' : '30px'};
+top: ${p => p.top ? p.top : '15px'};
+right: ${p => p.right ? p.right : '30px'};
 outline: none;
 cursor: pointer;
 display: flex;
@@ -13,7 +13,9 @@ background-color: transparent;
 border: none;
 transition: all 250ms ease;
 margin-left: ${p => p.ml ? p.ml : '0'};
-margin-right: ${p => p.mr ? p.mr : '0'}
+margin-right: ${p => p.mr ? p.mr : '0'};
+margin-bottom: ${p => p.mb ? p.mb : '0'};
+margin-top: ${p => p.mt ? p.mt : '0'};
 `
 
 export const Avatar = styled.img`
@@ -21,9 +23,12 @@ export const Avatar = styled.img`
     height: 30px;
     border: ${p => p.theme.borders.main} ${p => p.theme.colors.white};
     border-radius: ${p => p.theme.radii.round};
-    transition: inherit;
+    transition: all 250ms ease;
 
     ${IconBtn}:hover & {
+        border-color: ${p => p.theme.colors.purple};
+    }
+    ${IconBtn}:focus-visible & {
         border-color: ${p => p.theme.colors.purple};
     }
 `
@@ -31,13 +36,13 @@ export const Avatar = styled.img`
 export const StyledIcon = styled.svg`
     width: ${p => p.w ? p.w : '20px'};
     height: ${p => p.h ? p.h : '20px'};
-    fill: ${p => p.fill ? p.theme.colors[p.fill] : p.theme.colors.purple};
-    transition: inherit;
+    fill: ${p => p.theme.colors.white};
+    transition: all 250ms ease;
 
     ${IconBtn}:hover & {
-        fill: ${p => p.fill === 'white' ? p.theme.colors.purple : p.theme.colors.white};
+        fill: ${p => p.theme.colors.purple};
     }
     ${IconBtn}:focus-visible & {
-        fill: ${p => p.fill === 'white' ? p.theme.colors.purple : p.theme.colors.white};
+        fill: ${p => p.theme.colors.purple};
     }
 `

@@ -23,6 +23,6 @@ export const ModalContainer = styled.div`
     border-top-left-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
 `
 
-export const Modal = styled.div`
+export const ModalContent = styled.div`
     
 `

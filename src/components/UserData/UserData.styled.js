@@ -3,6 +3,7 @@ import defaultCover from '../../images/defaultCover.jpg';
 import {AiOutlineEdit} from 'react-icons/ai';
 
 export const Container = styled.section`
+    overflow: hidden;
 `
 
 export const CoverWrapper = styled.div`
@@ -12,6 +13,9 @@ export const CoverWrapper = styled.div`
     background-position: center;
     background-size: cover;
     height: 250px;
+    opacity: ${p => p.show ? '1' : '0'};
+    transform: ${p => p.show ? 'translate(0, 0)' : 'translate(0, -100%)'};
+    transition: all 500ms ease;
 
     @media (min-width: 768px) {
         height: 280px;
@@ -60,6 +64,9 @@ export const UsernameBtnsWrapper = styled.div`
 export const InfoWrapper = styled.div`
     position: relative;
     padding: 70px 30px 30px 30px;
+    opacity: ${p => p.show ? '1' : '0'};
+    transform: ${p => p.show ? 'translate(0, 0)' : 'translate(0, 100%)'};
+    transition: all 500ms ease;
 
     @media (min-width: 768px) {
         padding: 70px 72px 30px 72px;

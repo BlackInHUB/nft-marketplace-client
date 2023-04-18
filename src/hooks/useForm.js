@@ -4,9 +4,13 @@ export const useForm = ({initialState, onSubmit}) => {
     const [state, setState] = useState(initialState);
 
     const handleChange = (e) => {
-        const {value, type, name, files} = e.target;
+        const {value, type, name, files, id} = e.target;
 
         const newValue = type === 'file' ? files : value;
+
+        if (id === 'details') {
+           return setState(prevState => ({...prevState, details: {...prevState.details, [name]: newValue}}));
+        };
 
         setState(prevState => ({...prevState, [name]: newValue}));
     };

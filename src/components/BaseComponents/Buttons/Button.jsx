@@ -6,36 +6,40 @@ import {ReactComponent as Mail} from '../../../images/icons/EyeSlash.svg';
 import {ReactComponent as Eye} from '../../../images/icons/Eye.svg';
 import {ReactComponent as Plus} from '../../../images/icons/Plus.svg';
 import {ReactComponent as Wallet} from '../../../images/icons/Wallet.svg';
+import {ReactComponent as ArrowR} from '../../../images/icons/ArrowRight.svg';
+import {ReactComponent as ArrowL} from '../../../images/icons/ArrowLeft.svg';
+import {ReactComponent as Menu} from '../../../images/icons/List.svg';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {VscChromeClose} from 'react-icons/vsc';
 import {MdLogout} from 'react-icons/md';
+import {MdDone} from 'react-icons/md';
+import {AiOutlineDelete} from 'react-icons/ai';
 
-export const Button = ({content, fill, iconType, onClick, width, borderColor, pr, pl, pb, pt, bold, w, h}) => {
+
+export const Button = ({type, content, fill, hfill, iconType, onClick, width, borderColor, p, bold, w, h, mt}) => {
 
     return (
-        <Btn onClick={onClick} width={width} borderColor={borderColor} pr={pr} pl={pl} pt={pt} pb={pb} bold={bold}>
-            {iconType === 'user' ?
-            <StyledIcon as={User} fill={fill} w={w} h={h} /> :
-            iconType === 'rocket' ?
-            <StyledIcon as={Rocket} fill={fill} w={w} h={h} /> :
-            iconType === 'mail' ? 
-            <StyledIcon as={Mail} fill={fill} w={w} h={h} /> :
-            iconType === 'eye' ?
-            <StyledIcon as={Eye} fill={fill} w={w} h={h} /> :
-            iconType === 'rocketlaunch' ?
-            <StyledIcon as={RocketLaunch} fill={fill} w={w} h={h} /> :
-            iconType === 'plus' ?
-            <StyledIcon as={Plus} fill={fill} w={w} h={h} /> :
-            iconType === 'edit' ?
-            <StyledIcon as={AiOutlineEdit} fill={fill} w={w} h={h} /> :
-            iconType === 'close' ?
-            <StyledIcon as={VscChromeClose} fill={fill} w={w} h={h} /> :
-            iconType === 'logout' ?
-            <StyledIcon as={MdLogout} fill={fill} w={w} h={h} /> :
-            iconType === 'wallet' ?
-            <StyledIcon as={Wallet} fill={fill} w={w} h={h} /> :
-            null
-            }
+        <Btn type={type} onClick={onClick} width={width} borderColor={borderColor} p={p} bold={bold} mt={mt}>
+                {iconType &&
+                <StyledIcon fill={fill} hfill={hfill} w={w} h={h} 
+                    as={iconType === 'user' ? User :
+                    iconType === 'rocket' ? Rocket :
+                    iconType === 'mail' ? Mail :
+                    iconType === 'eye' ? Eye :
+                    iconType === 'rocketlaunch' ? RocketLaunch :
+                    iconType === 'plus' ? Plus :
+                    iconType === 'edit' ? AiOutlineEdit :
+                    iconType === 'close' ? VscChromeClose :
+                    iconType === 'logout' ? MdLogout :
+                    iconType === 'wallet' ? Wallet :
+                    iconType === 'done' ? MdDone :
+                    iconType === 'arrowr' ? ArrowR :
+                    iconType === 'arrowl' ? ArrowL :
+                    iconType === 'menu' ? Menu :
+                    iconType === 'delete' ? AiOutlineDelete :
+                    null}   
+                />
+                }
             {content}
         </Btn>
     )

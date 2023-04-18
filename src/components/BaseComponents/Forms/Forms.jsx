@@ -18,7 +18,7 @@ export const Forms = ({inputs, onSubmit, initialState, buttonText}) => {
                     onChange={handleChange}
                 />
             )}
-            <Button content={buttonText} type='submit' width='100%' pt='12px' pb='12px' />
+            <Button content={buttonText} type='submit' width='100%' p='12px 50px' />
         </Form>
     )
 }

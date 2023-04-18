@@ -81,7 +81,7 @@ export const Register = ({isOpen, registerToggle}) => {
             <RegisterContainer>
                 <ImgWrapper show={show} />
                 <ContentWrapper show={show} >
-                    <IconButton iconType='close' fill='white' onClick={handleClose} />
+                    <IconButton type='button' iconType='close' onClick={handleClose} />
                     <RegisterTitle>Create account</RegisterTitle>
                     <RegisterDescription>Welcome! enter your details and start creating, collecting and selling NFTs.</RegisterDescription>
                     <Forms onSubmit={handleSubmit} inputs={inputs} initialState={initialState} buttonText={'Create account'} />

@@ -1,4 +1,11 @@
 import styled from "styled-components";
+import { keyframes } from "styled-components";
+
+const hlAnimation = keyframes`
+    0% {opacity: 0; transform: translate(100%, 0) scale(1.05)}
+    80% {opacity: 1; transform: translate(0, 0) scale(1.05)}
+    100% {opacity: 1; transform: translate(0, 0) scale(1)}
+`
 
 export const HeroHighlightContainer = styled.div`
     min-width: 315px;
@@ -7,9 +14,9 @@ export const HeroHighlightContainer = styled.div`
     border-radius: ${p => p.theme.radii.normal};
     overflow: hidden;
     margin-bottom: 40px;
-    opacity: ${p => p.show ? '1' : '0'};
-    transform: ${p => p.show ? 'translate(0, 0)' : 'translate(100%, 0)'};
-    transition: all 500ms ease;
+    animation: ${hlAnimation};
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
 
     @media (min-width: 768px) {
         min-width: 330px;
@@ -28,7 +35,6 @@ export const HighlightImg = styled.img`
 
 export const HighlightInfoContainer = styled.div`
     padding: 22px 20px;
-
 `
 
 export const HighlightTitle = styled.p`

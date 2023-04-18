@@ -26,15 +26,22 @@ import { useState } from 'react';
 import userOperations from '../../redux/user/userOperations';
 import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
 import { UserSocialList } from '../UserSocialList/UserSocialList';
-import { useOutletContext } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const UserData = ({user}) => {
     const {name, bio, avatarUrl, socialLinks, followers, profileCover, owned} = user;
     const [edField, setEdField] = useState(null);
     const [addLink, setAddLink] = useState(false);
+    const [show, setShow] = useState(false);
     const dispatch = useDispatch();
-    const defaultAvatar = 'https://res.cloudinary.com/dazfphdfk/image/upload/v1681052126/avatarUrl/4ccba907-94f4-497e-b412-ff20f6ca05cb-no-avatar.png';
     const {edit, setEdit} = useOutletContext();
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShow(true);
+        }, 1)
+    }, [])
 
     const toggleEditField = (field) => {
         if (addLink) {
@@ -61,13 +68,14 @@ export const UserData = ({user}) => {
     };
 
     return (
+        <>
         <Container>
-            <CoverWrapper background={profileCover}>
+            <CoverWrapper background={profileCover} show={show}>
                 {edit && <FileInputLabel><EditIcon /><FileInput name='profileCover' type='file' onChange={handleImageEdit}/></FileInputLabel>}
             </CoverWrapper>
-            <InfoWrapper>
-                <AvatarWrapper>
-                    <Avatar src={avatarUrl ? avatarUrl : defaultAvatar}/>
+            <InfoWrapper show={show}>
+                <AvatarWrapper show={show}>
+                    <Avatar src={avatarUrl}/>
                     {edit && <FileInputLabel><EditIcon /><FileInput name='avatarUrl' type='file' onChange={handleImageEdit}/></FileInputLabel>}
                 </AvatarWrapper>
                 <UsernameBtnsWrapper>
@@ -76,18 +84,20 @@ export const UserData = ({user}) => {
                             <Username>{name}</Username> :
                             <FieldEditForm name='name' value={name} onSubmit={handleEditSubmit} onClose={toggleEditField} />
                         }
-                        {(edit && !edField) && <IconButton type='button' fill='white' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('name')}/>}
+                        {(edit && !edField) && <IconButton type='button' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('name')}/>}
                     </EditWrapper>
                     {edit ? 
                         <Button 
                         type='button' 
                         iconType='close'
                         content='Close editor'
+                        fill='purple'
+                        hfill='white'
                         w='25px'
                         h='25px'
                         onClick={() => setEdit(!edit)}
                         /> :
-                        <Button type='button' iconType='plus' w='25px' h='25px' content={'Add NFT'} />
+                        <NavLink to='/nfts'><Button type='button' fill='purple' hfill='white' iconType='arrowr' w='25px' h='25px' content={'My NFTs'} /></NavLink>
                     }
                 </UsernameBtnsWrapper>
                 <InfoList>
@@ -107,7 +117,7 @@ export const UserData = ({user}) => {
                 <DetailsWrapper mt='30px' mb='30px'>
                     <EditWrapper>
                         <DetailsTitle>Bio</DetailsTitle>
-                        {(edit && !edField) && <IconButton type='button' fill='white' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('bio')}/>}
+                        {(edit && !edField) && <IconButton type='button' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('bio')}/>}
                     </EditWrapper>
                     {edField !== 'bio' ?
                         <BioText>{bio ? bio : 'No bio added yet...'}</BioText> :
@@ -119,15 +129,16 @@ export const UserData = ({user}) => {
                         <DetailsTitle>Links</DetailsTitle>
                         {edField === 'socialLinks' &&
                             <BtnsWrapper>
-                                <IconButton type='button' iconType='plus' fill='white' w='25px' h='25px' position='static' onClick={toggleAddLink} />
-                                <IconButton type='button' iconType='close' fill='white' position='static' onClick={() => toggleEditField(null)} ml='10px' />
+                                <IconButton type='button' iconType='plus' w='25px' h='25px' position='static' onClick={toggleAddLink} />
+                                <IconButton type='button' iconType='close' position='static' onClick={() => toggleEditField(null)} ml='10px' />
                             </BtnsWrapper>
                         }
-                        {(edit && !edField) && <IconButton type='button' fill='white' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('socialLinks')}/>}
+                        {(edit && !edField) && <IconButton type='button' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('socialLinks')}/>}
                     </EditWrapper>
                     <UserSocialList socialLinks={socialLinks} editing={edField === 'socialLinks'} addLink={addLink} setAddLink={setAddLink} />
                 </DetailsWrapper>
             </InfoWrapper>
         </Container>
+        </>
     )
 };

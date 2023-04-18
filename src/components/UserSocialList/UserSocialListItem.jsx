@@ -7,6 +7,7 @@ import {ReactComponent as TwitterIcon} from '../../images/icons/TwitterLogo.svg'
 import { IconButton } from '../BaseComponents/Buttons/IconButton';
 import { useState } from 'react';
 import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
+import { FaFacebookSquare } from 'react-icons/fa';
 
 export const UserSocialListItem = ({link, editing, deleteLink, submitEditLink}) => {
     const [editLink, setEditLink] = useState(false);
@@ -28,6 +29,7 @@ export const UserSocialListItem = ({link, editing, deleteLink, submitEditLink}) 
                 link.toLowerCase().split(/[./]+/).includes('instagram') ? <StyledIcon as={InstagramIcon} /> :
                 link.toLowerCase().split(/[./]+/).includes('youtube') ? <StyledIcon as={YoutubeIcon} /> :
                 link.toLowerCase().split(/[./]+/).includes('twitter') ? <StyledIcon as={TwitterIcon} /> :
+                link.toLowerCase().split(/[./]+/).includes('facebook') ? <StyledIcon as={FaFacebookSquare} /> :
                 <StyledIcon as={GlobeIcon} />
                 }
             </ListItemLink> :

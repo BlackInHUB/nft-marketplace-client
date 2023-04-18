@@ -10,10 +10,7 @@ export const Btn = styled.button`
     font-weight: ${p => p.bold === 'false' ? 'normal' : p.theme.fontWeights.bold};
     gap: 12px;
     font-family: inherit;
-    padding-left: ${p => p.pl ? p.pl + 'px' : '50px'};
-    padding-right: ${p => p.pr ? p.pr + 'px' : '50px'};
-    padding-top: ${p => p.pt ? p.pt : '19px'};
-    padding-bottom: ${p => p.pb ? p.pb : '19px'};
+    padding: ${p => p.p ? p.p : '19px 50px'};
     width: 100%;
     display: flex;
     justify-content: center;
@@ -22,6 +19,7 @@ export const Btn = styled.button`
     cursor: pointer;
     border: ${p => p.theme.borders.main} ${p => p.borderColor ? p.borderColor : p.theme.colors.purple};
     border-radius: ${p => p.theme.radii.normal};
+    margin-top: ${p => p.mt ? p.mt : 0};
     transition: all 250ms ease;
 
     @media (min-width: 480px) {
@@ -52,13 +50,13 @@ export const Btn = styled.button`
 export const StyledIcon = styled.svg`
     width: ${p => p.w ? p.w : '20px'};
     height: ${p => p.h ? p.h : '20px'};
-    fill: ${p => p.fill ? p.theme.colors[p.fill] : p.theme.colors.purple};
-    transition: inherit;
+    fill: ${p => p.theme.colors[p.fill]};
+    transition: all 250ms ease;
 
     ${Btn}:hover & {
-        fill: ${p => p.fill ? p.theme.colors.purple : p.theme.colors.white};
+        fill: ${p => p.theme.colors[p.hfill]};
     }
     ${Btn}:focus-visible & {
-        fill: ${p => p.fill ? p.theme.colors.purple : p.theme.colors.white};
+        fill: ${p => p.theme.colors[p.hfill]};
     }
 `

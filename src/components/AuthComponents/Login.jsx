@@ -63,7 +63,7 @@ export const Login = ({isOpen, loginToggle}) => {
             <RegisterContainer>
                 <ImgWrapper show={show} />
                 <ContentWrapper show={show} >
-                    <IconButton iconType='close' fill='white' onClick={handleClose} />
+                    <IconButton type='button' iconType='close' onClick={handleClose} />
                     <RegisterTitle>Log In</RegisterTitle>
                     <RegisterDescription>Welcome! Enter your email & password, please.</RegisterDescription>
                     <Forms onSubmit={handleSubmit} inputs={inputs} initialState={initialState} buttonText={'Log In'} />

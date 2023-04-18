@@ -23,6 +23,8 @@ export const Navigation = ({registerToggle, loginToggle}) => {
                         content='Sign Up'
                         type='button'
                         iconType='user'
+                        fill='purple'
+                        hfill='white'
                     />
                 </BtnsListItem>
                 <BtnsListItem>

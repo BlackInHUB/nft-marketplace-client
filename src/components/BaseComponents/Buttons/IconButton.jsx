@@ -6,24 +6,20 @@ import {VscChromeClose} from 'react-icons/vsc';
 import {MdDone} from 'react-icons/md';
 import {AiOutlineDelete} from 'react-icons/ai';
 
-export const IconButton = ({iconType, fill, onClick, w, h, top, right, position, ml, mr, avatarUrl}) => {
+export const IconButton = ({type, iconType, onClick, w, h, top, right, position, ml, mr, mt, mb, avatarUrl}) => {
     return (
-        <IconBtn onClick={onClick} type='button' top={top} right={right} position={position} ml={ml} mr={mr}>
-            {iconType === 'menu' ?
-            <StyledIcon as={Menu} w={w} h={h} fill={fill} /> :
-            iconType === 'close' ?
-            <StyledIcon as={VscChromeClose} w={w} h={h} fill={fill} /> :
-            iconType === 'edit' ?
-            <StyledIcon as={AiOutlineEdit} w={w} h={h} fill={fill} /> :
-            iconType === 'done' ?
-            <StyledIcon as={MdDone} w={w} h={h} fill={fill} /> :
-            iconType === 'plus' ?
-            <StyledIcon as={Plus} w={w} h={h} fill={fill} /> :
-            iconType === 'avatar' ?
+        <IconBtn onClick={onClick} type={type} top={top} right={right} position={position} ml={ml} mr={mr} mb={mb} mt={mt}>
+            {iconType === 'avatar' ?
             <Avatar src={avatarUrl}/> :
-            iconType === 'delete' ? 
-            <StyledIcon as={AiOutlineDelete} w={w} h={h} fill={fill} /> :
-            null
+            <StyledIcon w={w} h={h}
+            as={iconType === 'menu' ? Menu :
+            iconType === 'delete' ? AiOutlineDelete :
+            iconType === 'plus' ? Plus :
+            iconType === 'edit' ? AiOutlineEdit :
+            iconType === 'close' ? VscChromeClose :
+            iconType === 'done' ? MdDone :
+            null} 
+            />
             }
         </IconBtn>
     )

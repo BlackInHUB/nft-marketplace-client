@@ -1,10 +1,10 @@
-import { ModalContainer, Modal  } from "./MenuModal.styled";
+import { ModalContainer, ModalContent  } from "./Modal.styled";
 import { IconButton } from "../BaseComponents/Buttons/IconButton";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
 import { useEffect } from "react";
 import { useRef } from "react";
 
-export const MenuModal = ({children, menuToggle, position, type, menuShow}) => {
+export const Modal = ({children, menuToggle, position, type, menuShow}) => {
 
     const ref = useRef();
 
@@ -24,10 +24,10 @@ export const MenuModal = ({children, menuToggle, position, type, menuShow}) => {
     
     return (
         <ModalContainer ref={ref} name='modal' show={menuShow} position={position} type={type}>
-            <Modal>
-                {!type && <IconButton iconType='close' fill='white' onClick={menuToggle} />}
+            <ModalContent>
+                {!type && <IconButton iconType='close' type='button' onClick={menuToggle} />}
                 {children}
-            </Modal>
+            </ModalContent>
         </ModalContainer>
     )
 }
