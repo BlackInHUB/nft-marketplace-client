@@ -21,7 +21,7 @@ export const ListItemLink = styled.a`
 export const StyledIcon = styled.svg`
     width: 24px;
     height: 24px;
-    fill: ${p => p.theme.colors.grey};
+    fill: ${p => p.theme.colors.caption};
     transition: all 250ms ease;
 
     @media (min-width: 1280px) {
@@ -30,10 +30,10 @@ export const StyledIcon = styled.svg`
     }
 
     ${ListItemLink}:hover & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
     ${ListItemLink}:focus-visible & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
 `
 

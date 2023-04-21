@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 
 export const Nfts = () => {
     const [modalOpen, setModalOpen] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const dispatch = useDispatch();
 
     const handleNftAdd = (newNft) => {
@@ -23,12 +24,22 @@ export const Nfts = () => {
             data.append([item], newNft[item]);
         });
 
-        dispatch(nftOperations.add(data));
+        dispatch(nftOperations.addNft(data));
         toggleModal();
     };
 
     const toggleModal = () => {
+        if (modalOpen) {
+            setTimeout(() => {
+                setModalOpen(!modalOpen);
+            }, 500);
+            setModalShow(!modalShow)
+            return;
+        }
         setModalOpen(!modalOpen);
+        setTimeout(() => {
+            setModalShow(!modalShow);
+        }, 1);
     };
 
     return (
@@ -41,7 +52,7 @@ export const Nfts = () => {
         </NftsContainer>
         {modalOpen &&
             createPortal(
-                <AddNftModal modalOpen={modalOpen} toggleModal={toggleModal} onSubmit={handleNftAdd} />,
+                <AddNftModal modalOpen={modalOpen} toggleModal={toggleModal} show={modalShow} onSubmit={handleNftAdd} />,
                 document.querySelector('#modal-root')
             )
         }

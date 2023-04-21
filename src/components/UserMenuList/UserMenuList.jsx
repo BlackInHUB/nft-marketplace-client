@@ -2,32 +2,12 @@ import { List, ListItem } from "./UserMenuList.styled";
 import { Button } from "../BaseComponents/Buttons/Button";
 import { useDispatch } from "react-redux";
 import userOperations from "../../redux/user/userOperations";
-import { useNavigate, useLocation, NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
-export const UserMenuList = ({edit, setEdit, menuToggle}) => {
+export const UserMenuList = ({menuToggle}) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate(); 
-    const location = useLocation();
-
-    useEffect(() => {
-        if (location.pathname !== '/userpage') {
-            setEdit(false);
-        };
-    }, [location.pathname, setEdit])
-
-    const handleEdit = () => {
-        if (location.pathname !== '/userpage') {
-            navigate('/userpage');
-        };
-        setEdit(!edit);
-        menuToggle();
-    }
 
     const handleLogout = () => {
-        if(edit) {
-            setEdit(!edit);
-        };
         menuToggle();
         dispatch(userOperations.logout());
     };
@@ -42,8 +22,8 @@ export const UserMenuList = ({edit, setEdit, menuToggle}) => {
                         borderColor='transparent' 
                         content='My profile'
                         bold='false'
-                        fill='white'
-                        hfill='purple'
+                        fill='text'
+                        hfill='accent'
                         width='fit-content'
                         p='0'
                         onClick={menuToggle}
@@ -57,24 +37,10 @@ export const UserMenuList = ({edit, setEdit, menuToggle}) => {
                     borderColor='transparent' 
                     content='Connect a wallet'
                     bold='false'
-                    fill='white'
-                    hfill='purple'
+                    fill='text'
+                    hfill='accent'
                     width='fit-content'
                     p='0'
-                />
-            </ListItem>
-            <ListItem>
-                <Button 
-                    type='button' 
-                    iconType={edit ? 'close' : 'edit'} 
-                    borderColor='transparent' 
-                    content={edit ? 'Close editor' : 'Edit profile'}
-                    bold='false' 
-                    fill='white'
-                    hfill='purple'
-                    width='fit-content'
-                    p='0'
-                    onClick={handleEdit}
                 />
             </ListItem>
             <ListItem>
@@ -84,8 +50,8 @@ export const UserMenuList = ({edit, setEdit, menuToggle}) => {
                     borderColor='transparent' 
                     content='Log out' 
                     bold='false' 
-                    fill='white'
-                    hfill='purple'
+                    fill='text'
+                    hfill='accent'
                     width='fit-content'
                     p='0'
                     onClick={handleLogout}

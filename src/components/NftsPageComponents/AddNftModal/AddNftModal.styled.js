@@ -1,49 +1,73 @@
 import styled from "styled-components";
 import {ReactComponent as Plus} from '../../../images/icons/Plus.svg';
 
+export const ModalBackdrop = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+`
+
 export const ModalContainer = styled.div`
     position: absolute;
     top: 50%;
     right: 50%;
-    transform: translate(50%, -50%);
     width: calc(100vw - 60px);
-    max-height: 90%;
+    height: 70%;
     overflow: hidden;
     border-radius: ${p => p.theme.radii.normal};
-    background-color: ${p => p.theme.colors.darkGrey};
+    background-color: ${p => p.theme.colors.secondary};
     padding: 40px;
+    opacity: ${p => p.show ? '1' : 0};
+    transform: ${p => p.show ? 'translate(50%, -50%) scale(1)' : 'translate(50%, -50%) scale(0)'};
+    transition: all 500ms ease;
 
     @media (min-width: 768px) {
-        transform: translate(50%, -50%);
         width: calc(100vw - 144px);
+        height: calc(841px * 0.66);
     }
 
-    @media (min-width: 768px) {
-        width: calc(100vw - 230px);
+    @media (min-width: 1280px) {
+        width: 60%;
+        height: calc(841px * 0.8);
     }
 `
 
 export const NftForm = styled.form`
+    display: flex;
     width: 100%;
     height: 100%;
-    font-family: ${p => p.theme.fontFamily.workSans};
+    font-family: ${p => p.theme.fontFamily.main};
+    overflow: hidden;
 `
 
 export const NftFormFirst = styled.div`
-    transform: ${p => p.show ? 'translate(0, 0)' : 'translate(0, 100%);'};
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: ${p => p.show === 1 ? 'translate(0, 0)' : 'translate(-100%, 0)'};
     transition: all 250ms ease;
 `
 
 export const NftFormSecond = styled.div`
-
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: ${p => p.show === 2 ? 'translate(0, 0)' : 'translate(100%, 0)'};
+    transition: all 250ms ease;
 `
 
 export const NftFormLabel = styled.label`
     display: block;
-    font-family: ${p => p.theme.fontFamily.spaceMono};
+    font-family: ${p => p.theme.fontFamily.secondary};
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
-    color: ${p => p.theme.colors.grey};
+    color: ${p => p.theme.colors.caption};
     font-weight: ${p => p.theme.fontWeights.boldest};
     margin-bottom: 5px;
 
@@ -59,28 +83,29 @@ export const NftFormLabel = styled.label`
 
 
 export const NftFormInput = styled.input`
+    display: block;
     width: 100%;
     outline: none;
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
     padding: 6px 12px;
-    border: ${p => p.theme.borders.main} ${p => p.theme.colors.grey};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.caption};
     border-radius: ${p => p.theme.radii.normal};
     margin-bottom: ${p => p.mb ? p.mb : 0};
     transition: all 150ms ease;
 
+    @media (min-width: 768px) {
+        width: 300px;
+    }
+
     &::placeholder {
-        font-family: ${p => p.theme.fontFamily.workSans};
-        color: ${p => p.theme.colors.grey};
+        font-family: ${p => p.theme.fontFamily.main};
+        color: ${p => p.theme.colors.caption};
     };
 
     :hover,
     :focus-visible {
-        border-color: ${p => p.theme.colors.purple};
-    }
-
-    @media (min-width: 768px) {
-        width: 300px;
+        border-color: ${p => p.theme.colors.accent};
     }
 `
 
@@ -88,7 +113,7 @@ export const NftFormTextarea = styled.textarea`
     width: 100%;
     height: 100px;
     border-radius: ${p => p.theme.radii.normal};
-    border: ${p => p.theme.borders.main} ${p => p.theme.colors.grey};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.caption};
     resize: none;
     padding: 10px;
     font-family: inherit;
@@ -98,13 +123,13 @@ export const NftFormTextarea = styled.textarea`
     transition: all 250ms ease;
 
     &::placeholder {
-        font-family: ${p => p.theme.fontFamily.workSans};
-        color: ${p => p.theme.colors.grey};
+        font-family: ${p => p.theme.fontFamily.main};
+        color: ${p => p.theme.colors.caption};
     };
 
     :hover,
     :focus-visible {
-        border-color: ${p => p.theme.colors.purple};
+        border-color: ${p => p.theme.colors.accent};
     }
 `
 
@@ -112,6 +137,11 @@ export const NftFileContainer = styled.div`
     width: 100%;
     height: 200px;
     margin-bottom: 10px;
+    border-radius: ${p => p.theme.radii.normal};
+    background: ${p => p.preview ? `url(${p.preview})` : 'transparent'};
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 
     @media (min-width: 768px) {
         height: 300px;
@@ -129,14 +159,14 @@ export const NftFormFileLabel = styled.label`
     position: relative;
     width: 100%;
     height: 100%;
-    border: ${p => p.theme.borders.main} ${p => p.theme.colors.grey};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.caption};
     border-radius: ${p => p.theme.radii.normal};
     transition: all 250ms ease;
 
     :hover,
     :focus-visible {
-        color: ${p => p.theme.colors.purple};
-        border-color: ${p => p.theme.colors.purple};
+        color: ${p => p.theme.colors.accent};
+        border-color: ${p => p.theme.colors.accent};
     }
 `
 
@@ -153,7 +183,7 @@ export const PlusIcon = styled(Plus)`
     transform: translate(50%, -50%);
     width: 50px;
     height: 50px;
-    fill: ${p => p.theme.colors.white};
+    fill: ${p => p.theme.colors.text};
     transition: all 250ms ease;
 
     @media (min-width: 1280px) {
@@ -162,17 +192,15 @@ export const PlusIcon = styled(Plus)`
     }
 
     ${NftFormFileLabel}:hover & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
     ${NftFormFileLabel}:focus-visible & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
 `
 
 export const InputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: ${p => p.mb ? p.mb : 0};
+
 `
 
 export const BtnWrapper = styled.div`

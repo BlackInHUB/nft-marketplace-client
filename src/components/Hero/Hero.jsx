@@ -28,7 +28,7 @@ export const Hero = () => {
                 <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
                 <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
                 {isMobile && <Highlight show={hlShow} />}
-                    <Button type='button' content='Get Started' fill='purple' hfill='white' iconType='rocketlaunch' />
+                    <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
                 <HeroInfoList>
                     <HeroInfoListItem>
                         <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>

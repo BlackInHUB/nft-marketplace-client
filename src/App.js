@@ -5,6 +5,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import userOperations from "./redux/user/userOperations";
+import { useUsers } from "./hooks/useUsers";
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
@@ -12,11 +13,16 @@ const NftsPage = lazy(() => import('./pages/NftsPage'));
 const NftsList = lazy(() => import('./components/NftsPageComponents/NftsList/NftsList'));
 
 function App() {
+  const {isLoggedIn} = useUsers();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userOperations.refresh());
-  });
+    dispatch(userOperations.getAll());
+
+    if(!isLoggedIn) {
+      dispatch(userOperations.refresh());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <Routes>
@@ -25,7 +31,7 @@ function App() {
         <Route path="/userpage" element={<PrivateRoute><UserPage /></PrivateRoute>} />
         <Route path='/nfts' element={<NftsPage />}>
           <Route index element={<Navigate to='created' />} />
-          <Route path=":path" element={<NftsList />} />
+          <Route path=":category" element={<NftsList />} />
         </Route>
       </Route>
     </Routes>

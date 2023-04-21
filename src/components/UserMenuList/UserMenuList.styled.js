@@ -9,5 +9,5 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-    width: 100%;
+
 `

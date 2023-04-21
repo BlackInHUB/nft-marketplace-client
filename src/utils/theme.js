@@ -1,15 +1,15 @@
 const theme = {
     fontFamily: {
-        workSans: '"Work Sans", sans-serif',
-        spaceMono: '"Space Mono", monospace'
+        main: '"Work Sans", sans-serif',
+        secondary: '"Space Mono", monospace'
     },
     spaces: [0, 2, 4, 8, 16, 32, 64, 128, 256],
     colors: {
-        mainBlack: '#2B2B2B',
-        darkGrey: '#3B3B3B',
-        grey: '#858584',
-        white: '#FFFFFF',
-        purple: '#A259FF',
+        main: '#2B2B2B',
+        secondary: '#3B3B3B',
+        caption: '#858584',
+        text: '#FFFFFF',
+        accent: '#A259FF',
         gradientPurple: 'linear-gradient(128.15deg, #A259FF 49.75%, #377DF7 136.56%)',
         gradientPink: 'linear-gradient(100.92deg, #A259FF 13.57%, #FF6250 97.65%)'
     },

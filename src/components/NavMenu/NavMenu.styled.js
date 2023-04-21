@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import {ReactComponent as Marketplace} from '../../images/icons/NFTmarketplace.svg'
-import {ReactComponent as Logo} from '../../images/icons/Storefront.svg'
-
 export const Header = styled.header`
     position: relative;
     padding: 15px 30px;
@@ -17,7 +14,7 @@ export const Header = styled.header`
 export const Nav = styled.nav`
     padding: 0 30px;
     
-    @media (min-width: 1280px) {
+    @media (min-width: 768px) {
         padding: 0;
         display: flex;
         align-items: center;
@@ -28,7 +25,7 @@ export const NavList = styled.ul`
     text-align: center;
     margin-bottom: 10px;
     
-    @media (min-width: 1280px) {
+    @media (min-width: 768px) {
         display: flex;
         margin-bottom: 0;
     }
@@ -40,7 +37,7 @@ export const NavListItem = styled.li`
         margin-bottom: 10px;
     }
 
-    @media (min-width: 1280px) {
+    @media (min-width: 768px) {
             &:not(:last-child) {
             margin-bottom: 0;
             margin-right: 10px;
@@ -58,55 +55,12 @@ export const NavListItemLink = styled(NavLink)`
 
     :hover,
     :focus-visible {
-        color: ${p => p.theme.colors.purple};
+        color: ${p => p.theme.colors.accent};
     }
 
     &.active {
-        color: ${p => p.theme.colors.purple};
+        color: ${p => p.theme.colors.accent};
     }
-`
-
-export const LogoLink = styled(NavLink)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-`
-
-export const LogoText = styled(Marketplace)`
-    width: 150px;
-    height: auto;
-    fill: ${p => p.theme.colors.white};
-    transition: all 250ms ease;
-
-    @media (min-width: 1280px) {
-        width: 200px;
-    }
-
-    ${LogoLink}:hover & {
-        fill: ${p => p.theme.colors.purple};
-    };
-    ${LogoLink}:focus-visible & {
-        fill: ${p => p.theme.colors.purple};
-    };
-`
-
-export const LogoIcon = styled(Logo)`
-    width: 24px;
-    height: auto;
-    fill: ${p => p.theme.colors.purple};
-    transition: all 250ms ease;
-
-    @media (min-width: 1280px) {
-        width: 32px;
-    }
-
-    ${LogoLink}:hover & {
-        fill: ${p => p.theme.colors.white};
-    };
-    ${LogoLink}:focus-visible & {
-        fill: ${p => p.theme.colors.white};
-    };
 `
 
 export const BtnsList = styled.ul`

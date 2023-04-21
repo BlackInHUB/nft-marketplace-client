@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './user/userSlice';
+import nftReducer from './nft/nftSlice';
 
 const persistUserConfig = {
     key: 'users',
@@ -23,6 +24,7 @@ const persistedUserReducer = persistReducer(persistUserConfig, userReducer);
 export const store = configureStore({
     reducer: {
         users: persistedUserReducer,
+        nfts: nftReducer
     },
     middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

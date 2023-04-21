@@ -5,7 +5,7 @@ export const HeroSection = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.text};
     padding: 40px 30px;
     overflow: hidden;
 
@@ -52,7 +52,7 @@ export const HeroTitle = styled.h1`
 `
 
 export const HeroDescription = styled.p`
-    color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
     margin-bottom: 40px;
@@ -87,7 +87,7 @@ export const HeroInfoListItem = styled.li`
 `
 
 export const HeroInfoListItemNumber = styled.p`
-    font-family: ${p => p.theme.fontFamily.spaceMono};
+    font-family: ${p => p.theme.fontFamily.secondary};
     font-weight: ${p => p.theme.fontWeights.boldest};
     font-size: ${p => p.theme.fontSizes.h5};
     line-height: ${p => p.theme.lineHeights.h5};

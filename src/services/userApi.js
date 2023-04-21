@@ -38,3 +38,8 @@ export const refresh = async (token) => {
     const {data} = await instance.get('/user/current')
     return data;
 };
+
+export const getAll = async () => {
+    const {data} = await instance.get('/user/all');
+    return data;
+};

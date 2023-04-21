@@ -13,18 +13,18 @@ export const FormInput = styled.input`
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
     padding: 12px 20px 12px 50px;
-    border: ${p => p.theme.borders.main} ${p => p.theme.colors.grey};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.caption};
     border-radius: ${p => p.theme.radii.normal};
     transition: all 250ms ease;
 
     &::placeholder {
-        font-family: ${p => p.theme.fontFamily.workSans};
-        color: ${p => p.theme.colors.mainBlack};
+        font-family: ${p => p.theme.fontFamily.main};
+        color: ${p => p.theme.colors.main};
     };
 
     :hover,
     :focus-visible {
-        border-color: ${p => p.theme.colors.purple};
+        border-color: ${p => p.theme.colors.accent};
     }
 `
 
@@ -34,11 +34,11 @@ export const FormInputIcon = styled.div`
     top: 15px;
     width: 20px;
     height: 20px;
-    fill: ${p => p.theme.colors.grey};
+    fill: ${p => p.theme.colors.caption};
     transition: all 150ms ease;
 
     input:focus ~ & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
 `
 
@@ -51,10 +51,10 @@ export const FormInputContainer = styled.div`
 
     &:hover {
         ${FormInput} {
-            border-color: ${p => p.theme.colors.purple};
+            border-color: ${p => p.theme.colors.accent};
         };
         ${FormInputIcon} {
-            fill: ${p => p.theme.colors.purple};
+            fill: ${p => p.theme.colors.accent};
         };
     }
 `

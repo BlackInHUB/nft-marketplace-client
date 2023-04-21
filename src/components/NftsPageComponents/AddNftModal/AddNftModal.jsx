@@ -9,13 +9,16 @@ import { ModalContainer,
     NftFormLabel,
     NftFormTextarea,
     NftFormInput,
-    BtnWrapper } from "./AddNftModal.styled";
+    BtnWrapper, 
+    InputWrapper,
+    ModalBackdrop} from "./AddNftModal.styled";
 import { useEffect, useRef } from "react";
 import { useEscapeKey } from "../../../hooks/useEscapeKey";
 import { IconButton } from "../../BaseComponents/Buttons/IconButton";
 import { Button } from "../../BaseComponents/Buttons/Button";
 import { useState } from "react";
 import {useForm} from '../../../hooks/useForm';
+import { useMQ } from "../../../hooks/useMQ";
 
 const initialState = {
     imageUrl: null,
@@ -30,11 +33,14 @@ const initialState = {
     price: ''
 };
 
-export const AddNftModal = ({modalOpen, toggleModal, onSubmit}) => {
+export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
     const ref = useRef();
     const [formPage, setFormPage] = useState(1);
+    const [pageShow, setPageShow] = useState(1);
+    const {isMobile} = useMQ();
 
-    const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit})
+    const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
+    const {title, imageUrl, description, details, tags, price} = state;
 
     useEscapeKey(toggleModal);
 
@@ -54,53 +60,78 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit}) => {
         return () => {document.removeEventListener('mousedown', handleClick); document.body.style.overflow = 'unset'};
     }, [modalOpen, toggleModal]);
 
-    // useEffect(() => {
-    //     if (modalOpen) {
-    //         document.body.style.overflow = 'hidden';
-    //     };
-    //     return () => document.body.style.overflow = 'unset';
-    // }, [modalOpen]);
-
     const togglePage = () => {
         if (formPage === 1) {
-            setFormPage(2);
+            setPageShow(0)
+            setTimeout(() => {
+                setFormPage(2);
+                setTimeout(() => {
+                    setPageShow(2)
+                }, 100);
+            }, 250)
         } else {
-            setFormPage(1);
+            setPageShow(0)
+            setTimeout(() => {
+                setFormPage(1);
+                setTimeout(() => {
+                    setPageShow(1)
+                }, 100)
+            }, 250)
         };
     };
 
+    const previewUrl = imageUrl ? URL.createObjectURL(state.imageUrl[0]) : null;
+
     return (
-        <ModalContainer ref={ref}>
-            <IconButton right='15px' iconType='close' type='button' onClick={toggleModal} />
-                <NftForm onSubmit={handleSubmit}>
-                {formPage === 1 && 
-                    <NftFormFirst show={formPage === 1 ? true : false}>
-                        <NftFileContainer>
-                            <NftFormFileLabel><PlusIcon /><NftFormFileInput name='imageUrl' type='file' onChange={handleChange} /></NftFormFileLabel>
-                        </NftFileContainer>
-                        <NftFormLabel htmlFor="title">Title*</NftFormLabel>
-                        <NftFormInput name='title' value={state.title} id='title' type='text' placeholder="Nft title?" onChange={handleChange} />
-                        <Button type='button' content='Next' iconType='arrowr' fill='purple' hfill='white' w='25px' h='25px' mt='20px' onClick={togglePage} />
-                    </NftFormFirst>
-                }
-                {formPage === 2 &&
-                    <NftFormSecond>
-                        <NftFormLabel htmlFor="description">Description</NftFormLabel>
-                        <NftFormTextarea name='description' value={state.description} id='description' placeholder="What about?" onChange={handleChange} />
-                        <NftFormLabel htmlFor='details'>Details</NftFormLabel>
-                        <NftFormInput name='etherscan' id='details' value={state.details.etherscan} type='text' placeholder='Link to Etherscan?' onChange={handleChange} />
-                        <NftFormInput name='original' id='details' value={state.details.original} type='text' placeholder='Link to Original?' onChange={handleChange} />
-                        <NftFormLabel htmlFor="tags">Tags</NftFormLabel>
-                        <NftFormInput name='tags' value={state.tags} id='tags' type='text' placeholder="Any tags?" onChange={handleChange} />
-                        <NftFormLabel htmlFor="price">Price</NftFormLabel>
-                        <NftFormInput name='price' value={state.price} id='price' type='text' placeholder="How mach?" onChange={handleChange} />
-                        <BtnWrapper>
-                            <Button type='button' content='Previous' iconType='arrowl' fill='purple' hfill='white' w='25px' h='25px' onClick={togglePage} />
-                            <Button type='submit' iconType='done' fill='purple' hfill='white' w='25px' h='25px' content='Add' />
-                        </BtnWrapper>
-                    </NftFormSecond>
-                }
-            </NftForm>
-        </ModalContainer>
+        <ModalBackdrop>
+            <ModalContainer show={show} ref={ref}>
+                <IconButton right='15px' iconType='close' type='button' onClick={toggleModal} />
+                    <NftForm onSubmit={handleSubmit}>
+                    {formPage === 1 && 
+                        <NftFormFirst show={pageShow}>
+                            <InputWrapper>
+                                <NftFileContainer preview={previewUrl}>
+                                    <NftFormFileLabel><PlusIcon /><NftFormFileInput name='imageUrl' type='file' onChange={handleChange} /></NftFormFileLabel>
+                                </NftFileContainer>
+                                <NftFormLabel htmlFor="title">Title*</NftFormLabel>
+                                <NftFormInput name='title' value={title} id='title' type='text' placeholder="Nft title?" onChange={handleChange} />
+                                {isMobile && 
+                                    <InputWrapper>
+                                        <NftFormLabel htmlFor="description">Description</NftFormLabel>
+                                        <NftFormTextarea name='description' value={description} id='description' placeholder="What about?" onChange={handleChange} />
+                                    </InputWrapper>
+                                }
+                            </InputWrapper>
+                            <Button type='button' content='Next' iconType='arrowr' fill='accent' hfill='text' w='25px' h='25px' mt='20px' onClick={togglePage} />
+                        </NftFormFirst>
+                    }
+                    {formPage === 2 &&
+                        <NftFormSecond show={pageShow}>
+                            <InputWrapper>
+                                {!isMobile && 
+                                    <InputWrapper>
+                                        <NftFormLabel htmlFor="description">Description</NftFormLabel>
+                                        <NftFormTextarea name='description' value={description} id='description' placeholder="What about?" onChange={handleChange} />
+                                    </InputWrapper>
+                                }
+                                <NftFormLabel htmlFor='details'>Details</NftFormLabel>
+                                <InputWrapper>
+                                    <NftFormInput name='etherscan' id='details' value={details.etherscan} type='text' placeholder='Link to Etherscan?' onChange={handleChange} mb='10px' />
+                                    <NftFormInput name='original' id='details' value={details.original} type='text' placeholder='Link to Original?' onChange={handleChange} />
+                                </InputWrapper>
+                                <NftFormLabel htmlFor="tags">Tags</NftFormLabel>
+                                <NftFormInput name='tags' value={tags} id='tags' type='text' placeholder="Any tags?" onChange={handleChange} />
+                                <NftFormLabel htmlFor="price">Price</NftFormLabel>
+                                <NftFormInput name='price' value={price} id='price' type='text' placeholder="How mach?" onChange={handleChange} />
+                            </InputWrapper>
+                            <BtnWrapper>
+                                <Button type='button' content='Previous' iconType='arrowl' fill='accent' hfill='text' w='25px' h='25px' onClick={togglePage} />
+                                <Button type='submit' iconType='done' fill='accent' hfill='text' w='25px' h='25px' content='Add' />
+                            </BtnWrapper>
+                        </NftFormSecond>
+                    }
+                </NftForm>
+            </ModalContainer>
+        </ModalBackdrop>
     )
 };

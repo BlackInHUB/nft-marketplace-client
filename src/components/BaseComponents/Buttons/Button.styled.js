@@ -4,7 +4,7 @@ export const Btn = styled.button`
     position: relative;
     overflow: hidden;
     background-color: transparent;
-    color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.text};
     font-size: ${p => p.fz ? p.fz : p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
     font-weight: ${p => p.bold === 'false' ? 'normal' : p.theme.fontWeights.bold};
@@ -17,7 +17,7 @@ export const Btn = styled.button`
     align-items: center;
     outline: none;
     cursor: pointer;
-    border: ${p => p.theme.borders.main} ${p => p.borderColor ? p.borderColor : p.theme.colors.purple};
+    border: ${p => p.theme.borders.main} ${p => p.borderColor ? p.borderColor : p.theme.colors.accent};
     border-radius: ${p => p.theme.radii.normal};
     margin-top: ${p => p.mt ? p.mt : 0};
     transition: all 250ms ease;
@@ -34,14 +34,14 @@ export const Btn = styled.button`
         right: 0;
         width: 0;
         height: 100%;
-        background-color: ${p => p.theme.colors.purple};
+        background-color: ${p => p.theme.colors.accent};
         transition: inherit;
     }
 
     &:hover,
     &:focus-visible {
         ${p => p.borderColor === 'transparent' ? 
-            `color: ${p.theme.colors.purple};` :
+            `color: ${p.theme.colors.accent};` :
             `::before {width: 100%;}`
         }
     }

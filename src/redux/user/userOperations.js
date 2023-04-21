@@ -50,6 +50,15 @@ const refresh = createAsyncThunk('users/refresh', async (_, thunkAPI) => {
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
     };
+});
+
+const getAll = createAsyncThunk('users/getAll', async (_, thunkAPI) => {
+    try {
+        const result = userApi.getAll();
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
 })
 
 const userOperations = {
@@ -57,7 +66,8 @@ const userOperations = {
     login,
     logout,
     update,
-    refresh
+    refresh,
+    getAll
 };
 
 export default userOperations;

@@ -26,16 +26,20 @@ import { useState } from 'react';
 import userOperations from '../../redux/user/userOperations';
 import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
 import { UserSocialList } from '../UserSocialList/UserSocialList';
-import { NavLink, useOutletContext } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
+import { EditorBtn } from '../EditorBtn/EditorBtn';
+import {useMQ} from '../../hooks/useMQ';
 
 export const UserData = ({user}) => {
-    const {name, bio, avatarUrl, socialLinks, followers, profileCover, owned} = user;
+    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = user;
+    const [edit, setEdit] = useState(false);
     const [edField, setEdField] = useState(null);
     const [addLink, setAddLink] = useState(false);
     const [show, setShow] = useState(false);
+    const {isTablet, isDesktop} = useMQ();
     const dispatch = useDispatch();
-    const {edit, setEdit} = useOutletContext();
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -67,11 +71,20 @@ export const UserData = ({user}) => {
         setAddLink(!addLink);
     };
 
+    const toggleEdit = () => {
+        if (addLink) {
+            setAddLink(false);
+        };
+        setEdField(null);
+        setEdit(!edit);
+    };
+
     return (
         <>
         <Container>
             <CoverWrapper background={profileCover} show={show}>
                 {edit && <FileInputLabel><EditIcon /><FileInput name='profileCover' type='file' onChange={handleImageEdit}/></FileInputLabel>}
+                <EditorBtn onClick={toggleEdit} text={edit ? 'Close editor' : 'Edit profile'} iconType={edit ? 'close' : 'edit'} bottom='15px' right='30px' />
             </CoverWrapper>
             <InfoWrapper show={show}>
                 <AvatarWrapper show={show}>
@@ -86,19 +99,7 @@ export const UserData = ({user}) => {
                         }
                         {(edit && !edField) && <IconButton type='button' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('name')}/>}
                     </EditWrapper>
-                    {edit ? 
-                        <Button 
-                        type='button' 
-                        iconType='close'
-                        content='Close editor'
-                        fill='purple'
-                        hfill='white'
-                        w='25px'
-                        h='25px'
-                        onClick={() => setEdit(!edit)}
-                        /> :
-                        <NavLink to='/nfts'><Button type='button' fill='purple' hfill='white' iconType='arrowr' w='25px' h='25px' content={'My NFTs'} /></NavLink>
-                    }
+                    <NavLink to='/nfts'><Button type='button' fill='accent' hfill='text' iconType='arrowr' w='25px' h='25px' content={'My NFTs'} /></NavLink>
                 </UsernameBtnsWrapper>
                 <InfoList>
                     <InfoListItem>

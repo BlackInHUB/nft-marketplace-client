@@ -25,7 +25,7 @@ export const ContentWrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: ${p => p.theme.colors.mainBlack};
+    background-color: ${p => p.theme.colors.main};
     transition: all 500ms ease;
 
 
@@ -76,7 +76,7 @@ export const Image = styled.img`
 `
 
 export const RegisterTitle = styled.h2`
-    color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes.h3};
     line-height: ${p => p.theme.lineHeights.h3};
     margin-bottom: 20px;
@@ -88,7 +88,7 @@ export const RegisterTitle = styled.h2`
 `
 
 export const RegisterDescription = styled.p`
-    color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
     margin-bottom: 30px;

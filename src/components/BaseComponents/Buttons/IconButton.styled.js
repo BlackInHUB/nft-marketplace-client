@@ -21,28 +21,28 @@ margin-top: ${p => p.mt ? p.mt : '0'};
 export const Avatar = styled.img`
     width: 30px;
     height: 30px;
-    border: ${p => p.theme.borders.main} ${p => p.theme.colors.white};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.text};
     border-radius: ${p => p.theme.radii.round};
     transition: all 250ms ease;
 
     ${IconBtn}:hover & {
-        border-color: ${p => p.theme.colors.purple};
+        border-color: ${p => p.theme.colors.accent};
     }
     ${IconBtn}:focus-visible & {
-        border-color: ${p => p.theme.colors.purple};
+        border-color: ${p => p.theme.colors.accent};
     }
 `
 
 export const StyledIcon = styled.svg`
     width: ${p => p.w ? p.w : '20px'};
     height: ${p => p.h ? p.h : '20px'};
-    fill: ${p => p.theme.colors.white};
+    fill: ${p => p.theme.colors.text};
     transition: all 250ms ease;
 
     ${IconBtn}:hover & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
     ${IconBtn}:focus-visible & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
 `

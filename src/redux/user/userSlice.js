@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import userOperations from "./userOperations";
 
 const initialState = {
+    allUsers: null,
     user: null,
     token: null,
     isLoading: false,
@@ -22,6 +23,7 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.error = null;
                 state.user = payload.user;
+                state.allUsers = [...state.allUsers, {_id: payload.user._id, name: payload.user.name, avatarUrl: payload.user.avatarUrl }];
                 state.token = payload.token;
                 state.isLoggedIn = true;
             })
@@ -86,6 +88,19 @@ const userSlice = createSlice({
                 state.user = payload;
             })
             .addCase(userOperations.refresh.rejected, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(userOperations.getAll.pending, state => {
+                state.isLoading = true;
+                state.error = null
+            })
+            .addCase(userOperations.getAll.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = null;
+                state.allUsers = payload;
+            })
+            .addCase(userOperations.getAll.rejected, (state, {payload}) => {
                 state.isLoading = false;
                 state.error = payload;
             })

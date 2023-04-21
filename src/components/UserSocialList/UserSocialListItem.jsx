@@ -37,8 +37,8 @@ export const UserSocialListItem = ({link, editing, deleteLink, submitEditLink}) 
             }
             {editing && !editLink &&
             <EditBtnsWrapper>
-                <IconButton iconType='edit' fill='white' position='static' onClick={editLinkToggle} />
-                <IconButton iconType='delete' fill='white' position='static' onClick={() => deleteLink(link)} />
+                <IconButton iconType='edit' fill='text' position='static' onClick={editLinkToggle} />
+                <IconButton iconType='delete' fill='text' position='static' onClick={() => deleteLink(link)} />
             </EditBtnsWrapper>
             }
         </ListItem>

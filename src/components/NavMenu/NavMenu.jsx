@@ -1,5 +1,6 @@
-import { Header, LogoLink, LogoText, LogoIcon, Wrapper } from "./NavMenu.styled";
+import { Header, Wrapper } from "./NavMenu.styled";
 import { IconButton } from "../BaseComponents/Buttons/IconButton";
+import { Logo } from "../Logo/Logo";
 import { Navigation } from "./Navigation";
 import { Modal } from "../Modal/Modal";
 import { useState } from "react";
@@ -12,29 +13,22 @@ import { UserMenuList } from "../UserMenuList/UserMenuList";
 
 export const NavMenu = ({edit, setEdit}) => {
     const {user, isLoggedIn} = useUsers();
-    const {isDesktop} = useMQ();
+    const {isMobile} = useMQ();
     const [menuOpen, setMenuOpen] = useState({mainMenu: false, userMenu: false});
     const [menuShow, setMenuShow] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
 
     const menuToggle = (menu) => {
-        if (menuOpen.mainMenu) {
+        if (menuOpen[menu]) {
             setMenuShow(false)
             setTimeout(() => [
-                setMenuOpen({...menuOpen, mainMenu: false})
+                setMenuOpen({...menuOpen, [menu]: false})
             ], 250)
             return;
         };
-        if (menuOpen.userMenu) {
-            setMenuShow(false)
-            setTimeout(() => {
-                setMenuOpen({...menuOpen, userMenu: false})
-            }, 250)
-            return;
-        }
 
-        setMenuOpen({...menuOpen, [menu]: !menuOpen[menu]});
+        setMenuOpen({...menuOpen, [menu]: true});
         setTimeout(() => {
             setMenuShow(true)
         }, 1);
@@ -42,7 +36,7 @@ export const NavMenu = ({edit, setEdit}) => {
 
     const registerToggle = () => {
         if (menuOpen.mainMenu) {
-            menuToggle();
+            menuToggle('mainMenu');
         }
         if (isLoginOpen) {
             setIsLoginOpen(!isLoginOpen);
@@ -52,7 +46,7 @@ export const NavMenu = ({edit, setEdit}) => {
 
     const loginToggle = () => {
         if (menuOpen.mainMenu) {
-            menuToggle();
+            menuToggle('mainMenu');
         }
         if (isRegisterOpen) {
             setIsRegisterOpen(!isRegisterOpen);
@@ -63,12 +57,9 @@ export const NavMenu = ({edit, setEdit}) => {
     return (
         <>
         <Header>
-            <LogoLink to='/'>
-                <LogoIcon />
-                <LogoText />
-            </LogoLink>
+            <Logo />
             <Wrapper>
-                {!isDesktop ?
+                {isMobile ?
                     <IconButton
                         type='button'
                         position='static'
@@ -88,25 +79,29 @@ export const NavMenu = ({edit, setEdit}) => {
                         iconType='avatar'
                         avatarUrl={user.avatarUrl}
                     />}
-                {menuOpen.userMenu && 
-                    <Modal 
-                        position='absolute'
-                        menuShow={menuShow}
-                        children={<UserMenuList menuToggle={menuToggle} setEdit={setEdit} edit={edit} />}
-                        type='userMenu'
-                        menuToggle={menuToggle}
-                    />
-                }
             </Wrapper>
         </Header>
-        {!isDesktop && menuOpen.mainMenu && 
+        {menuOpen.userMenu && 
+                    createPortal(
+                        <Modal 
+                            position='absolute'
+                            menuShow={menuShow}
+                            children={<UserMenuList menuToggle={() => menuToggle('userMenu')} setEdit={setEdit} edit={edit} />}
+                            type='userMenu'
+                            menuToggle={menuToggle}
+                        />,
+                        document.querySelector('#modal-root')
+                    )
+                }
+        {isMobile && menuOpen.mainMenu && 
             createPortal(
                 <Modal 
+                    type='mainMenu'
                     menuShow={menuShow}
                     children={<Navigation 
                     loginToggle={loginToggle} 
                     registerToggle={registerToggle} 
-                    menuToggle={menuToggle}
+                    menuToggle={() => menuToggle('mainMenu')}
                     />}
                     menuToggle={menuToggle}
                 />,

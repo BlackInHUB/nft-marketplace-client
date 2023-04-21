@@ -28,14 +28,14 @@ export const CoverWrapper = styled.div`
 
 export const AvatarWrapper = styled.div`
     position: absolute;
-    background-color: ${p => p.theme.colors.darkGrey};
+    background-color: ${p => p.theme.colors.secondary};
     top: -60px;
     left: 50%;
     transform: translate(-50%, 0);
     width: 120px;
     height: 120px;
     border-radius: ${p => p.theme.radii.round};
-    border: ${p => p.theme.borders.main} ${p => p.theme.colors.mainBlack};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.main};
 
     @media (min-width: 768px) {
         left: 72px;
@@ -104,7 +104,7 @@ export const InfoListItem = styled.li`
 `
 
 export const InfoListItemNumber = styled.p`
-    font-family: ${p => p.theme.fontFamily.spaceMono};
+    font-family: ${p => p.theme.fontFamily.secondary};
     font-weight: ${p => p.theme.fontWeights.boldest};
     font-size: ${p => p.theme.fontSizes.h5};
     line-height: ${p => p.theme.lineHeights.h5};
@@ -132,10 +132,10 @@ export const DetailsWrapper = styled.div`
 
 export const DetailsTitle = styled.p`
     display: block;
-    font-family: ${p => p.theme.fontFamily.spaceMono};
+    font-family: ${p => p.theme.fontFamily.secondary};
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
-    color: ${p => p.theme.colors.grey};
+    color: ${p => p.theme.colors.caption};
     font-weight: ${p => p.theme.fontWeights.boldest};
 
     @media (min-width: 1280px) {
@@ -164,7 +164,7 @@ export const FileInputLabel = styled.label`
 
     :hover,
     :focus-visible {
-        color: ${p => p.theme.colors.purple};
+        color: ${p => p.theme.colors.accent};
     }
 `
 
@@ -175,17 +175,17 @@ export const FileInput = styled.input`
 `
 
 export const EditIcon = styled(AiOutlineEdit)`
-    fill: ${p => p.theme.colors.white};
+    fill: ${p => p.theme.colors.text};
     width: 50px;
     height: auto;
     margin-right: 10px;
     transition: all 250ms ease;
 
     ${FileInputLabel}:hover & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     }
     ${FileInputLabel}:focus & {
-        fill: ${p => p.theme.colors.purple};
+        fill: ${p => p.theme.colors.accent};
     };
 `
 
