@@ -10,10 +10,11 @@ import { useMQ } from '../../hooks/useMQ';
 import { useUsers } from "../../hooks/useUsers";
 import { createPortal } from "react-dom";
 import { UserMenuList } from "../UserMenuList/UserMenuList";
+import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 
 export const NavMenu = ({edit, setEdit}) => {
     const {user, isLoggedIn} = useUsers();
-    const {isMobile} = useMQ();
+    const { isDesktop } = useMQ();
     const [menuOpen, setMenuOpen] = useState({mainMenu: false, userMenu: false});
     const [menuShow, setMenuShow] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -56,31 +57,33 @@ export const NavMenu = ({edit, setEdit}) => {
 
     return (
         <>
-        <Header>
-            <Logo />
-            <Wrapper>
-                {isMobile ?
-                    <IconButton
-                        type='button'
-                        position='static'
-                        w='25px'
-                        h='25px'
-                        iconType='menu'
-                        onClick={() => menuToggle('mainMenu')} 
-                    /> :
-                    <Navigation registerToggle={registerToggle} loginToggle={loginToggle} />
-                }
-                {isLoggedIn && 
-                    <IconButton
-                        type='button'
-                        onClick={() => menuToggle('userMenu')}
-                        ml='15px'
-                        position='static'
-                        iconType='avatar'
-                        avatarUrl={user.avatarUrl}
-                    />}
-            </Wrapper>
-        </Header>
+        <PaddingWrapper>
+            <Header>
+                <Logo />
+                <Wrapper>
+                    {!isDesktop ?
+                        <IconButton
+                            type='button'
+                            position='static'
+                            w='25px'
+                            h='25px'
+                            iconType='menu'
+                            onClick={() => menuToggle('mainMenu')} 
+                        /> :
+                        <Navigation registerToggle={registerToggle} loginToggle={loginToggle} />
+                    }
+                    {isLoggedIn && 
+                        <IconButton
+                            type='button'
+                            onClick={() => menuToggle('userMenu')}
+                            ml='15px'
+                            position='static'
+                            iconType='avatar'
+                            avatarUrl={user.avatarUrl}
+                        />}
+                </Wrapper>
+            </Header>
+        </PaddingWrapper>
         {menuOpen.userMenu && 
                     createPortal(
                         <Modal 
@@ -93,7 +96,7 @@ export const NavMenu = ({edit, setEdit}) => {
                         document.querySelector('#modal-root')
                     )
                 }
-        {isMobile && menuOpen.mainMenu && 
+        {!isDesktop && menuOpen.mainMenu && 
             createPortal(
                 <Modal 
                     type='mainMenu'

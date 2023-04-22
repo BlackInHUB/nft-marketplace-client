@@ -25,14 +25,21 @@ export const Navigation = ({registerToggle, loginToggle}) => {
                         iconType='user'
                         fill='accent'
                         hfill='text'
+                        p='19px 30px'
                     />
                 </BtnsListItem>
                 <BtnsListItem>
                     <Button 
                         onClick={loginToggle} 
-                        content='Log In' 
-                        borderColor='transparent'
+                        content='Log In'
+                        iconType='login' 
+                        // borderColor='transparent'
                         type='button'
+                        fill='accent'
+                        hfill='text'
+                        w='25px'
+                        h='25px'
+                        p='19px 30px'
                     />
                 </BtnsListItem>
             </BtnsList>

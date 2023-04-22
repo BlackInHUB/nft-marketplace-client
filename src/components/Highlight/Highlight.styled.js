@@ -10,7 +10,7 @@ const hlAnimation = keyframes`
 export const HeroHighlightContainer = styled.div`
     min-width: 315px;
     max-width: 500px;
-    background-color: ${p => p.theme.colors.main};
+    background-color: ${p => p.theme.colors.secondary};
     border-radius: ${p => p.theme.radii.normal};
     overflow: hidden;
     margin-bottom: 40px;

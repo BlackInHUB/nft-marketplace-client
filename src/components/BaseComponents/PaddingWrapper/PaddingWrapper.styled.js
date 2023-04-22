@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NftsContainer = styled.section`
+export const PaddingWrapper = styled.div`
     padding-left: 30px;
     padding-right: 30px;
 

@@ -4,7 +4,7 @@ import { UserSocialListItem } from "./UserSocialListItem";
 import userOperations from "../../redux/user/userOperations";
 import { FieldEditForm } from "../FieldEditForm/FieldEditForm";
 
-export const UserSocialList = ({socialLinks, addLink, setAddLink, editing}) => {
+export const UserSocialList = ({socialLinks, addLink, setAddLink, editing, footer}) => {
     const dispatch = useDispatch();
 
     const handleLinksAddSubmit = (newData) => {
@@ -37,7 +37,7 @@ export const UserSocialList = ({socialLinks, addLink, setAddLink, editing}) => {
             {socialLinks.length === 0 && !editing && <p>No links added yet..</p>}
             {socialLinks.length > 0 &&
                 <List editing={editing} addLink={addLink}>
-                    {socialLinks.map(link => <UserSocialListItem key={link + Math.random().toFixed(2)} link={link} editing={editing} deleteLink={handleLinkDelete} submitEditLink={handleLinksEditSubmit} />)}    
+                    {socialLinks.map(link => <UserSocialListItem key={link + Math.random().toFixed(2)} link={link} editing={editing} footer={footer} deleteLink={handleLinkDelete} submitEditLink={handleLinksEditSubmit} />)}    
                 </List>
             }
             {addLink && <FieldEditForm name='linkAdd' value='' onSubmit={handleLinksAddSubmit} onClose={() => setAddLink(!addLink)}/>}

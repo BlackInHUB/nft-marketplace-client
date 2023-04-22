@@ -1,4 +1,3 @@
-import { NftsContainer } from "./Nfts.styled";
 import { TabBar } from "./TabBar/TabBar";
 import {AddNftModal} from './AddNftModal/AddNftModal';
 import { createPortal } from "react-dom";
@@ -7,6 +6,7 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import nftOperations from "../../redux/nft/nftOperations";
 import { useDispatch } from "react-redux";
+import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 
 export const Nfts = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -44,18 +44,18 @@ export const Nfts = () => {
 
     return (
         <>
-        <NftsContainer>
-            <TabBar modalOpen={modalOpen} toggleModal={toggleModal} />
-            <Suspense>
-                <Outlet />
-            </Suspense>
-        </NftsContainer>
-        {modalOpen &&
-            createPortal(
-                <AddNftModal modalOpen={modalOpen} toggleModal={toggleModal} show={modalShow} onSubmit={handleNftAdd} />,
-                document.querySelector('#modal-root')
-            )
-        }
+            <PaddingWrapper>
+                <TabBar modalOpen={modalOpen} toggleModal={toggleModal} />
+                <Suspense>
+                    <Outlet />
+                </Suspense>
+            </PaddingWrapper>
+            {modalOpen &&
+                createPortal(
+                    <AddNftModal modalOpen={modalOpen} toggleModal={toggleModal} show={modalShow} onSubmit={handleNftAdd} />,
+                    document.querySelector('#modal-root')
+                )
+            }
         </>
     )
 }

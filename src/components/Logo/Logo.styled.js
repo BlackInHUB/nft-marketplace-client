@@ -12,7 +12,7 @@ export const LogoLink = styled(NavLink)`
 `
 
 export const LogoText = styled(Marketplace)`
-    width: 150px;
+    width: ${p => p.footer ? '200px' : '150px'};
     height: auto;
     fill: ${p => p.theme.colors.text};
     transition: all 250ms ease;
@@ -30,7 +30,7 @@ export const LogoText = styled(Marketplace)`
 `
 
 export const LogoIcon = styled(Logo)`
-    width: 24px;
+    width: ${p => p.footer ? '32px' : '24px'};
     height: auto;
     fill: ${p => p.theme.colors.accent};
     transition: all 250ms ease;

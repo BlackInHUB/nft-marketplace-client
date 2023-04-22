@@ -3,18 +3,24 @@ import { NavLink } from "react-router-dom";
 
 export const Header = styled.header`
     position: relative;
-    padding: 15px 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: ${p => p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
+
+    @media (min-width: 768px) {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 `
 
 export const Nav = styled.nav`
     padding: 0 30px;
     
-    @media (min-width: 768px) {
+    @media (min-width: 1280px) {
         padding: 0;
         display: flex;
         align-items: center;
@@ -25,9 +31,10 @@ export const NavList = styled.ul`
     text-align: center;
     margin-bottom: 10px;
     
-    @media (min-width: 768px) {
+    @media (min-width: 1280px) {
         display: flex;
         margin-bottom: 0;
+        margin-right: 10px;
     }
 `
 
@@ -37,7 +44,7 @@ export const NavListItem = styled.li`
         margin-bottom: 10px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1280px) {
             &:not(:last-child) {
             margin-bottom: 0;
             margin-right: 10px;

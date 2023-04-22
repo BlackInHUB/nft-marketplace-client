@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
 import { FaFacebookSquare } from 'react-icons/fa';
 
-export const UserSocialListItem = ({link, editing, deleteLink, submitEditLink}) => {
+export const UserSocialListItem = ({link, editing, deleteLink, submitEditLink, footer}) => {
     const [editLink, setEditLink] = useState(false);
     const [newLink, setNewLink] = useState('');
 
@@ -25,12 +25,12 @@ export const UserSocialListItem = ({link, editing, deleteLink, submitEditLink}) 
         <ListItem>
             {!editLink ? 
             <ListItemLink href={link} target='_blank'>
-                {link.toLowerCase().split(/[./]+/).includes('discord') ? <StyledIcon as={DiscordIcon} /> :
-                link.toLowerCase().split(/[./]+/).includes('instagram') ? <StyledIcon as={InstagramIcon} /> :
-                link.toLowerCase().split(/[./]+/).includes('youtube') ? <StyledIcon as={YoutubeIcon} /> :
-                link.toLowerCase().split(/[./]+/).includes('twitter') ? <StyledIcon as={TwitterIcon} /> :
-                link.toLowerCase().split(/[./]+/).includes('facebook') ? <StyledIcon as={FaFacebookSquare} /> :
-                <StyledIcon as={GlobeIcon} />
+                {link.toLowerCase().split(/[./]+/).includes('discord') ? <StyledIcon as={DiscordIcon} footer={footer} /> :
+                link.toLowerCase().split(/[./]+/).includes('instagram') ? <StyledIcon as={InstagramIcon} footer={footer} /> :
+                link.toLowerCase().split(/[./]+/).includes('youtube') ? <StyledIcon as={YoutubeIcon} footer={footer} /> :
+                link.toLowerCase().split(/[./]+/).includes('twitter') ? <StyledIcon as={TwitterIcon} footer={footer} /> :
+                link.toLowerCase().split(/[./]+/).includes('facebook') ? <StyledIcon as={FaFacebookSquare} footer={footer} /> :
+                <StyledIcon as={GlobeIcon} footer={footer} />
                 }
             </ListItemLink> :
             <FieldEditForm name='linkEdit' old={link} value={newLink} onClose={editLinkToggle} linkChange={handleLinkChange} submitEditLink={submitEditLink} />

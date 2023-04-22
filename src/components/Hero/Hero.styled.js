@@ -3,16 +3,17 @@ import styled from "styled-components";
 export const HeroSection = styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: ${p => p.theme.colors.text};
-    padding: 40px 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     overflow: hidden;
 
     @media (min-width: 767px) {
         flex-direction: row;
-        padding: 80px 0px;
-        gap: 30px;
+        padding-top: 80px;
+        padding-bottom: 80px;
     }
 `
 
@@ -24,12 +25,12 @@ export const HeroInfoContainer = styled.div`
 
     @media (min-width: 768px) {
         align-items: start;
-        max-width: 330px;
+        width: calc(50% - 30px);
     }
 
-    @media (min-width: 1280px) {
+    /* @media (min-width: 1280px) {
         max-width: 510px;
-    }
+    } */
 `
 
 export const HeroTitle = styled.h1`

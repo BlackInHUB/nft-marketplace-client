@@ -1,3 +1,4 @@
+import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { HeroSection, 
     HeroInfoContainer, 
     HeroTitle,
@@ -23,28 +24,30 @@ export const Hero = () => {
     })
 
     return (
-        <HeroSection>
-            <HeroInfoContainer>
-                <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
-                <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
-                {isMobile && <Highlight show={hlShow} />}
-                    <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
-                <HeroInfoList>
-                    <HeroInfoListItem>
-                        <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
-                        <HeroInfoListItemText>Total Sale</HeroInfoListItemText>
-                    </HeroInfoListItem>
-                    <HeroInfoListItem>
-                        <HeroInfoListItemNumber>100k+</HeroInfoListItemNumber>
-                        <HeroInfoListItemText>Auctions</HeroInfoListItemText>
-                    </HeroInfoListItem>
-                    <HeroInfoListItem>
-                        <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
-                        <HeroInfoListItemText>Artists</HeroInfoListItemText>
-                    </HeroInfoListItem>
-                </HeroInfoList>
-            </HeroInfoContainer>
-            {!isMobile && <Highlight show={hlShow}/>}
-        </HeroSection>
+        <PaddingWrapper>
+            <HeroSection>
+                <HeroInfoContainer>
+                    <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
+                    <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
+                    {isMobile && <Highlight show={hlShow} />}
+                        <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
+                    <HeroInfoList>
+                        <HeroInfoListItem>
+                            <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
+                            <HeroInfoListItemText>Total Sale</HeroInfoListItemText>
+                        </HeroInfoListItem>
+                        <HeroInfoListItem>
+                            <HeroInfoListItemNumber>100k+</HeroInfoListItemNumber>
+                            <HeroInfoListItemText>Auctions</HeroInfoListItemText>
+                        </HeroInfoListItem>
+                        <HeroInfoListItem>
+                            <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
+                            <HeroInfoListItemText>Artists</HeroInfoListItemText>
+                        </HeroInfoListItem>
+                    </HeroInfoList>
+                </HeroInfoContainer>
+                {!isMobile && <Highlight show={hlShow}/>}
+            </HeroSection>
+        </PaddingWrapper>
     )
 }

@@ -8,6 +8,7 @@ const theme = {
         main: '#2B2B2B',
         secondary: '#3B3B3B',
         caption: '#858584',
+        light: '#CCCCCC',
         text: '#FFFFFF',
         accent: '#A259FF',
         gradientPurple: 'linear-gradient(128.15deg, #A259FF 49.75%, #377DF7 136.56%)',
@@ -28,7 +29,7 @@ const theme = {
         h3: '1.2',
         h4: '1.4',
         h5: '1.6',
-        body: '1.4',
+        body: '1.3',
         caption: '1.1'
     },
     borders: {

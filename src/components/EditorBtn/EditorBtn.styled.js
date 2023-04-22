@@ -43,7 +43,8 @@ export const IconContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 6px;
+    width: 30px;
+    height: 30px;
     background-color: ${p => p.theme.colors.main};
     border: ${p => p.theme.borders.main} ${p => p.theme.colors.caption};
     border-radius: ${p => p.theme.radii.round};
@@ -62,11 +63,11 @@ export const StyledIcon = styled.svg`
     height: 20px;
     fill: ${p => p.theme.colors.caption};
     transition: all 250ms ease;
-
+/* 
     @media (min-width: 768px) {
         width: 25px;
         height: 25px;
-    }
+    } */
 
     ${Btn}:hover & {
         fill: ${p => p.theme.colors.text};

@@ -11,7 +11,7 @@ import {ReactComponent as ArrowL} from '../../../images/icons/ArrowLeft.svg';
 import {ReactComponent as Menu} from '../../../images/icons/List.svg';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {VscChromeClose} from 'react-icons/vsc';
-import {MdLogout} from 'react-icons/md';
+import {MdLogout, MdLogin} from 'react-icons/md';
 import {MdDone} from 'react-icons/md';
 import {AiOutlineDelete} from 'react-icons/ai';
 
@@ -31,6 +31,7 @@ export const Button = ({type, content, fill, hfill, iconType, onClick, width, bo
                     iconType === 'edit' ? AiOutlineEdit :
                     iconType === 'close' ? VscChromeClose :
                     iconType === 'logout' ? MdLogout :
+                    iconType === 'login' ? MdLogin :
                     iconType === 'wallet' ? Wallet :
                     iconType === 'done' ? MdDone :
                     iconType === 'arrowr' ? ArrowR :

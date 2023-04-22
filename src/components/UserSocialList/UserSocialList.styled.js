@@ -19,8 +19,8 @@ export const ListItemLink = styled.a`
 `
 
 export const StyledIcon = styled.svg`
-    width: 24px;
-    height: 24px;
+    width: ${p => p.footer ? '32px' : '24px'};
+    height: ${p => p.footer ? '32px' : '24px'};
     fill: ${p => p.theme.colors.caption};
     transition: all 250ms ease;
 

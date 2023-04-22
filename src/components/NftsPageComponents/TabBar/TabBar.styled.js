@@ -17,7 +17,7 @@ export const TabContainer = styled.div`
 export const TabList = styled.ul`
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     @media (min-width: 1280px) {
         margin-bottom: 0px;

@@ -30,7 +30,12 @@ export const ModalContainer = styled.div`
     border-bottom-right-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
     border-top-left-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
 
+    @media (min-width: 768px) {
+        right: ${p => p.type === 'userMenu' ? '72px' : 0};
+    }
+
     @media (min-width: 1280px) {
+        right: ${p => p.type === 'userMenu' ? '115px' : 0};
         top: ${p => p.type === 'userMenu' ? '70px' : 0};
     }
 `
