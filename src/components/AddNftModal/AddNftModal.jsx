@@ -12,13 +12,13 @@ import { ModalContainer,
     BtnWrapper, 
     InputWrapper,
     ModalBackdrop} from "./AddNftModal.styled";
-import { useEffect, useRef } from "react";
-import { useEscapeKey } from "../../../hooks/useEscapeKey";
-import { IconButton } from "../../BaseComponents/Buttons/IconButton";
-import { Button } from "../../BaseComponents/Buttons/Button";
+import { useEffect, useMemo, useRef } from "react";
+import { useEscapeKey } from "../../hooks/useEscapeKey";
+import { IconButton } from "../BaseComponents/Buttons/IconButton";
+import { Button } from "../BaseComponents/Buttons/Button";
 import { useState } from "react";
-import {useForm} from '../../../hooks/useForm';
-import { useMQ } from "../../../hooks/useMQ";
+import {useForm} from '../../hooks/useForm';
+import { useMQ } from "../../hooks/useMQ";
 
 const initialState = {
     imageUrl: null,
@@ -40,7 +40,8 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
     const {isMobile} = useMQ();
 
     const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
-    const {title, imageUrl, description, details, tags, price} = state;
+    const {title, description, details, imageUrl, tags, price} = state;
+    // const [imageUrl, setImgUrl] = useState(null);
 
     useEscapeKey(toggleModal);
 
@@ -80,7 +81,7 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
         };
     };
 
-    const previewUrl = imageUrl ? URL.createObjectURL(state.imageUrl[0]) : null;
+    const previewUrl = useMemo(() => {return imageUrl ? URL.createObjectURL(imageUrl[0]) : null}, [imageUrl]);
 
     return (
         <ModalBackdrop>

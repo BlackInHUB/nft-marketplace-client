@@ -28,9 +28,22 @@ export const HeroHighlightContainer = styled.div`
     }
 `
 
-export const HighlightImg = styled.img`
-    background-color: ${p => p.theme.colors.main};
-    width: 100%;
+export const HighlightImg = styled.div`
+    background: url(${p => p.url}), ${p => p.theme.colors.main};
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 315px;
+    height: 210px;
+
+    @media (min-width: 768px) {
+        width: 330px;
+        height: 220px;
+    }
+
+    @media (min-width: 1280px) {
+        width: 510px;
+        height: 400px;
+    }
 `
 
 export const HighlightInfoContainer = styled.div`

@@ -17,3 +17,9 @@ export const List = styled.ul`
         
     }
 `
+
+export const NoInfo = styled.p`
+    padding: 40px 0;
+    font-size: ${p => p.theme.fontSizes.h3};
+    line-height: ${p => p.theme.lineHeights.h3}
+`

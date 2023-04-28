@@ -1,6 +1,7 @@
 import {IconBtn, Avatar, StyledIcon} from './IconButton.styled';
 import {ReactComponent as Menu} from '../../../images/icons/List.svg';
 import {ReactComponent as Plus} from '../../../images/icons/Plus.svg';
+import {ReactComponent as Search} from '../../../images/icons/MagnifyingGlass.svg';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {VscChromeClose} from 'react-icons/vsc';
 import {MdDone} from 'react-icons/md';
@@ -18,6 +19,7 @@ export const IconButton = ({type, iconType, onClick, w, h, top, right, position,
             iconType === 'edit' ? AiOutlineEdit :
             iconType === 'close' ? VscChromeClose :
             iconType === 'done' ? MdDone :
+            iconType === 'search' ? Search :
             null} 
             />
             }

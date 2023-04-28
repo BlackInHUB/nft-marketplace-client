@@ -2,17 +2,17 @@ import {BtnsList, BtnsListItem, Nav, NavList, NavListItem, NavListItemLink } fro
 import { Button } from '../BaseComponents/Buttons/Button';
 import { useUsers } from '../../hooks/useUsers';
 
-export const Navigation = ({registerToggle, loginToggle}) => {
+export const Navigation = ({menuToggle, registerToggle, loginToggle}) => {
     const {isLoggedIn} = useUsers();
 
     return (
         <Nav>
             <NavList>
                 <NavListItem>
-                    <NavListItemLink to='/marketplace'>Marketplace</NavListItemLink>
+                    <NavListItemLink to='/marketplace' onClick={menuToggle}>Marketplace</NavListItemLink>
                 </NavListItem>
                 <NavListItem>
-                    <NavListItemLink to='/rankings'>Rankings</NavListItemLink>
+                    <NavListItemLink to='/rankings' onClick={menuToggle}>Rankings</NavListItemLink>
                 </NavListItem>
             </NavList>
             {!isLoggedIn &&

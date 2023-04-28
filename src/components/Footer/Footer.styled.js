@@ -162,7 +162,7 @@ export const DigestFormBtn = styled.button`
 
     @media (min-width: 768px) {
         width: fit-content;
-        padding: 8px 50px;
+        padding: 10px 50px;
         position: absolute;
         right: 0;
     }

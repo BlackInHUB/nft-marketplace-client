@@ -63,8 +63,8 @@ export const UsernameBtnsWrapper = styled.div`
 
 export const InfoWrapper = styled.div`
     position: relative;
-    padding-top: 70px;
-    padding-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 40px;
     opacity: ${p => p.show ? '1' : '0'};
     transform: ${p => p.show ? 'translate(0, 0)' : 'translate(0, 100%)'};
     transition: all 500ms ease;

@@ -4,6 +4,7 @@ import userOperations from "./userOperations";
 const initialState = {
     allUsers: null,
     user: null,
+    profile: null,
     token: null,
     isLoading: false,
     error: null,
@@ -101,6 +102,39 @@ const userSlice = createSlice({
                 state.allUsers = payload;
             })
             .addCase(userOperations.getAll.rejected, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(userOperations.getProfile.pending, state => {
+                state.isLoading = true;
+                state.error = null
+            })
+            .addCase(userOperations.getProfile.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = null;
+                state.profile = payload;
+            })
+            .addCase(userOperations.getProfile.rejected, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(userOperations.following.pending, state => {
+                state.isLoading = true;
+                state.error = null
+            })
+            .addCase(userOperations.following.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = null;
+                if (state.user.iFollow.includes(payload)) {
+                    state.user.iFollow = state.user.iFollow.filter(item => item !== payload);
+                    state.profile.followers = state.profile.followers.filter(item => item !== payload);
+                } else {
+                    state.user.iFollow.push(payload);
+                    state.profile.followers.push(payload);
+                };
+
+            })
+            .addCase(userOperations.following.rejected, (state, {payload}) => {
                 state.isLoading = false;
                 state.error = payload;
             })

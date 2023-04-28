@@ -8,8 +8,8 @@ export const useForm = ({initialState, onSubmit}) => {
 
         const newValue = type === 'file' ? files : value;
 
-        if (id === 'details') {
-           return setState(prevState => ({...prevState, details: {...prevState.details, [name]: newValue}}));
+        if (id === 'details') {            
+            return setState(prevState => ({...prevState, details: {...prevState.details, [name]: newValue}}));
         };
 
         setState(prevState => ({...prevState, [name]: newValue}));

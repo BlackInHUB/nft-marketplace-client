@@ -1,39 +1,28 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const TabContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-
-    @media (min-width: 1280px) {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+    width: 100%;
 `
 
 export const TabList = styled.ul`
+    width: 100%;
     display: flex;
     gap: 10px;
-    margin-bottom: 30px;
-
-    @media (min-width: 1280px) {
-        margin-bottom: 0px;
-    }
 `
 
 export const TabListItem = styled.li`
-    
+    width: 50%;
 `
 
 export const TabListItemLink = styled(NavLink)`
+    width: 100%;
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
-    padding: 20px 22px;
+    padding: 20px;
     transition: all 250ms ease;
 
     @media (min-width: 768px) {

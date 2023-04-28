@@ -26,11 +26,10 @@ import { useState } from 'react';
 import userOperations from '../../redux/user/userOperations';
 import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
 import { UserSocialList } from '../UserSocialList/UserSocialList';
-import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
-import { EditorBtn } from '../EditorBtn/EditorBtn';
 import {useMQ} from '../../hooks/useMQ';
 import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { UserNfts } from '../Nfts/UserNfts';
 
 export const UserData = ({user}) => {
     const {name, bio, avatarUrl, socialLinks, followers, profileCover} = user;
@@ -85,7 +84,7 @@ export const UserData = ({user}) => {
         <Container>
             <CoverWrapper background={profileCover} show={show}>
                 {edit && <FileInputLabel><EditIcon /><FileInput name='profileCover' type='file' onChange={handleImageEdit}/></FileInputLabel>}
-                <EditorBtn onClick={toggleEdit} text={edit ? 'Close editor' : 'Edit profile'} iconType={edit ? 'close' : 'edit'} bottom='15px' right={isDesktop ? '115px' : isTablet ? '72px' : '30px'} />
+                {/* <EditorBtn onClick={toggleEdit} text={edit ? 'Close editor' : 'Edit profile'} iconType={edit ? 'close' : 'edit'} bottom='15px' right={isDesktop ? '115px' : isTablet ? '72px' : '30px'} /> */}
             </CoverWrapper>
             <PaddingWrapper>
                 <InfoWrapper show={show}>
@@ -101,7 +100,7 @@ export const UserData = ({user}) => {
                             }
                             {(edit && !edField) && <IconButton type='button' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('name')}/>}
                         </EditWrapper>
-                        <NavLink to='/nfts'><Button type='button' fill='accent' hfill='text' iconType='arrowr' w='25px' h='25px' content={'My NFTs'} /></NavLink>
+                        <Button type='button' fill='accent' hfill='text' iconType={edit ? 'close' : 'edit'} w='25px' h='25px' content={edit ? 'Close Editor' : 'Edit Profile'} onClick={toggleEdit} />
                     </UsernameBtnsWrapper>
                     <InfoList>
                         <InfoListItem>
@@ -141,6 +140,7 @@ export const UserData = ({user}) => {
                         <UserSocialList socialLinks={socialLinks} editing={edField === 'socialLinks'} addLink={addLink} setAddLink={setAddLink} />
                     </DetailsWrapper>
                 </InfoWrapper>
+                <UserNfts />
             </PaddingWrapper>
         </Container>
         </>

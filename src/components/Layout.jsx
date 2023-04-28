@@ -7,12 +7,14 @@ import { Box } from "../utils/Box.js";
 export const Layout = () => {
 
     return (
-        <Box minHeight='100vh' display='flex' flexDirection='column' justifyContent='space-between'>
+        <Box>
             <NavMenu />
-            <Suspense>
-                <Outlet />
-            </Suspense>
-            <Footer />
+            <Box minHeight='100vh' display='flex' flexDirection='column' justifyContent='space-between'>
+                <Suspense>
+                    <Outlet />
+                </Suspense>
+                <Footer />
+            </Box>
         </Box>
     )
 }

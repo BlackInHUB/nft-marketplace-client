@@ -11,6 +11,10 @@ export const NftItem = styled.li`
     }
 `
 
+export const NftLink = styled(NavLink)`
+    
+`
+
 export const ImageWrapper = styled.div`
     width: 100%;
     height: 240px;
@@ -37,7 +41,7 @@ export const Title = styled.h3`
     font-weight: ${p => p.theme.fontWeights.bold};
 `
 
-export const AuthorLink = styled(NavLink)`
+export const AuthorContainer = styled.div`
     display: flex;
     gap: 12px;
     margin-bottom: 25px;

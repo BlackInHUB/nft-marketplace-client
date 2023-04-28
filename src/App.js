@@ -9,8 +9,11 @@ import { useUsers } from "./hooks/useUsers";
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
-const NftsPage = lazy(() => import('./pages/NftsPage'));
-const NftsList = lazy(() => import('./components/NftsPageComponents/NftsList/NftsList'));
+const NftPage = lazy(() => import('./pages/NftPage'));
+const MarketPage = lazy(() => import('./pages/MarketPage'));
+const MarketNfts = lazy(() => import('./components/Marketplace/MarketNfts'));
+const MarketCollections = lazy(() => import('./components/Marketplace/MarketCollections'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 
 function App() {
   const {isLoggedIn} = useUsers();
@@ -26,12 +29,15 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/userpage" element={<PrivateRoute><UserPage /></PrivateRoute>} />
-        <Route path='/nfts' element={<NftsPage />}>
-          <Route index element={<Navigate to='created' />} />
-          <Route path=":category" element={<NftsList />} />
+        <Route path='/userpage' element={<PrivateRoute><UserPage /></PrivateRoute>} />
+        <Route path='/profile/:_id' element={<ProfilePage />} />
+        <Route path='/nft/:_id' element={<NftPage />} />
+        <Route path='/marketplace' element={<MarketPage />}>
+          <Route index element={<Navigate to='nfts' />} />
+          <Route path='nfts' element={<MarketNfts />} />
+          <Route path='collections' element={<MarketCollections />} />
         </Route>
       </Route>
     </Routes>

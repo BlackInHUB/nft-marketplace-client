@@ -43,3 +43,13 @@ export const getAll = async () => {
     const {data} = await instance.get('/user/all');
     return data;
 };
+
+export const getProfile = async (_id) => {
+    const {data} = await instance.get(`/user/profile/${_id}`);
+    return data;
+};
+
+export const following = async (_id) => {
+    const {data} = await instance.get(`/user/following/${_id}`);
+    return data;
+};

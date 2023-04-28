@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ReactComponent as Plus} from '../../../images/icons/Plus.svg';
+import {ReactComponent as Plus} from '../../images/icons/Plus.svg';
 
 export const ModalBackdrop = styled.div`
     position: fixed;

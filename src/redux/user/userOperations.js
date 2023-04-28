@@ -59,6 +59,24 @@ const getAll = createAsyncThunk('users/getAll', async (_, thunkAPI) => {
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
     };
+});
+
+const getProfile = createAsyncThunk('users/getProfile', async (_id, thunkAPI) => {
+    try {
+        const result = userApi.getProfile(_id);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const following = createAsyncThunk('user/following', async (_id, thunkAPI) => {
+    try {
+        const result = userApi.following(_id);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
 })
 
 const userOperations = {
@@ -67,7 +85,9 @@ const userOperations = {
     logout,
     update,
     refresh,
-    getAll
+    getAll,
+    getProfile,
+    following
 };
 
 export default userOperations;

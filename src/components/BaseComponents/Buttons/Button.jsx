@@ -9,6 +9,7 @@ import {ReactComponent as Wallet} from '../../../images/icons/Wallet.svg';
 import {ReactComponent as ArrowR} from '../../../images/icons/ArrowRight.svg';
 import {ReactComponent as ArrowL} from '../../../images/icons/ArrowLeft.svg';
 import {ReactComponent as Menu} from '../../../images/icons/List.svg';
+import {ReactComponent as Storefront} from '../../../images/icons/Storefront.svg';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {VscChromeClose} from 'react-icons/vsc';
 import {MdLogout, MdLogin} from 'react-icons/md';
@@ -38,6 +39,7 @@ export const Button = ({type, content, fill, hfill, iconType, onClick, width, bo
                     iconType === 'arrowl' ? ArrowL :
                     iconType === 'menu' ? Menu :
                     iconType === 'delete' ? AiOutlineDelete :
+                    iconType === 'storefront' ? Storefront :
                     null}   
                 />
                 }

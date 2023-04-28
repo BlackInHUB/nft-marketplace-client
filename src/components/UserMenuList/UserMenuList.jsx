@@ -31,6 +31,22 @@ export const UserMenuList = ({menuToggle}) => {
                 </NavLink>
             </ListItem>
             <ListItem>
+                <NavLink to='/nfts'>
+                    <Button 
+                        type='button' 
+                        iconType='storefront' 
+                        borderColor='transparent' 
+                        content='My NFTs'
+                        bold='false'
+                        fill='text'
+                        hfill='accent'
+                        width='fit-content'
+                        p='0'
+                        onClick={menuToggle}
+                    />
+                </NavLink>
+            </ListItem>
+            <ListItem>
                 <Button 
                     type='button' 
                     iconType='wallet' 
