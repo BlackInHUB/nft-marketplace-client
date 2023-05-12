@@ -31,11 +31,20 @@ export const AuctionContainer = styled.div`
     padding: 30px;
 `
 
+export const TopWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+export const BtnsWrapper = styled.div`
+    display: flex;
+    gap: 30px;
+`
+
 export const NftTitle = styled.h2`
     font-size: ${({theme}) => theme.fontSizes.h4};
     line-height: ${({theme}) => theme.lineHeights.h4};
     font-weight: ${({theme}) => theme.fontWeights.bold};
-    margin-bottom: 10px;
 
     @media (min-width: 768px) {
         font-size: ${({theme}) => theme.fontSizes.h3};
@@ -50,6 +59,7 @@ export const NftTitle = styled.h2`
 
 export const CreatedAt = styled.p`
     color: ${({theme}) => theme.colors.caption};
+    margin-top: 10px;
     margin-bottom: 20px;
 
     @media (min-width: 768px) {
@@ -178,15 +188,26 @@ export const TagsListItem = styled.li`
 `
 
 export const MoreContainer = styled.div`
+    padding-bottom: 40px;
+    padding-top: 40px;
+    background-color: ${({theme}) => theme.colors.secondary};
 
+    @media (min-width: 1280px) {
+        padding-bottom: 60px;
+    }
 `
 
 export const MoreTopWrapper = styled.div`
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
     
     @media (min-width: 768px) {
         justify-content: space-between;
+    }
+
+    @media (min-width: 1280px) {
+        margin-bottom: 60px;
     }
 `
 

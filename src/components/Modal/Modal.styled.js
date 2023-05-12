@@ -6,6 +6,7 @@ export const ModalBackdrop = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 10;
 `
 
 export const ModalContainer = styled.div`
@@ -26,6 +27,7 @@ export const ModalContainer = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 10;
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.main};
     border-bottom-left-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
     border-bottom-right-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
     border-top-left-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Btn = styled.button`
+    z-index: 2;
     position: absolute;
     outline: none;
     overflow: hidden;
@@ -18,9 +19,8 @@ export const Btn = styled.button`
 export const BtnText = styled.p`
     font-size: ${p => p.theme.fontSizes.caption};
     color: ${p => p.theme.colors.text};
-    margin-right: 5px;
     opacity: 0;
-    transform: translate(100%, 0);
+    transform: translate(50%, 0) scale(1);
     transition: all 250ms ease;
 
     @media (min-width: 768px) {
@@ -29,7 +29,7 @@ export const BtnText = styled.p`
 
     ${Btn}:hover & {
         opacity: 1;
-        transform: translate(0, 0);
+        transform: translate(0, 0) scale(1);
         /* color: ${p => p.theme.colors.accent}; */
     }
     ${Btn}:focus-visible & {
@@ -48,6 +48,7 @@ export const IconContainer = styled.div`
     background-color: ${p => p.theme.colors.main};
     border: ${p => p.theme.borders.main} ${p => p.theme.colors.caption};
     border-radius: ${p => p.theme.radii.round};
+    margin-left: 10px;
     transition: all 250ms ease;
 
     ${Btn}:hover & {

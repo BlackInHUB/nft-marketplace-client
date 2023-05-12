@@ -1,6 +1,5 @@
 import { TabContainer, TabList, TabListItem, TabListItemBtn, TabListItemName, TabListItemCounter } from "./UserNftsTabBar.styled";
 import {useMQ, useUsers, useNfts} from '../../hooks';
-import { Button } from "../BaseComponents/Buttons/Button";
 
 export const UserNftsTabBar = ({toggleModal, setCategory, category}) => {
     const {isMobile} = useMQ();
@@ -13,6 +12,7 @@ export const UserNftsTabBar = ({toggleModal, setCategory, category}) => {
 
     const created = usersNft.created ? usersNft.created.length : user.created.length;
     const owned = usersNft.owned ? usersNft.owned.length : user.owned.length;
+    const collection = usersNft.collections.length;
 
     return (
         <TabContainer>
@@ -32,11 +32,10 @@ export const UserNftsTabBar = ({toggleModal, setCategory, category}) => {
                 <TabListItem>
                     <TabListItemBtn name='collection' active={category === 'collection'} type='button' onClick={handleTabSwitch}>
                         <TabListItemName active={category === 'collection'}>Collection</TabListItemName>
-                        {!isMobile && <TabListItemCounter active={category === 'collection'}>0</TabListItemCounter>}
+                        {!isMobile && <TabListItemCounter active={category === 'collection'}>{collection}</TabListItemCounter>}
                     </TabListItemBtn>
                 </TabListItem>
             </TabList>
-            <Button type='button' iconType='plus' fill='accent' hfill='text' w='25px' h='25px' content='Add NFT' onClick={toggleModal} />
         </TabContainer>
     )
 }

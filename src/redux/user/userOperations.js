@@ -77,7 +77,7 @@ const following = createAsyncThunk('user/following', async (_id, thunkAPI) => {
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
     };
-})
+});
 
 const userOperations = {
     register,

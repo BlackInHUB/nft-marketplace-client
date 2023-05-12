@@ -40,7 +40,70 @@ const getAll = createAsyncThunk('nfts/getAll', async (_, thunkAPI) => {
 
 const getProfileNft = createAsyncThunk('nfts/getProfileNft', async (_id, thunkAPI) => {
     try {
-        const result = nftApi.getProfileNft(_id);
+        const result = await nftApi.getProfileNft(_id);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const createCollection = createAsyncThunk('nfts/createCollection', async (collection, thunkAPI) => {
+    try {
+        const result = await nftApi.createCollection(collection);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const getAllCollections = createAsyncThunk('nfts/getAllCollections', async (_, thunkAPI) => {
+    try {
+        const result = await nftApi.getAllCollections();
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const getCollectionDetails = createAsyncThunk('nfts/getCollectionDetails', async (_id, thunkAPI) => {
+    try {
+        const result = await nftApi.getCollectionDetails(_id);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const updateCollection = createAsyncThunk('nfts/updateCollection', async (data, thunkAPI) => {
+    try {
+        const result = await nftApi.updateCollection(data);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const deleteCollection = createAsyncThunk('nfts/deleteCollection', async (_id, thunkAPI) => {
+    try {
+        const result = await nftApi.deleteCollection(_id);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const updateNft = createAsyncThunk('nfts/updateNft', async (data, thunkAPI) => {
+    try {
+        const result = await nftApi.updateNft(data);
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const deleteNft = createAsyncThunk('nfts/deleteNft', async (_id, thunkAPI) => {
+    try {
+        const result = await nftApi.deleteNft(_id);
         return result;
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
@@ -52,7 +115,14 @@ const nftOperations = {
     getUsersNft,
     getDetails,
     getAll,
-    getProfileNft
+    getProfileNft,
+    createCollection,
+    getAllCollections,
+    getCollectionDetails,
+    updateCollection,
+    deleteCollection,
+    updateNft,
+    deleteNft
 };
 
 export default nftOperations;

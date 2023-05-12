@@ -3,7 +3,7 @@ import { useMQ } from '../../../hooks/useMQ';
 import { TabContainer, TabList, TabListItem, TabListItemLink, TabListItemName, TabListItemCounter } from "./MarketTabBar.styled";
 
 export const MarketTabBar = () => {
-    const {allNft} = useNfts();
+    const {allNft, allCollections} = useNfts();
     const {isMobile} = useMQ();
     
     return (
@@ -18,7 +18,7 @@ export const MarketTabBar = () => {
                 <TabListItem>
                     <TabListItemLink to='collections'>
                         <TabListItemName>Collections</TabListItemName>
-                        {!isMobile && <TabListItemCounter>0</TabListItemCounter>}
+                        {!isMobile && <TabListItemCounter>{allCollections.length}</TabListItemCounter>}
                     </TabListItemLink>
                 </TabListItem>
             </TabList>

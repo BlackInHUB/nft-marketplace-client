@@ -12,6 +12,7 @@ export const ProfileNftsTabBar = ({setCategory, category}) => {
 
     const created = profileNft.created ? profileNft.created.length : profile.created.length;
     const owned = profileNft.owned ? profileNft.owned.length : profile.owned.length;
+    const collection = profileNft.collections.length;
 
     return (
         <TabContainer>
@@ -31,7 +32,7 @@ export const ProfileNftsTabBar = ({setCategory, category}) => {
                 <TabListItem>
                     <TabListItemBtn name='collection' active={category === 'collection'} type='button' onClick={handleTabSwitch}>
                         <TabListItemName active={category === 'collection'}>Collection</TabListItemName>
-                        {!isMobile && <TabListItemCounter active={category === 'collection'}>0</TabListItemCounter>}
+                        {!isMobile && <TabListItemCounter active={category === 'collection'}>{collection}</TabListItemCounter>}
                     </TabListItemBtn>
                 </TabListItem>
             </TabList>

@@ -1,23 +1,24 @@
 import styled from "styled-components";
 
 export const Btn = styled.button`
+    z-index: 1;
     position: relative;
     overflow: hidden;
     background-color: transparent;
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.fz ? p.fz : p.theme.fontSizes.body};
     line-height: ${p => p.theme.lineHeights.body};
-    font-weight: ${p => p.bold === 'false' ? 'normal' : p.theme.fontWeights.bold};
+    font-weight: ${p => p.theme.fontWeights.bold};
     gap: 12px;
     font-family: inherit;
-    padding: ${p => p.p ? p.p : '19px 50px'};
+    padding: ${p => p.p ? p.p : '12px 50px'};
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
     cursor: pointer;
-    border: ${p => p.theme.borders.main} ${p => p.borderColor ? p.borderColor : p.theme.colors.accent};
+    border: ${p => p.theme.borders.main} ${p => p.theme.colors.accent};
     border-radius: ${p => p.theme.radii.normal};
     margin-top: ${p => p.mt ? p.mt : 0};
     transition: all 250ms ease;
@@ -29,7 +30,7 @@ export const Btn = styled.button`
     &:before {
         content: '';
         position: absolute;
-        z-index: -1;
+        z-index: -2;
         top: 0;
         right: 0;
         width: 0;
@@ -40,9 +41,8 @@ export const Btn = styled.button`
 
     &:hover,
     &:focus-visible {
-        ${p => p.borderColor === 'transparent' ? 
-            `color: ${p.theme.colors.accent};` :
-            `::before {width: 100%;}`
+        ::before {
+            width: 100%;
         }
     }
 `
@@ -50,13 +50,13 @@ export const Btn = styled.button`
 export const StyledIcon = styled.svg`
     width: ${p => p.w ? p.w : '20px'};
     height: ${p => p.h ? p.h : '20px'};
-    fill: ${p => p.theme.colors[p.fill]};
+    fill: ${p => p.theme.colors.accent};
     transition: all 250ms ease;
 
     ${Btn}:hover & {
-        fill: ${p => p.theme.colors[p.hfill]};
+        fill: ${p => p.theme.colors.text};
     }
     ${Btn}:focus-visible & {
-        fill: ${p => p.theme.colors[p.hfill]};
+        fill: ${p => p.theme.colors.text};
     }
 `

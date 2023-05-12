@@ -31,11 +31,11 @@ export const NftListItem = ({nft}) => {
                     <PricesWrapper>
                         <PriceWrapper>
                             <PriceTitle>Price</PriceTitle>
-                            <PriceValue>{price}</PriceValue>
+                            <PriceValue>{price} ETH</PriceValue>
                         </PriceWrapper>
                         <PriceWrapper>
                             <PriceTitle>Highest Bid</PriceTitle>
-                            <PriceValue>{price}</PriceValue>
+                            <PriceValue>{price} wETH</PriceValue>
                         </PriceWrapper>
                     </PricesWrapper>
                 </InfoWrapper>

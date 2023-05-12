@@ -24,3 +24,38 @@ export const getAll = async () => {
     const {data} = await instance.get('/nfts');
     return data;
 };
+
+export const createCollection = async (collection) => {
+    const {data} = await instance.post('/collection/create', collection);
+    return data;
+};
+
+export const getAllCollections = async () => {
+    const {data} = await instance.get('/collection');
+    return data;
+};
+
+export const getCollectionDetails = async (_id) => {
+    const {data} = await instance.get(`/collection/details/${_id}`);
+    return data;
+};
+
+export const updateCollection = async ({_id, collection}) => {
+    const {data} = await instance.patch(`/collection/update/${_id}`, collection);
+    return data;
+};
+
+export const deleteCollection = async (_id) => {
+    const {data} = await instance.get(`/collection/delete/${_id}`);
+    return {data};
+};
+
+export const updateNft = async (update) => {
+    const {data} = await instance.patch(`/nfts/update/${update._id}`, update);
+    return data;
+};
+
+export const deleteNft = async (_id) => {
+    const {data} = await instance.get(`/nfts/delete/${_id}`);
+    return data;
+}

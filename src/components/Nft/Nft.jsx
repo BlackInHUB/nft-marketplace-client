@@ -21,25 +21,23 @@ import {
     MoreTitle,
     MoreTopWrapper,
     LinkWrapper,
-    ToArtistLink
+    ToArtistLink,
+    TopWrapper,
+    BtnsWrapper
 } from "./Nft.styled";
 import {ReactComponent as Globe} from '../../images/icons/Globe.svg';
-import { useNfts, useMQ } from '../../hooks';
+import { useMQ } from '../../hooks';
 import {NftsList} from '../../components/NftsList/NftsList';
 import {Button} from '../../components/BaseComponents/Buttons/Button';
+import { IconButton } from '../BaseComponents/Buttons/IconButton';
 
-const Nft = () => {
-    const {nftDetails} = useNfts();
-    const {allUsers} = useUsers();
+const Nft = ({nftDetails, toggleEditOpen, deleteNft}) => {
+    const {allUsers, user} = useUsers();
     const {isTablet, isMobile} = useMQ();
 
-    if (!nftDetails) {
-        return;
-    };
+    const {author, imageUrl, createdAt, description, title, details, tags, _id} = nftDetails.nft;
 
-    const {author, imageUrl, createdAt, description, title, details, tags} = nftDetails.nft;
-
-    const user = allUsers.find(user => user._id === author);
+    const nftAuthor = allUsers.find(user => user._id === author);
 
     const date = new Date(createdAt);
     const mintedOn = date.toLocaleString('en-GB', { month: 'short' }) + ' ' + date.getDate() + ', ' + date.getFullYear();
@@ -47,43 +45,53 @@ const Nft = () => {
     const tagsToRender = tags.split(/[#," "]+/).filter(item => item !== '');
 
     return (
-        <NftContainer>
-            <NftImage imageUrl={imageUrl} />
-            <PaddingWrapper>
-                <InfoContainer>
-                    <NftTitle>{title}</NftTitle>
-                    <CreatedAt>Minted On {mintedOn}</CreatedAt>
-                    <InfoTitle>Created by</InfoTitle>
-                    <AuthorLink>
-                        <AuthorAvatar src={user.avatarUrl} />
-                        <AuthorName>{user.name}</AuthorName>
-                    </AuthorLink>
-                    <InfoTitle>Description</InfoTitle>
-                    <NftDescription>{description}</NftDescription>
-                    <InfoTitle>Details</InfoTitle>
-                    <DetailsList>
-                        <DetailsListItem>
-                            <DetailsLink href={details.etherscan}><LinkIcon as={Globe}/>View on Etherscan</DetailsLink>
-                        </DetailsListItem>
-                        <DetailsListItem>
-                            <DetailsLink href={details.original}><LinkIcon as={Globe} />View Original</DetailsLink>
-                        </DetailsListItem>
-                    </DetailsList>
-                    <InfoTitle>Tags</InfoTitle>
-                    <TagsList>
-                        {tagsToRender.map(tag => <TagsListItem key={tag}>{tag.toUpperCase()}</TagsListItem>)}
-                    </TagsList>
-                </InfoContainer>
-                <MoreContainer>
+        <>
+            <NftContainer>
+                <NftImage imageUrl={imageUrl} />
+                <PaddingWrapper>
+                    <InfoContainer>
+                        <TopWrapper>
+                            <NftTitle>{title}</NftTitle>
+                            <BtnsWrapper>
+                                <IconButton w='25px' h='25px' onClick={toggleEditOpen} iconType='edit' position='static' />
+                                <IconButton w='25px' h='25px' onClick={() => deleteNft(_id)} iconType='delete' position='static' />
+                            </BtnsWrapper>
+                        </TopWrapper>
+                        <CreatedAt>Minted On {mintedOn}</CreatedAt>
+                        <InfoTitle>Created by</InfoTitle>
+                        <AuthorLink>
+                            <AuthorAvatar src={nftAuthor.avatarUrl} />
+                            <AuthorName>{nftAuthor.name}</AuthorName>
+                        </AuthorLink>
+                        <InfoTitle>Description</InfoTitle>
+                        <NftDescription>{description}</NftDescription>
+                        <InfoTitle>Details</InfoTitle>
+                        <DetailsList>
+                            <DetailsListItem>
+                                <DetailsLink href={details.etherscan}><LinkIcon as={Globe}/>View on Etherscan</DetailsLink>
+                            </DetailsListItem>
+                            <DetailsListItem>
+                                <DetailsLink href={details.original}><LinkIcon as={Globe} />View Original</DetailsLink>
+                            </DetailsListItem>
+                        </DetailsList>
+                        <InfoTitle>Tags</InfoTitle>
+                        <TagsList>
+                            {tagsToRender.map(tag => <TagsListItem key={tag}>{tag.toUpperCase()}</TagsListItem>)}
+                        </TagsList>
+                    </InfoContainer>
+                </PaddingWrapper>
+            </NftContainer>
+            <MoreContainer>
+                <PaddingWrapper>
                     <MoreTopWrapper>
                         <MoreTitle>More from this artist</MoreTitle>
-                        {!isMobile && <ToArtistLink to={`/profile/${author}`}><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' /></ToArtistLink>}
+                        {!isMobile && user._id !== author && <ToArtistLink to={`/profile/${author}`}><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' /></ToArtistLink>}
                     </MoreTopWrapper>
-                    <NftsList nfts={isMobile ? nftDetails.moreFromAuthor.slice(0, 2) : isTablet ? nftDetails.moreFromAuthor.slice(0, 4) : nftDetails.moreFromAuthor.slice(0, 6)} />
-                    {isMobile && <LinkWrapper><ToArtistLink to='/'><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' /></ToArtistLink></LinkWrapper>}
-                </MoreContainer>
-            </PaddingWrapper>
-        </NftContainer>
+                        <NftsList nfts={isMobile ? nftDetails.moreFromAuthor.slice(0, 2) : isTablet ? nftDetails.moreFromAuthor.slice(0, 4) : nftDetails.moreFromAuthor.slice(0, 6)} />
+                    {isMobile && user._id !== author &&  <LinkWrapper><ToArtistLink to='/'><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' /></ToArtistLink></LinkWrapper>}
+                </PaddingWrapper>
+            </MoreContainer>
+        </>
     )
 };
 

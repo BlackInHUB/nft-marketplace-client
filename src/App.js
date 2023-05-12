@@ -5,7 +5,8 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import userOperations from "./redux/user/userOperations";
-import { useUsers } from "./hooks/useUsers";
+import nftOperations from "./redux/nft/nftOperations";
+// import { PublicRoute } from "./components/PublicRoute";
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
@@ -14,26 +15,26 @@ const MarketPage = lazy(() => import('./pages/MarketPage'));
 const MarketNfts = lazy(() => import('./components/Marketplace/MarketNfts'));
 const MarketCollections = lazy(() => import('./components/Marketplace/MarketCollections'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const CollectionPage = lazy(() => import('./pages/CollectionPage'));
 
 function App() {
-  const {isLoggedIn} = useUsers();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(userOperations.refresh());
     dispatch(userOperations.getAll());
-
-    if(!isLoggedIn) {
-      dispatch(userOperations.refresh());
-    }
-  }, [dispatch, isLoggedIn]);
+    dispatch(nftOperations.getUsersNft());
+    dispatch(nftOperations.getAllCollections());
+  }, [dispatch]);
 
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path='/userpage' element={<PrivateRoute><UserPage /></PrivateRoute>} />
-        <Route path='/profile/:_id' element={<ProfilePage />} />
-        <Route path='/nft/:_id' element={<NftPage />} />
+        <Route path='/profile/:_id' element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+        <Route path='/nft/:_id' element={<PrivateRoute><NftPage /></PrivateRoute>} />
+        <Route path='/nfts/collection/:_id' element={<CollectionPage />} />
         <Route path='/marketplace' element={<MarketPage />}>
           <Route index element={<Navigate to='nfts' />} />
           <Route path='nfts' element={<MarketNfts />} />

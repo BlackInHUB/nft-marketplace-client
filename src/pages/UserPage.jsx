@@ -1,12 +1,18 @@
-import { useUsers } from "../hooks/useUsers";
 import { UserData } from "../components/UserData/UserData";
+import { useEffect } from "react";
 
 const UserPage = () => {
-    const {user} = useUsers();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+        });
+    }, [])
 
     return (
         <>
-            <UserData user={user} />
+            <UserData />
         </>
     );
 };

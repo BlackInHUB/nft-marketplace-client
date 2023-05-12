@@ -10,6 +10,7 @@ import {ReactComponent as ArrowR} from '../../../images/icons/ArrowRight.svg';
 import {ReactComponent as ArrowL} from '../../../images/icons/ArrowLeft.svg';
 import {ReactComponent as Menu} from '../../../images/icons/List.svg';
 import {ReactComponent as Storefront} from '../../../images/icons/Storefront.svg';
+import {ReactComponent as Copy} from '../../../images/icons/Copy.svg';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {VscChromeClose} from 'react-icons/vsc';
 import {MdLogout, MdLogin} from 'react-icons/md';
@@ -17,12 +18,12 @@ import {MdDone} from 'react-icons/md';
 import {AiOutlineDelete} from 'react-icons/ai';
 
 
-export const Button = ({type, content, fill, hfill, iconType, onClick, width, borderColor, p, bold, w, h, mt}) => {
+export const Button = ({type, content, iconType, onClick, width, p, w, h, mt}) => {
 
     return (
-        <Btn type={type} onClick={onClick} width={width} borderColor={borderColor} p={p} bold={bold} mt={mt}>
+        <Btn type={type} onClick={onClick} width={width} p={p} mt={mt}>
                 {iconType &&
-                <StyledIcon fill={fill} hfill={hfill} w={w} h={h} 
+                <StyledIcon w={w} h={h} 
                     as={iconType === 'user' ? User :
                     iconType === 'rocket' ? Rocket :
                     iconType === 'mail' ? Mail :
@@ -40,6 +41,7 @@ export const Button = ({type, content, fill, hfill, iconType, onClick, width, bo
                     iconType === 'menu' ? Menu :
                     iconType === 'delete' ? AiOutlineDelete :
                     iconType === 'storefront' ? Storefront :
+                    iconType === 'copy' ? Copy :
                     null}   
                 />
                 }

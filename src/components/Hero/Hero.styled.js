@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const HeroSection = styled.section`
+    background-color: ${p => p.theme.colors.secondary};
+`
+
+export const HeroContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,8 +16,11 @@ export const HeroSection = styled.section`
 
     @media (min-width: 767px) {
         flex-direction: row;
-        padding-top: 80px;
-        padding-bottom: 80px;
+    }
+
+    @media (min-width: 1280px) {
+        padding-top: 60px;
+        padding-bottom: 60px;
     }
 `
 

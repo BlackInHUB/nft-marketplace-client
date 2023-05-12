@@ -13,7 +13,7 @@ const inputAnim = keyframes`
 `
 
 export const FooterSctn = styled.div`
-    background-color: ${p => p.theme.colors.secondary};
+    background-color: ${p => p.theme.colors.main};
     padding-top: 40px;
     padding-bottom: 40px;
     font-size: ${p => p.theme.fontSizes.body};
@@ -54,7 +54,7 @@ export const Info = styled.p`
 
 export const GHlink = styled.a`
     font-weight: ${p => p.theme.fontWeights.bold};
-    color: ${p => p.theme.colors.main};
+    color: ${p => p.theme.colors.accent};
 `
 
 export const Titles = styled.p`

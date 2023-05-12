@@ -1,5 +1,7 @@
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
-import { HeroSection, 
+import { 
+    HeroSection,
+    HeroContainer, 
     HeroInfoContainer, 
     HeroTitle,
     HeroDescription,
@@ -28,30 +30,32 @@ export const Hero = () => {
     }, [allNft]);
 
     return (
-        <PaddingWrapper>
-            <HeroSection>
-                <HeroInfoContainer>
-                    <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
-                    <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
-                    {isMobile && <Highlight highlight={highlight} show={hlShow} />}
-                        <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
-                    <HeroInfoList>
-                        <HeroInfoListItem>
-                            <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
-                            <HeroInfoListItemText>Total Sale</HeroInfoListItemText>
-                        </HeroInfoListItem>
-                        <HeroInfoListItem>
-                            <HeroInfoListItemNumber>100k+</HeroInfoListItemNumber>
-                            <HeroInfoListItemText>Auctions</HeroInfoListItemText>
-                        </HeroInfoListItem>
-                        <HeroInfoListItem>
-                            <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
-                            <HeroInfoListItemText>Artists</HeroInfoListItemText>
-                        </HeroInfoListItem>
-                    </HeroInfoList>
-                </HeroInfoContainer>
-                {!isMobile && <Highlight highlight={highlight} show={hlShow}/>}
-            </HeroSection>
-        </PaddingWrapper>
+        <HeroSection>
+            <PaddingWrapper>
+                <HeroContainer>
+                    <HeroInfoContainer>
+                        <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
+                        <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
+                        {isMobile && <Highlight highlight={highlight} show={hlShow} />}
+                            <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
+                        <HeroInfoList>
+                            <HeroInfoListItem>
+                                <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
+                                <HeroInfoListItemText>Total Sale</HeroInfoListItemText>
+                            </HeroInfoListItem>
+                            <HeroInfoListItem>
+                                <HeroInfoListItemNumber>100k+</HeroInfoListItemNumber>
+                                <HeroInfoListItemText>Auctions</HeroInfoListItemText>
+                            </HeroInfoListItem>
+                            <HeroInfoListItem>
+                                <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
+                                <HeroInfoListItemText>Artists</HeroInfoListItemText>
+                            </HeroInfoListItem>
+                        </HeroInfoList>
+                    </HeroInfoContainer>
+                    {!isMobile && <Highlight highlight={highlight} show={hlShow}/>}
+                </HeroContainer>
+            </PaddingWrapper>
+        </HeroSection>
     )
 }

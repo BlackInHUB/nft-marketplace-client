@@ -1,11 +1,17 @@
 import { useNfts } from "../../hooks/useNfts";
+import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { NftsList } from "../NftsList/NftsList";
+import { NftsWrapper } from "../Nfts/Nfts.styled";
 
 const MarketNfts = () => {
     const {allNft} = useNfts();
 
     return (
-        <NftsList nfts={allNft} />
+        <NftsWrapper>
+            <PaddingWrapper>
+                <NftsList nfts={allNft} bg='main' />
+            </PaddingWrapper>
+        </NftsWrapper>
     )
 };
 

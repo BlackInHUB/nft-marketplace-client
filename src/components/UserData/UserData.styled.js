@@ -61,10 +61,20 @@ export const UsernameBtnsWrapper = styled.div`
     }
 `
 
+export const MainBtnsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: 769px) {
+        flex-direction: row;
+    }
+`
+
 export const InfoWrapper = styled.div`
     position: relative;
     padding-top: 60px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     opacity: ${p => p.show ? '1' : '0'};
     transform: ${p => p.show ? 'translate(0, 0)' : 'translate(0, 100%)'};
     transition: all 500ms ease;
@@ -88,12 +98,21 @@ export const Username = styled.h2`
 
 export const InfoList = styled.ul`
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     margin-top: 30px;
+
+    @media (min-width: 768px) {
+        gap: 20px;
+        justify-content: start;
+    }
 `
 
 export const InfoListItem = styled.li`
+    width: 110px;
 
+    @media (min-width: 768px) {
+        width: 160px;
+    }
 `
 
 export const InfoListItemNumber = styled.p`

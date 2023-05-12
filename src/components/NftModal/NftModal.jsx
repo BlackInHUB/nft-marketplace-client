@@ -11,7 +11,7 @@ import { ModalContainer,
     NftFormInput,
     BtnWrapper, 
     InputWrapper,
-    ModalBackdrop} from "./AddNftModal.styled";
+    ModalBackdrop} from "./NftModal.styled";
 import { useEffect, useMemo, useRef } from "react";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
 import { IconButton } from "../BaseComponents/Buttons/IconButton";
@@ -20,20 +20,7 @@ import { useState } from "react";
 import {useForm} from '../../hooks/useForm';
 import { useMQ } from "../../hooks/useMQ";
 
-const initialState = {
-    imageUrl: null,
-    title: '',
-    description: '',
-    details: 
-        {
-            etherscan: '',
-            original: ''
-        },
-    tags: '',
-    price: ''
-};
-
-export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
+export const NftModal = ({type, initialState, modalOpen, toggleModal, onSubmit, show, sumbitText}) => {
     const ref = useRef();
     const [formPage, setFormPage] = useState(1);
     const [pageShow, setPageShow] = useState(1);
@@ -41,7 +28,6 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
 
     const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
     const {title, description, details, imageUrl, tags, price} = state;
-    // const [imageUrl, setImgUrl] = useState(null);
 
     useEscapeKey(toggleModal);
 
@@ -81,7 +67,7 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
         };
     };
 
-    const previewUrl = useMemo(() => {return imageUrl ? URL.createObjectURL(imageUrl[0]) : null}, [imageUrl]);
+    const previewUrl = useMemo(() => {return imageUrl && type === 'edit' ? imageUrl : imageUrl && type === 'add' ? URL.createObjectURL(imageUrl[0]) : null}, [imageUrl, type]);
 
     return (
         <ModalBackdrop>
@@ -92,7 +78,7 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
                         <NftFormFirst show={pageShow}>
                             <InputWrapper>
                                 <NftFileContainer preview={previewUrl}>
-                                    <NftFormFileLabel><PlusIcon /><NftFormFileInput name='imageUrl' type='file' onChange={handleChange} /></NftFormFileLabel>
+                                    {type === 'add' && <NftFormFileLabel><PlusIcon /><NftFormFileInput name='imageUrl' type='file' onChange={handleChange} /></NftFormFileLabel>}
                                 </NftFileContainer>
                                 <NftFormLabel htmlFor="title">Title*</NftFormLabel>
                                 <NftFormInput name='title' value={title} id='title' type='text' placeholder="Nft title?" onChange={handleChange} />
@@ -127,7 +113,7 @@ export const AddNftModal = ({modalOpen, toggleModal, onSubmit, show}) => {
                             </InputWrapper>
                             <BtnWrapper>
                                 <Button type='button' content='Previous' iconType='arrowl' fill='accent' hfill='text' w='25px' h='25px' onClick={togglePage} />
-                                <Button type='submit' iconType='done' fill='accent' hfill='text' w='25px' h='25px' content='Add' />
+                                <Button type='submit' iconType='done' fill='accent' hfill='text' w='25px' h='25px' content={sumbitText} />
                             </BtnWrapper>
                         </NftFormSecond>
                     }

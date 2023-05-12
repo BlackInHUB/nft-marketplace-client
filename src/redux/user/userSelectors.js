@@ -1,5 +1,9 @@
 export const getUser = ({users}) => users.user;
 
+export const getToken = ({users}) => users.token;
+
+export const getIsRefreshing = ({users}) => users.isRefreshing;
+
 export const getAllUsers = ({users}) => users.allUsers;
 
 export const getIsLoggedIn = ({users}) => users.isLoggedIn;

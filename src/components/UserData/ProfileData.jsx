@@ -19,29 +19,52 @@ import { useState } from 'react';
 import { UserSocialList } from '../UserSocialList/UserSocialList';
 import { useEffect } from 'react';
 import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
-import { useUsers } from '../../hooks';
+import { useNfts, useUsers } from '../../hooks';
 import {ProfileNfts} from '../Nfts/ProfileNfts';
 import { Button } from '../BaseComponents/Buttons/Button';
 import { useDispatch } from 'react-redux';
 import userOperations from '../../redux/user/userOperations';
+import nftOperations from '../../redux/nft/nftOperations';
+import { useParams } from 'react-router-dom';
 
 export const ProfileData = () => {
-    const dispatch = useDispatch();
-    const {profile, user} = useUsers();
-    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = profile;
     const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
+    const {_id} = useParams();
+
+    const getVolume = (nfts) => {
+        const sum = nfts.reduce((acc, nft) => acc + parseInt(nft.price), 0);
+
+        if (sum < 1000) {
+            return sum;
+        };
+
+        return sum / 1000 + 'k+'
+    };
+
+    useEffect(() => {
+        dispatch(userOperations.getProfile(_id));
+        dispatch(nftOperations.getProfileNft(_id));
+
+        setTimeout(() => {
+            setShow(true);
+        }, 1)
+    }, [_id, dispatch]);
+
+    const {created} = useNfts().profileNft;
+    const {profile, user} = useUsers();
+
+    if (!profile) {
+        return;
+    };
+
+    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = profile;
 
     const follow = user.iFollow.includes(profile._id);
 
     const followingToggle = () => {
         dispatch(userOperations.following(profile._id));
     };
-
-    useEffect(() => {
-        setTimeout(() => {
-            setShow(true);
-        }, 1)
-    }, [])
 
     return (
         <>
@@ -58,7 +81,7 @@ export const ProfileData = () => {
                     </UsernameBtnsWrapper>
                     <InfoList>
                         <InfoListItem>
-                            <InfoListItemNumber>0</InfoListItemNumber>
+                            <InfoListItemNumber>{getVolume(created)}</InfoListItemNumber>
                             <InfoListItemText>Volume</InfoListItemText>
                         </InfoListItem>
                         <InfoListItem>
@@ -83,8 +106,8 @@ export const ProfileData = () => {
                         <UserSocialList socialLinks={socialLinks} />
                     </DetailsWrapper>
                 </InfoWrapper>
-                <ProfileNfts />
             </PaddingWrapper>
+            <ProfileNfts />
         </Container>
         </>
     )

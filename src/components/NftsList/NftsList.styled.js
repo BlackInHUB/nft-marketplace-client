@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const List = styled.ul`
-    padding: 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +18,7 @@ export const List = styled.ul`
 `
 
 export const NoInfo = styled.p`
-    padding: 40px 0;
+    padding: 60px 0;
     font-size: ${p => p.theme.fontSizes.h3};
     line-height: ${p => p.theme.lineHeights.h3}
 `

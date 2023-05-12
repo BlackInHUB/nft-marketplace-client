@@ -29,7 +29,7 @@ export const HeroHighlightContainer = styled.div`
 `
 
 export const HighlightImg = styled.div`
-    background: url(${p => p.url}), ${p => p.theme.colors.main};
+    background: url(${p => p.url}), ${p => p.theme.colors.secondary};
     background-repeat: no-repeat;
     background-size: cover;
     width: 315px;
@@ -48,6 +48,7 @@ export const HighlightImg = styled.div`
 
 export const HighlightInfoContainer = styled.div`
     padding: 22px 20px;
+    background-color: ${p => p.theme.colors.main};
 `
 
 export const HighlightTitle = styled.p`

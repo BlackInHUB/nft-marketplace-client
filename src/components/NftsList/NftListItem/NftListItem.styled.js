@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const NftItem = styled.li`
-    background-color: ${p => p.theme.colors.secondary};
+    background-color: ${p => p.theme.colors.main};
     width: 315px;
     border-radius: ${p => p.theme.radii.normal};
 

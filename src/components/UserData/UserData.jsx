@@ -4,6 +4,7 @@ import {
     AvatarWrapper, 
     Avatar,
     UsernameBtnsWrapper,
+    MainBtnsWrapper,
     InfoWrapper,
     Username,
     InfoList,
@@ -24,28 +25,55 @@ import {IconButton} from '../BaseComponents/Buttons/IconButton';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import userOperations from '../../redux/user/userOperations';
+import nftOperations from '../../redux/nft/nftOperations';
 import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
 import { UserSocialList } from '../UserSocialList/UserSocialList';
 import { useEffect } from 'react';
 import {useMQ} from '../../hooks/useMQ';
 import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
 import { UserNfts } from '../Nfts/UserNfts';
+import { NftModal } from "../NftModal/NftModal";
+import { CollectionModal } from '../CollectionModal/CollectionModal';
+import { createPortal } from "react-dom";
+import {EditorBtn} from '../EditorBtn/EditorBtn';
+import { useNfts, useUsers } from '../../hooks';
 
-export const UserData = ({user}) => {
-    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = user;
+export const UserData = () => {
+    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = useUsers().user;
+    const {created} = useNfts().usersNft;
     const [edit, setEdit] = useState(false);
     const [edField, setEdField] = useState(null);
     const [addLink, setAddLink] = useState(false);
     const [show, setShow] = useState(false);
+    const [addOpen, setAddOpen] = useState(false);
+    const [collectionOpen, setCollectionOpen] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const {isTablet, isDesktop} = useMQ();
     const dispatch = useDispatch();
 
+    const getVolume = (nfts) => {
+        const sum = nfts.reduce((acc, nft) => acc + parseInt(nft.price), 0);
+
+        if (sum < 1000) {
+            return sum;
+        };
+
+        return sum / 1000 + 'k+'
+    };
 
     useEffect(() => {
         setTimeout(() => {
             setShow(true);
         }, 1)
     }, [])
+
+    const toggleEdit = () => {
+        if (addLink) {
+            setAddLink(false);
+        };
+        setEdField(null);
+        setEdit(!edit);
+    };
 
     const toggleEditField = (field) => {
         if (addLink) {
@@ -62,21 +90,79 @@ export const UserData = ({user}) => {
         dispatch(userOperations.update(newImage))
     };
 
+    const toggleAddLink = () => {
+        setAddLink(!addLink);
+    };
+
     const handleEditSubmit = (newData) => {
         setEdField(null);
         dispatch(userOperations.update(newData));
     };
 
-    const toggleAddLink = () => {
-        setAddLink(!addLink);
+    const handleNftAdd = (newNft) => {
+        const data = new FormData();
+
+        for (let key in newNft) {
+            if (key === 'imageUrl') {
+                data.append(key, newNft[key][0]);
+            };
+            if (key === 'details') {
+                data.append(key, JSON.stringify(newNft[key]));
+            };
+            data.append(key, newNft[key]);
+        };
+        dispatch(nftOperations.addNft(data));
+        toggleAddOpen();
     };
 
-    const toggleEdit = () => {
-        if (addLink) {
-            setAddLink(false);
-        };
-        setEdField(null);
-        setEdit(!edit);
+    const toggleAddOpen = () => {
+        if (addOpen) {
+            setTimeout(() => {
+                setAddOpen(!addOpen);
+            }, 500);
+            setModalShow(!modalShow)
+            return;
+        }
+        setAddOpen(!addOpen);
+        setTimeout(() => {
+            setModalShow(!modalShow);
+        }, 1);
+    };
+
+    const toggleCollectionOpen = () => {
+        if (collectionOpen) {
+            setTimeout(() => {
+                setCollectionOpen(!collectionOpen);
+            }, 500);
+            setModalShow(!modalShow)
+            return;
+        }
+        setCollectionOpen(!collectionOpen);
+        setTimeout(() => {
+            setModalShow(!modalShow);
+        }, 1);
+    };
+
+    const addCollectionSubmit = (collection) => {
+        dispatch(nftOperations.createCollection(collection));
+    };
+
+    const collectionInitialState = {
+        title: '',
+        nfts: []
+    };
+
+    const addModalIinitialState = {
+        imageUrl: null,
+        title: '',
+        description: '',
+        details: 
+            {
+                etherscan: '',
+                original: ''
+            },
+        tags: '',
+        price: ''
     };
 
     return (
@@ -84,7 +170,7 @@ export const UserData = ({user}) => {
         <Container>
             <CoverWrapper background={profileCover} show={show}>
                 {edit && <FileInputLabel><EditIcon /><FileInput name='profileCover' type='file' onChange={handleImageEdit}/></FileInputLabel>}
-                {/* <EditorBtn onClick={toggleEdit} text={edit ? 'Close editor' : 'Edit profile'} iconType={edit ? 'close' : 'edit'} bottom='15px' right={isDesktop ? '115px' : isTablet ? '72px' : '30px'} /> */}
+                <EditorBtn onClick={toggleEdit} text={edit ? 'Close editor' : 'Edit profile'} iconType={edit ? 'close' : 'edit'} bottom='15px' right={isDesktop ? '115px' : isTablet ? '72px' : '30px'} />
             </CoverWrapper>
             <PaddingWrapper>
                 <InfoWrapper show={show}>
@@ -100,11 +186,15 @@ export const UserData = ({user}) => {
                             }
                             {(edit && !edField) && <IconButton type='button' iconType='edit' position='static' ml='10px' onClick={() => toggleEditField('name')}/>}
                         </EditWrapper>
-                        <Button type='button' fill='accent' hfill='text' iconType={edit ? 'close' : 'edit'} w='25px' h='25px' content={edit ? 'Close Editor' : 'Edit Profile'} onClick={toggleEdit} />
+                        <MainBtnsWrapper>
+                            <Button type='button' iconType='plus' fill='accent' hfill='text' w='25px' h='25px' content='Add NFT' onClick={toggleAddOpen} />
+                            <Button type='button' iconType='copy' fill='accent' hfill='text' w='25px' h='25px' content='Create Collection' onClick={toggleCollectionOpen} />
+                        </MainBtnsWrapper>
+                        {/* <Button type='button' fill='accent' hfill='text' iconType={edit ? 'close' : 'edit'} w='25px' h='25px' content={edit ? 'Close Editor' : 'Edit Profile'} onClick={toggleEdit} /> */}
                     </UsernameBtnsWrapper>
                     <InfoList>
                         <InfoListItem>
-                            <InfoListItemNumber>0</InfoListItemNumber>
+                            <InfoListItemNumber>{getVolume(created)}</InfoListItemNumber>
                             <InfoListItemText>Volume</InfoListItemText>
                         </InfoListItem>
                         <InfoListItem>
@@ -140,9 +230,21 @@ export const UserData = ({user}) => {
                         <UserSocialList socialLinks={socialLinks} editing={edField === 'socialLinks'} addLink={addLink} setAddLink={setAddLink} />
                     </DetailsWrapper>
                 </InfoWrapper>
-                <UserNfts />
             </PaddingWrapper>
+            <UserNfts />
         </Container>
+        {addOpen &&
+            createPortal(
+                <NftModal type='add' initialState={addModalIinitialState} modalOpen={addOpen} toggleModal={toggleAddOpen} show={modalShow} onSubmit={handleNftAdd} sumbitText='Add NFT' />,
+                document.querySelector('#modal-root')
+            )
+        }
+        {collectionOpen &&
+            createPortal(
+                <CollectionModal title='Create new Collection' btnText='Create Collection' initialState={collectionInitialState} onSubmit={addCollectionSubmit} modalOpen={collectionOpen} toggleModal={toggleCollectionOpen} show={modalShow} />,
+                document.querySelector('#modal-root')
+            )
+        }
         </>
     )
 };

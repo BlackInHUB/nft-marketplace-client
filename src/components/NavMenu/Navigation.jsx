@@ -25,7 +25,7 @@ export const Navigation = ({menuToggle, registerToggle, loginToggle}) => {
                         iconType='user'
                         fill='accent'
                         hfill='text'
-                        p='19px 30px'
+                        p='12px 30px'
                     />
                 </BtnsListItem>
                 <BtnsListItem>
@@ -39,7 +39,7 @@ export const Navigation = ({menuToggle, registerToggle, loginToggle}) => {
                         hfill='text'
                         w='25px'
                         h='25px'
-                        p='19px 30px'
+                        p='12px 30px'
                     />
                 </BtnsListItem>
             </BtnsList>

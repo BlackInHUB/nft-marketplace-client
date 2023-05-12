@@ -1,8 +1,9 @@
-import { List, ListItem } from "./UserMenuList.styled";
-import { Button } from "../BaseComponents/Buttons/Button";
+import { List, ListItem, ListItemLink, StyledIcon } from "./UserMenuList.styled";
+import {ReactComponent as User} from '../../images/icons/User.svg';
+import {ReactComponent as Wallet} from '../../images/icons/Wallet.svg';
+import {MdLogout} from 'react-icons/md';
 import { useDispatch } from "react-redux";
 import userOperations from "../../redux/user/userOperations";
-import { NavLink } from "react-router-dom";
 
 export const UserMenuList = ({menuToggle}) => {
     const dispatch = useDispatch();
@@ -15,63 +16,22 @@ export const UserMenuList = ({menuToggle}) => {
     return (
         <List>
             <ListItem>
-                <NavLink to='/userpage'>
-                    <Button 
-                        type='button' 
-                        iconType='user' 
-                        borderColor='transparent' 
-                        content='My profile'
-                        bold='false'
-                        fill='text'
-                        hfill='accent'
-                        width='fit-content'
-                        p='0'
-                        onClick={menuToggle}
-                    />
-                </NavLink>
+                <ListItemLink to='/userpage' onClick={menuToggle}>
+                    <StyledIcon as={User} />
+                    My profile
+                </ListItemLink>
             </ListItem>
             <ListItem>
-                <NavLink to='/nfts'>
-                    <Button 
-                        type='button' 
-                        iconType='storefront' 
-                        borderColor='transparent' 
-                        content='My NFTs'
-                        bold='false'
-                        fill='text'
-                        hfill='accent'
-                        width='fit-content'
-                        p='0'
-                        onClick={menuToggle}
-                    />
-                </NavLink>
+                <ListItemLink to='/userpage' onClick={menuToggle}>
+                    <StyledIcon as={Wallet} />
+                    Connect a wallet
+                </ListItemLink>
             </ListItem>
             <ListItem>
-                <Button 
-                    type='button' 
-                    iconType='wallet' 
-                    borderColor='transparent' 
-                    content='Connect a wallet'
-                    bold='false'
-                    fill='text'
-                    hfill='accent'
-                    width='fit-content'
-                    p='0'
-                />
-            </ListItem>
-            <ListItem>
-                <Button 
-                    type='button' 
-                    iconType='logout' 
-                    borderColor='transparent' 
-                    content='Log out' 
-                    bold='false' 
-                    fill='text'
-                    hfill='accent'
-                    width='fit-content'
-                    p='0'
-                    onClick={handleLogout}
-                />
+                <ListItemLink to='/' onClick={handleLogout}>
+                    <StyledIcon as={MdLogout} />
+                    Logout
+                </ListItemLink>
             </ListItem>
         </List>
     )

@@ -8,7 +8,8 @@ const initialState = {
     token: null,
     isLoading: false,
     error: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    isRefreshing: false
 };
 
 const userSlice = createSlice({
@@ -70,6 +71,14 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.error = null;
                 state.user = {...state.user, ...payload};
+                if (payload.avatarUrl) {
+                    state.allUsers = state.allUsers.map(user => {
+                        if (user._id === state.user._id) {
+                            return {...user, avatarUrl: payload.avatarUrl} 
+                        };
+                        return user;
+                    });
+                };
             })
             .addCase(userOperations.update.rejected, (state, {payload}) => {
                 state.isLoading = false;
@@ -77,7 +86,8 @@ const userSlice = createSlice({
             })
             .addCase(userOperations.refresh.pending, state => {
                 state.isLoading = true;
-                state.error = null
+                state.error = null;
+                state.isRefreshing = true
             })
             .addCase(userOperations.refresh.fulfilled, (state, {payload}) => {
                 if (!payload) {
@@ -87,10 +97,12 @@ const userSlice = createSlice({
                 state.error = null;
                 state.isLoggedIn = true;
                 state.user = payload;
+                state.isRefreshing = false
             })
             .addCase(userOperations.refresh.rejected, (state, {payload}) => {
                 state.isLoading = false;
                 state.error = payload;
+                state.isRefreshing = false
             })
             .addCase(userOperations.getAll.pending, state => {
                 state.isLoading = true;

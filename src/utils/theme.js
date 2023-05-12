@@ -32,6 +32,11 @@ const theme = {
         body: '1.3',
         caption: '1.1'
     },
+    fontWeights: {
+        normal: '400',
+        bold: '600',
+        boldest: '700'
+    },
     borders: {
         thin: '1px solid',
         main: '2px solid'
@@ -40,11 +45,6 @@ const theme = {
         normal: '20px',
         bigger: '25px',
         round: '50%'
-    },
-    fontWeights: {
-        normal: '400',
-        bold: '600',
-        boldest: '700'
     },
 };
 
