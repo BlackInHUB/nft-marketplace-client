@@ -14,7 +14,8 @@ const MarketPage = () => {
             top: 0,
             left: 0,
             behavior: "smooth"
-          });
+        });
+        
         dispatch(nftOperations.getAll());
         dispatch(nftOperations.getAllCollections());
     }, [dispatch]);

@@ -23,7 +23,7 @@ export const Hero = () => {
     const [hlShow, setHlShow] = useState(false);
 
     useEffect(() => {
-        setHighlight(allNft[Math.floor(Math.random() * (allNft.length + 1))]);
+        setHighlight(allNft[Math.floor(Math.random() * (allNft.length))]);
         setTimeout(() => {
             setHlShow(true);
         }, 250)

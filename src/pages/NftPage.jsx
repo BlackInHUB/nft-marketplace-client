@@ -18,7 +18,6 @@ const NftPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('work')
         window.scrollTo({
             top: 0,
             left: 0,

@@ -8,6 +8,11 @@ const HomePage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
         dispatch(nftOperations.getAll());
     }, [dispatch]);
 

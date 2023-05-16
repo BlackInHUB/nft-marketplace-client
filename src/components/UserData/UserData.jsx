@@ -39,8 +39,8 @@ import {EditorBtn} from '../EditorBtn/EditorBtn';
 import { useNfts, useUsers } from '../../hooks';
 
 export const UserData = () => {
-    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = useUsers().user;
-    const {created} = useNfts().usersNft;
+    const {user} = useUsers();
+    const {usersNft} = useNfts();
     const [edit, setEdit] = useState(false);
     const [edField, setEdField] = useState(null);
     const [addLink, setAddLink] = useState(false);
@@ -65,7 +65,14 @@ export const UserData = () => {
         setTimeout(() => {
             setShow(true);
         }, 1)
-    }, [])
+    }, []);
+
+    if (!user || !usersNft) {
+        return;
+    };
+
+    const {name, bio, avatarUrl, socialLinks, followers, profileCover} = user;
+    const {created} = usersNft;
 
     const toggleEdit = () => {
         if (addLink) {

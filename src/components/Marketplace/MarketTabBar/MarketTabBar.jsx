@@ -6,6 +6,10 @@ export const MarketTabBar = () => {
     const {allNft, allCollections} = useNfts();
     const {isMobile} = useMQ();
     
+    if (!allCollections || !allNft) {
+        return;
+    };
+
     return (
         <TabContainer>
             <TabList>

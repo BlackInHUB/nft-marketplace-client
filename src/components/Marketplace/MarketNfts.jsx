@@ -9,7 +9,7 @@ const MarketNfts = () => {
     return (
         <NftsWrapper>
             <PaddingWrapper>
-                <NftsList nfts={allNft} bg='main' />
+                <NftsList nfts={allNft} />
             </PaddingWrapper>
         </NftsWrapper>
     )

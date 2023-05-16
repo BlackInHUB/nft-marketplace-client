@@ -25,7 +25,7 @@ export const UserNfts = () => {
             <NftsWrapper>
                 <PaddingWrapper>
                     {category !== 'collection' ? 
-                        <NftsList nfts={usersNft[category]} bg='main' /> :
+                        <NftsList nfts={usersNft[category]} /> :
                         <CollectionList collections={usersNft.collections} />
                     }
                 </PaddingWrapper>

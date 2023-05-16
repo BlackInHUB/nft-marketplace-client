@@ -9,7 +9,7 @@ export const Layout = () => {
     return (
         <Box>
             <NavMenu />
-            <Box minHeight='100vh' display='flex' flexDirection='column' justifyContent='space-between'>
+            <Box display='flex' flexDirection='column' justifyContent='space-between'>
                 <Suspense>
                     <Outlet />
                 </Suspense>

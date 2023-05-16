@@ -3,7 +3,7 @@ import nftOperations from "./nftOperations";
 
 const initialState = {
     allNft: [],
-    allCollections: [],
+    allCollections: null,
     details: {
         nft: null,
         moreFromAuthor: []

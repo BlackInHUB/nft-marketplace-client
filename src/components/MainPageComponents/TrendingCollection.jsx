@@ -3,7 +3,6 @@ import { CollectionList } from "../CollectionList/CollectionList";
 import { Container, TitleWrapper, TitleBtnWrapper, Title, Description, BtnLink } from "./MainPageComponents.styled";
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { Button } from "../BaseComponents/Buttons/Button";
-import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const TrendingCollection = () => {
@@ -12,6 +11,10 @@ export const TrendingCollection = () => {
     const [trending, setTrending] = useState(null);
 
     useEffect(() => {
+        if (!allCollections) {
+            return;
+        };
+
         const counter = () => {
             return Math.floor(Math.random() * allCollections.length);
         };
