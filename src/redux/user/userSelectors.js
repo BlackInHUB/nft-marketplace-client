@@ -4,7 +4,7 @@ export const getToken = ({users}) => users.token;
 
 export const getIsRefreshing = ({users}) => users.isRefreshing;
 
-export const getAllUsers = ({users}) => users.allUsers;
+export const getTopRanked = ({users}) => users.topCreators;
 
 export const getIsLoggedIn = ({users}) => users.isLoggedIn;
 

@@ -37,6 +37,7 @@ export const TitleBtnWrapper = styled.div`
 
     @media (min-width: 1280px) {
         margin-bottom: 60px;
+        align-items: flex-end;
     }
 `
 

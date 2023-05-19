@@ -9,14 +9,14 @@ import userOperations from '../../redux/user/userOperations';
 
 export const TopCreators = () => {
     const {isMobile} = useMQ();
-    const {allUsers} = useUsers();
+    const {topCreators} = useUsers();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(userOperations.getAll());
+        dispatch(userOperations.getTopRanked());
     }, [dispatch]);
 
-    if (!allUsers) {
+    if (!topCreators) {
         return;
     };
 
@@ -30,8 +30,8 @@ export const TopCreators = () => {
                     </TitleWrapper>
                     {!isMobile && <BtnLink to='/rankings'><Button content='View Rankings' fill='accent' hfill='text' iconType='rocketlaunch' w='24px' h='24px' type='button' /></BtnLink>}
                 </TitleBtnWrapper>
-                <CreatorsList items={allUsers} />
-                {isMobile && <BtnLink to='/rankings'><Button content='View Rankings' fill='accent' hfill='text' iconType='rocketlaunch' w='24px' h='24px' type='button' /></BtnLink>}
+                <CreatorsList items={topCreators} />
+                {isMobile && <BtnLink to='/rankings'><Button content='View Rankings' fill='accent' hfill='text' iconType='rocketlaunch' w='24px' h='24px' type='button' mt={isMobile ? '30px' : 0} /></BtnLink>}
             </PaddingWrapper>
         </Container>
     )

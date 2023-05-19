@@ -4,6 +4,7 @@ import nftOperations from "./nftOperations";
 const initialState = {
     highlight: null,
     allNft: [],
+    trendingNfts: null,
     trendingCollections: null,
     allCollections: null,
     details: {
@@ -228,6 +229,19 @@ const nftSlice = createSlice({
             state.error = null;
         })
         .addCase(nftOperations.getTrendingCollections.rejected, (state, {payload}) => {
+            state.isLoading = false;
+            state.error = payload;
+        })
+        .addCase(nftOperations.getTrendingNfts.pending, state => {
+            state.isLoading = true;
+            state.error = null;
+        })
+        .addCase(nftOperations.getTrendingNfts.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            state.trendingNfts = payload;
+            state.error = null;
+        })
+        .addCase(nftOperations.getTrendingNfts.rejected, (state, {payload}) => {
             state.isLoading = false;
             state.error = payload;
         })

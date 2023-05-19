@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import userOperations from "./userOperations";
 
 const initialState = {
-    // topCreators: null,
-    allUsers: null,
+    topCreators: null,
     user: null,
     profile: null,
     token: null,
@@ -105,16 +104,16 @@ const userSlice = createSlice({
                 state.error = payload;
                 state.isRefreshing = false
             })
-            .addCase(userOperations.getAll.pending, state => {
+            .addCase(userOperations.getTopRanked.pending, state => {
                 state.isLoading = true;
                 state.error = null
             })
-            .addCase(userOperations.getAll.fulfilled, (state, {payload}) => {
+            .addCase(userOperations.getTopRanked.fulfilled, (state, {payload}) => {
                 state.isLoading = false;
                 state.error = null;
-                state.allUsers = payload;
+                state.topCreators = payload;
             })
-            .addCase(userOperations.getAll.rejected, (state, {payload}) => {
+            .addCase(userOperations.getTopRanked.rejected, (state, {payload}) => {
                 state.isLoading = false;
                 state.error = payload;
             })

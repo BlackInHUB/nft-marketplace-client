@@ -69,3 +69,8 @@ export const getTrendingCollections = async () => {
     const {data} = await instance.get('/collection/trending');
     return data;
 };
+
+export const getTrendingNfts = async () => {
+    const {data} = await instance.get('/nfts/trending');
+    return data;
+};

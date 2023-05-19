@@ -40,8 +40,8 @@ export const refresh = async (token) => {
     return data;
 };
 
-export const getAll = async () => {
-    const {data} = await instance.get('/user/all');
+export const getTopRanked = async () => {
+    const {data} = await instance.get('/user/ranked/top');
     return data;
 };
 

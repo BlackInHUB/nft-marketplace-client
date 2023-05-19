@@ -1,5 +1,16 @@
 import { useSelector } from "react-redux";
-import { getAllNft, getUsersNft, getDetails, getProfileNft, getTrendingCollections, getHighlight, getAllCollections, getCollectionDetails, getNftsLoading } from "../redux/nft/nftSelectors";
+import {
+    getAllNft,
+    getUsersNft,
+    getDetails,
+    getProfileNft,
+    getTrendingCollections,
+    getHighlight,
+    getAllCollections,
+    getCollectionDetails,
+    getNftsLoading,
+    getTrendingNfts
+} from "../redux/nft/nftSelectors";
 
 export const useNfts = () => {
     const usersNft = useSelector(getUsersNft);
@@ -11,6 +22,18 @@ export const useNfts = () => {
     const nftsLoading = useSelector(getNftsLoading);
     const highlight = useSelector(getHighlight);
     const trendingCollections = useSelector(getTrendingCollections);
+    const trendingNfts = useSelector(getTrendingNfts);
 
-    return {usersNft, allNft, nftDetails, highlight, profileNft, trendingCollections, allCollections, collectionDetails, nftsLoading};
+    return {
+        usersNft,
+        allNft,
+        nftDetails,
+        highlight,
+        profileNft,
+        trendingCollections,
+        allCollections,
+        collectionDetails,
+        nftsLoading,
+        trendingNfts
+    };
 };

@@ -70,7 +70,10 @@ export const AuthorAvatar = styled.img`
 `
 
 export const Wrapper = styled.div`
-
+    
+    @media (min-width: 1280px) {
+        text-align: center;
+    }
 `
 
 export const AuthorName = styled.p`
