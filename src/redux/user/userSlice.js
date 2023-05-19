@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import userOperations from "./userOperations";
 
 const initialState = {
+    // topCreators: null,
     allUsers: null,
     user: null,
     profile: null,

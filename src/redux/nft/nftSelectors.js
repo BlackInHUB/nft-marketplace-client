@@ -9,3 +9,9 @@ export const getProfileNft = ({nfts}) => nfts.profileNft;
 export const getAllCollections = ({nfts}) => nfts.allCollections;
 
 export const getCollectionDetails = ({nfts}) => nfts.collectionDetails;
+
+export const getNftsLoading = ({nfts}) => nfts.isLoading;
+
+export const getHighlight = ({nfts}) => nfts.highlight;
+
+export const getTrendingCollections = ({nfts}) => nfts.trendingCollections;

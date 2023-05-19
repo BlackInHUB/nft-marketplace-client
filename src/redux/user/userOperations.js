@@ -54,7 +54,7 @@ const refresh = createAsyncThunk('users/refresh', async (_, thunkAPI) => {
 
 const getAll = createAsyncThunk('users/getAll', async (_, thunkAPI) => {
     try {
-        const result = userApi.getAll();
+        const result = await userApi.getAll();
         return result;
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
@@ -63,7 +63,7 @@ const getAll = createAsyncThunk('users/getAll', async (_, thunkAPI) => {
 
 const getProfile = createAsyncThunk('users/getProfile', async (_id, thunkAPI) => {
     try {
-        const result = userApi.getProfile(_id);
+        const result = await userApi.getProfile(_id);
         return result;
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
@@ -72,7 +72,7 @@ const getProfile = createAsyncThunk('users/getProfile', async (_id, thunkAPI) =>
 
 const following = createAsyncThunk('user/following', async (_id, thunkAPI) => {
     try {
-        const result = userApi.following(_id);
+        const result = await userApi.following(_id);
         return result;
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);

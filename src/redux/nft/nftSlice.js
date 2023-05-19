@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import nftOperations from "./nftOperations";
 
 const initialState = {
+    highlight: null,
     allNft: [],
+    trendingCollections: null,
     allCollections: null,
     details: {
         nft: null,
@@ -200,6 +202,32 @@ const nftSlice = createSlice({
             state.error = null;
         })
         .addCase(nftOperations.deleteNft.rejected, (state, {payload}) => {
+            state.isLoading = false;
+            state.error = payload;
+        })
+        .addCase(nftOperations.getHighLight.pending, state => {
+            state.isLoading = true;
+            state.error = null;
+        })
+        .addCase(nftOperations.getHighLight.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            state.highlight = payload;
+            state.error = null;
+        })
+        .addCase(nftOperations.getHighLight.rejected, (state, {payload}) => {
+            state.isLoading = false;
+            state.error = payload;
+        })
+        .addCase(nftOperations.getTrendingCollections.pending, state => {
+            state.isLoading = true;
+            state.error = null;
+        })
+        .addCase(nftOperations.getTrendingCollections.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            state.trendingCollections = payload;
+            state.error = null;
+        })
+        .addCase(nftOperations.getTrendingCollections.rejected, (state, {payload}) => {
             state.isLoading = false;
             state.error = payload;
         })

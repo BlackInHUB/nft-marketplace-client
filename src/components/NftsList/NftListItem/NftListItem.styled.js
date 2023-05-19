@@ -7,7 +7,7 @@ export const NftItem = styled.li`
     border-radius: ${p => p.theme.radii.normal};
     opacity: ${p => p.show ? '1;' : '0;'};
     transform: ${p => p.show ? 'translate(0, 0)' : 'translate(50%, 0)'};
-    transition: all 500ms ease;
+    transition: all 500ms ease; 
 
     @media (min-width: 768px) {
         width: 330px;

@@ -1,4 +1,3 @@
-import { useUsers } from "../../hooks";
 import {
     ListItem,
     MainImg,
@@ -10,30 +9,37 @@ import {
     Author,
     AuthorAvatar,
     AuthorName,
+    MainSceleton,
+    OtherSceleton
 } from "./CollectionList.styled";
 import {NavLink} from 'react-router-dom';
+import { useInView } from "react-intersection-observer";
 
 export const CollectionListItem = ({item}) => {
     const {nfts, author, title, _id} = item;
-    const {allUsers} = useUsers();
 
-    const user = allUsers.find(e => e._id === author);
+    const {ref, inView} = useInView({
+        triggerOnce: true,
+        threshold: 0.2
+    });
 
     return (
-        <ListItem>
+        <ListItem ref={ref} show={inView}>
             <NavLink to={`/nfts/collection/${_id}`}>
-                <MainImg src={nfts[0].imageUrl} />
+                {inView ? <MainImg src={nfts[0].imageUrl} /> : <MainSceleton />}
                 <OtherWrapper>
-                    <OtherImgs src={nfts[1].imageUrl} />
-                    {nfts.length > 2 && <OtherImgs src={nfts[2].imageUrl} />}
+                    {inView ? <OtherImgs src={nfts[1].imageUrl} /> : <OtherSceleton />}
+                    {nfts.length > 2 && inView ? <OtherImgs src={nfts[2].imageUrl} /> :
+                        <OtherSceleton />
+                    }
                     <ImgsCounter>
                         <Counter>{nfts.length}+</Counter>
                     </ImgsCounter>
                 </OtherWrapper>
                 <Title>{title}</Title>
                 <Author>
-                    <AuthorAvatar src={user.avatarUrl} />
-                    <AuthorName>{user.name}</AuthorName>
+                    <AuthorAvatar src={author.avatarUrl} />
+                    <AuthorName>{author.name}</AuthorName>
                 </Author>
             </NavLink>
         </ListItem>

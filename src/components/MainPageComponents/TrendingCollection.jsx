@@ -3,26 +3,20 @@ import { CollectionList } from "../CollectionList/CollectionList";
 import { Container, TitleWrapper, TitleBtnWrapper, Title, Description, BtnLink } from "./MainPageComponents.styled";
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { Button } from "../BaseComponents/Buttons/Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import nftOperations from "../../redux/nft/nftOperations";
 
 export const TrendingCollection = () => {
-    const {allCollections} = useNfts();
+    const {trendingCollections} = useNfts();
     const {isMobile, isTablet} = useMQ();
-    const [trending, setTrending] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!allCollections) {
-            return;
-        };
+        dispatch(nftOperations.getTrendingCollections());
+    }, [dispatch]);
 
-        const counter = () => {
-            return Math.floor(Math.random() * allCollections.length);
-        };
-
-        setTrending([allCollections[counter()], allCollections[counter()], allCollections[counter()]]);
-    }, [allCollections]);
-
-    if (!trending) {
+    if (!trendingCollections) {
         return;
     };
     
@@ -36,8 +30,8 @@ export const TrendingCollection = () => {
                     </TitleWrapper>
                     {!isMobile && <BtnLink to='/marketplace/collections'><Button content='View Collections' fill='accent' hfill='text' iconType='copy' w='24px' h='24px' type='button' /></BtnLink>}
                 </TitleBtnWrapper>
-                <CollectionList collections={isMobile ? trending.slice(0, 1) : isTablet ? trending.slice(0, 2) : trending} />
-                {isMobile && <BtnLink to='/marketplace/collections'><Button content='View Collections' fill='accent' hfill='text' iconType='copy' w='24px' h='24px' type='button' /></BtnLink>}
+                <CollectionList collections={isMobile ? trendingCollections.slice(0, 1) : isTablet ? trendingCollections.slice(0, 2) : trendingCollections} />
+                {isMobile && <BtnLink to='/marketplace/collections'><Button content='View Collections' fill='accent' hfill='text' iconType='copy' w='24px' h='24px' type='button' mt='30px' /></BtnLink>}
             </PaddingWrapper>
         </Container>
     )

@@ -11,7 +11,6 @@ import { NftItem,
     PriceTitle,
     PriceValue,
     ImageSkeleton } from "./NftListItem.styled";
-import {useUsers} from '../../../hooks/useUsers';
 import { useInView } from "react-intersection-observer";
 
 export const NftListItem = ({nft}) => {
@@ -20,8 +19,6 @@ export const NftListItem = ({nft}) => {
         triggerOnce: true
     })
     const {imageUrl, title, price, author, _id} = nft;
-    const {allUsers} = useUsers();
-    const user = allUsers.find(user => user._id === author);
 
     return (
         <NftItem ref={ref} show={inView}>
@@ -30,8 +27,8 @@ export const NftListItem = ({nft}) => {
                 <InfoWrapper>
                     <Title>{title}</Title>
                     <AuthorContainer>
-                        <Avatar src={user.avatarUrl} />
-                        <Author>{user.name}</Author>
+                        <Avatar src={author.avatarUrl} />
+                        <Author>{author.name}</Author>
                     </AuthorContainer>
                     <PricesWrapper>
                         <PriceWrapper>

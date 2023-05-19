@@ -7,19 +7,17 @@ import {
     HighlightAuthotAvatar,
     HighlightAuthorName
 } from "./Highlight.styled";
-import { useUsers } from "../../hooks";
+import { useNfts } from "../../hooks";
 import { NavLink } from "react-router-dom";
 
-export const Highlight = ({highlight, show}) => {
-    const {allUsers} = useUsers();
+export const Highlight = ({show}) => {
+    const {highlight} = useNfts();
 
     if (!highlight) {
         return;
     };
 
     const {imageUrl, author, title, _id} = highlight;
-
-    const nftAuthor = allUsers.find(user => user._id === author);
 
     return (
         <HeroHighlightContainer show={show}>
@@ -28,8 +26,8 @@ export const Highlight = ({highlight, show}) => {
                 <HighlightInfoContainer>
                     <HighlightTitle>{title}</HighlightTitle>
                     <HighlightAuthor>
-                        <HighlightAuthotAvatar src={nftAuthor.avatarUrl} alt="avatar"/>
-                        <HighlightAuthorName>{nftAuthor.name}</HighlightAuthorName>
+                        <HighlightAuthotAvatar src={author.avatarUrl} alt="avatar"/>
+                        <HighlightAuthorName>{author.name}</HighlightAuthorName>
                     </HighlightAuthor>
                 </HighlightInfoContainer>
             </NavLink>

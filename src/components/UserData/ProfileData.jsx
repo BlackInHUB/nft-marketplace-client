@@ -26,11 +26,13 @@ import { useDispatch } from 'react-redux';
 import userOperations from '../../redux/user/userOperations';
 import nftOperations from '../../redux/nft/nftOperations';
 import { useParams } from 'react-router-dom';
+import { useMQ } from '../../hooks';
 
 export const ProfileData = () => {
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const {_id} = useParams();
+    const {isMobile} = useMQ();
 
     const getVolume = (nfts) => {
         const sum = nfts.reduce((acc, nft) => acc + parseInt(nft.price), 0);
@@ -77,7 +79,7 @@ export const ProfileData = () => {
                     </AvatarWrapper>
                     <UsernameBtnsWrapper>
                         <Username>{name}</Username>
-                        <Button type='button' fill='accent' hfill='text' iconType={follow ? 'close' : 'plus'} w='25px' h='25px' content={follow ? 'Unfollow' : 'Follow'} onClick={followingToggle} />
+                        <Button type='button' fill='accent' hfill='text' iconType={follow ? 'close' : 'plus'} w='25px' h='25px' content={follow ? 'Unfollow' : 'Follow'} onClick={followingToggle} mt={isMobile ? '10px' : 0} />
                     </UsernameBtnsWrapper>
                     <InfoList>
                         <InfoListItem>

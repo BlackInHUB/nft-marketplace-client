@@ -3,6 +3,7 @@ import { Footer } from "./Footer/Footer.jsx";
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import { Box } from "../utils/Box.js";
+import { Loader } from './BaseComponents/Loader/Loader';
 
 export const Layout = () => {
 
@@ -10,7 +11,7 @@ export const Layout = () => {
         <Box>
             <NavMenu />
             <Box display='flex' flexDirection='column' justifyContent='space-between'>
-                <Suspense>
+                <Suspense fallback={<Loader />}>
                     <Outlet />
                 </Suspense>
                 <Footer />

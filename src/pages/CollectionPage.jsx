@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ConfirmModal } from "../components/ConfirmModal/CnfirmModal";
 
 const CollectionPage = () => {
+    const {collectionDetails} = useNfts();
     const {_id} = useParams();
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(false);
@@ -24,9 +25,6 @@ const CollectionPage = () => {
         });
         dispatch(nftOperations.getCollectionDetails(_id));
     }, [_id, dispatch]);
-
-
-    const {collectionDetails} = useNfts();
 
     if (!collectionDetails) {
         return;

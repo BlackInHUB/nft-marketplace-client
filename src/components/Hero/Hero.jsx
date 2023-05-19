@@ -14,20 +14,20 @@ import { Button } from "../BaseComponents/Buttons/Button";
 import { Highlight } from "../Highlight/Highlight";
 import { useMQ } from "../../hooks/useMQ";
 import { useEffect, useState } from "react";
-import { useNfts } from "../../hooks";
+import { useDispatch } from "react-redux";
+import nftOperations from "../../redux/nft/nftOperations";
 
 export const Hero = () => {
-    const {allNft} = useNfts();
     const {isMobile} = useMQ();
-    const [highlight, setHighlight] = useState(null);
     const [hlShow, setHlShow] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setHighlight(allNft[Math.floor(Math.random() * (allNft.length))]);
+        dispatch(nftOperations.getHighLight());
         setTimeout(() => {
             setHlShow(true);
         }, 250)
-    }, [allNft]);
+    }, [dispatch]);
 
     return (
         <HeroSection>
@@ -36,7 +36,7 @@ export const Hero = () => {
                     <HeroInfoContainer>
                         <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
                         <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
-                        {isMobile && <Highlight highlight={highlight} show={hlShow} />}
+                        {isMobile && <Highlight show={hlShow} />}
                             <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
                         <HeroInfoList>
                             <HeroInfoListItem>
@@ -53,7 +53,7 @@ export const Hero = () => {
                             </HeroInfoListItem>
                         </HeroInfoList>
                     </HeroInfoContainer>
-                    {!isMobile && <Highlight highlight={highlight} show={hlShow}/>}
+                    {!isMobile && <Highlight show={hlShow}/>}
                 </HeroContainer>
             </PaddingWrapper>
         </HeroSection>

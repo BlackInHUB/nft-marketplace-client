@@ -46,6 +46,7 @@ export const HeroTitle = styled.h1`
     font-size: ${p => p.theme.fontSizes.h4};
     line-height: ${p => p.theme.lineHeights.h4};
     margin-bottom: 10px;
+    align-self: flex-start;
 
     @media (min-width: 767px) {
         font-size: ${p => p.theme.fontSizes.h3};

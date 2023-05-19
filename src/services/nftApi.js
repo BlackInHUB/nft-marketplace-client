@@ -58,4 +58,14 @@ export const updateNft = async (update) => {
 export const deleteNft = async (_id) => {
     const {data} = await instance.get(`/nfts/delete/${_id}`);
     return data;
-}
+};
+
+export const getHighLight = async () => {
+    const {data} = await instance.get('/nfts/highlight');
+    return data;
+};
+
+export const getTrendingCollections = async () => {
+    const {data} = await instance.get('/collection/trending');
+    return data;
+};

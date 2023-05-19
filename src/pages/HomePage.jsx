@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Hero } from "../components/Hero/Hero";
 import { TrendingCollection } from "../components/MainPageComponents/TrendingCollection";
+import { TopCreators } from "../components/MainPageComponents/TopCreators";
 import nftOperations from "../redux/nft/nftOperations";
 import { useEffect } from "react";
 
@@ -20,6 +21,7 @@ const HomePage = () => {
         <>
             <Hero />
             <TrendingCollection />
+            <TopCreators />
         </>
     )
 };

@@ -5,11 +5,8 @@ import {PaddingWrapper} from '../BaseComponents/PaddingWrapper/PaddingWrapper.st
 import { Container, TopWrapper, Title, AuthorContainer, AuthorAvatar, AuthorName, BtnsWrapper } from "./Collection.styled";
 
 export const Collection = ({deleteCollection, toggleModal, collectionDetails}) => {
-    const {allUsers, user} = useUsers();
-
+    const {user} = useUsers();
     const {title, author, nfts, _id} = collectionDetails;
-
-    const authorData = allUsers.find(item => item._id === author);
 
     return (
         <Container>
@@ -24,8 +21,8 @@ export const Collection = ({deleteCollection, toggleModal, collectionDetails}) =
                     }
                 </TopWrapper>
                 <AuthorContainer>
-                    <AuthorAvatar src={authorData.avatarUrl} />
-                    <AuthorName>{authorData.name}</AuthorName>
+                    <AuthorAvatar src={author.avatarUrl} />
+                    <AuthorName>{author.name}</AuthorName>
                 </AuthorContainer>
                 <NftsList nfts={nfts} />
             </PaddingWrapper>

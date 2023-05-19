@@ -108,6 +108,24 @@ const deleteNft = createAsyncThunk('nfts/deleteNft', async (_id, thunkAPI) => {
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
     };
+});
+
+const getHighLight = createAsyncThunk('nfts/getHighlight', async (_, thunkAPI) => {
+    try {
+        const result = await nftApi.getHighLight();
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
+const getTrendingCollections = createAsyncThunk('nfts/getTrendingCollections', async (_, thunkAPI) => {
+    try {
+        const result = await nftApi.getTrendingCollections();
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
 })
 
 const nftOperations = {
@@ -122,7 +140,9 @@ const nftOperations = {
     updateCollection,
     deleteCollection,
     updateNft,
-    deleteNft
+    deleteNft,
+    getHighLight,
+    getTrendingCollections
 };
 
 export default nftOperations;

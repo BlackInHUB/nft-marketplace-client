@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getUser, getAllUsers, getIsLoggedIn, getProfile, getToken, getIsRefreshing } from "../redux/user/userSelectors";
+import { getUser, getAllUsers, getIsLoggedIn, getProfile, getToken, getIsRefreshing, getUserLoading } from "../redux/user/userSelectors";
 
 export const useUsers = () => {
     const user = useSelector(getUser);
@@ -8,6 +8,7 @@ export const useUsers = () => {
     const isLoggedIn = useSelector(getIsLoggedIn);
     const allUsers = useSelector(getAllUsers);
     const profile = useSelector(getProfile);
+    const userLoading = useSelector(getUserLoading);
 
-    return {user, isLoggedIn, allUsers, profile, token, isRefreshing};
+    return {user, isLoggedIn, allUsers, profile, token, isRefreshing, userLoading};
 };

@@ -9,6 +9,9 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
     position: relative;
+    opacity: ${p => p.show ? '1;' : '0;'};
+    transform: ${p => p.show ? 'translate(0, 0)' : 'translate(50%, 0)'};
+    transition: all 500ms ease;
 `
 
 export const MainImg = styled.img`
@@ -23,16 +26,32 @@ export const MainImg = styled.img`
     }
 `
 
+export const MainSceleton = styled.div`
+    width: 315px;
+    height: 315px;
+    background-color: transparent;
+`
+
 export const OtherWrapper = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 7px;
     margin-bottom: 15px;
+
+    @media (min-width: 768px) {
+        gap: 15px;
+    }
 `
 
 export const OtherImgs = styled.img`
     width: 100px;
     height: 100px;
     border-radius: ${p => p.theme.radii.normal};
+`
+
+export const OtherSceleton = styled.div`
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
 `
 
 export const ImgsCounter = styled.div`

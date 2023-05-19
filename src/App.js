@@ -5,7 +5,6 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import userOperations from "./redux/user/userOperations";
-import nftOperations from "./redux/nft/nftOperations";
 // import { PublicRoute } from "./components/PublicRoute";
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -20,28 +19,25 @@ const CollectionPage = lazy(() => import('./pages/CollectionPage'));
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(userOperations.refresh());
-    dispatch(userOperations.getAll());
-    dispatch(nftOperations.getUsersNft());
-    dispatch(nftOperations.getAllCollections());
+  useEffect(() =>  {
+      dispatch(userOperations.refresh());
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path='/userpage' element={<PrivateRoute><UserPage /></PrivateRoute>} />
-        <Route path='/profile/:_id' element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-        <Route path='/nft/:_id' element={<PrivateRoute><NftPage /></PrivateRoute>} />
-        <Route path='/nfts/collection/:_id' element={<CollectionPage />} />
-        <Route path='/marketplace' element={<MarketPage />}>
-          <Route index element={<Navigate to='nfts' />} />
-          <Route path='nfts' element={<MarketNfts />} />
-          <Route path='collections' element={<MarketCollections />} />
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path='/userpage' element={<PrivateRoute><UserPage /></PrivateRoute>} />
+          <Route path='/profile/:_id' element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+          <Route path='/nft/:_id' element={<PrivateRoute><NftPage /></PrivateRoute>} />
+          <Route path='/nfts/collection/:_id' element={<CollectionPage />} />
+          <Route path='/marketplace' element={<MarketPage />}>
+            <Route index element={<Navigate to='nfts' />} />
+            <Route path='nfts' element={<MarketNfts />} />
+            <Route path='collections' element={<MarketCollections />} />
+          </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
   );
 }
 
