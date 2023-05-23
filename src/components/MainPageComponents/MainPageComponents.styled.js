@@ -1,8 +1,19 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { NavLink } from "react-router-dom";
+import {ReactComponent as Mail} from '../../images/icons/EnvelopeSimple.svg';
+
+const btnAnim = keyframes`
+    0% {right: 0;}
+    100% {right: 211px;}
+`
+
+const inputAnim = keyframes`
+    0% {width: 420px;}
+    100% {width: 200px;}
+`
 
 export const Container = styled.section`
-    background-color: ${p => p.theme.colors.secondary};
+    background-color: ${p => p.theme.colors[p.bgColor]};
     padding-top: 40px;
     padding-bottom: 40px;
 
@@ -55,4 +66,124 @@ export const Title = styled.h2`
 
 export const Description = styled.p`
 
+`
+
+export const DigestWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    @media (min-width: 834px) {
+        background-color: ${p => p.theme.colors.main};
+        border-radius: ${p => p.theme.radii.normal};
+        padding: 40px 30px;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+`
+
+export const DigestImg = styled.div`
+    width: 315px;
+    height: 255px;
+    background: url(${p => p.img});
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: ${p => p.theme.radii.normal};
+
+    @media (min-width: 768px) {
+        width: 300px;
+        height: 280px;
+    }
+
+    @media (min-width: 1280px) {
+        width: 425px;
+        height: 310px;
+        background-position: center;
+    }
+`
+
+export const DigestContentWrapper = styled.div`
+    max-width: 300px;
+
+    @media (min-width: 1280px) {
+        max-width: 425px;
+    }
+`
+
+export const DigestForm = styled.form`
+    margin-top: 40px;
+
+    @media (min-width: 1280px) {
+        display: flex;
+        position: relative;
+        align-items: center;
+        /* width: 420px; */
+    }
+`
+
+export const DigestFormInput = styled.input`
+    width: 100%;
+    padding: 12px 20px;
+    border: ${({theme}) => theme.borders.main} ${({theme}) => theme.colors.caption};
+    border-radius: ${({theme}) => theme.radii.normal};
+    outline: none;
+    margin-bottom: 16px;
+    transition: all 250ms ease;
+
+    @media (min-width: 1280px) {
+        margin-bottom: 0;
+        width: 100%;
+        border: none;
+        animation: ${p => p.submit ? inputAnim : ''};
+        animation-duration: 500ms;
+        animation-fill-mode: forwards;
+    }
+
+    ::placeholder {
+        font-family: ${({theme}) => theme.fontFamily.main};
+        color: ${({theme}) => theme.colors.main};
+        font-size: ${p => p.theme.fontSizes.body};
+        line-height: ${p => p.theme.lineHeights.body};
+    }
+
+    :hover,
+    :focus-visible {
+        border-color: ${({theme}) => theme.colors.accent};
+    }
+`
+
+export const DigestFormBtn = styled.button`
+    font-family: inherit;
+    font-size: ${p => p.theme.fontSizes.body};
+    line-height: ${p => p.theme.lineHeights.body};
+    font-weight: ${({theme}) => theme.fontWeights.bold};
+    color: ${({theme}) => theme.colors.text};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({theme}) => theme.colors.accent};
+    width: 100%;
+    padding: 10px 0;
+    border: ${({theme}) => theme.borders.main} ${({theme}) => theme.colors.accent};
+    border-radius: ${({theme}) => theme.radii.normal};
+    cursor: pointer;
+
+    @media (min-width: 1280px) {
+        width: fit-content;
+        padding: 10px 50px;
+        position: absolute;
+        right: 0;
+        animation: ${p => p.submit ? btnAnim : ''};
+        animation-duration: 500ms;
+        animation-fill-mode: forwards;
+    }
+`
+
+export const DigestFormBtnIcon = styled(Mail)`
+    width: 20px;
+    height: 20px;
+    fill: ${({theme}) => theme.colors.text};
+    margin-right: 12px;
+    transition: all 250ms ease;
 `

@@ -118,14 +118,14 @@ export const DigestFormInput = styled.input`
     outline: none;
     margin-bottom: 16px;
     transition: all 250ms ease;
-    animation: ${p => p.submit ? inputAnim : ''};
-    animation-duration: 500ms;
-    animation-fill-mode: forwards;
 
     @media (min-width: 768px) {
         margin-bottom: 0;
         width: 100%;
         border: none;
+        animation: ${p => p.submit ? inputAnim : ''};
+        animation-duration: 500ms;
+        animation-fill-mode: forwards;
     }
 
     ::placeholder {
@@ -156,15 +156,15 @@ export const DigestFormBtn = styled.button`
     border: ${({theme}) => theme.borders.main} ${({theme}) => theme.colors.accent};
     border-radius: ${({theme}) => theme.radii.normal};
     cursor: pointer;
-    animation: ${p => p.submit ? btnAnim : ''};
-    animation-duration: 500ms;
-    animation-fill-mode: forwards;
 
     @media (min-width: 768px) {
         width: fit-content;
         padding: 10px 50px;
         position: absolute;
         right: 0;
+        animation: ${p => p.submit ? btnAnim : ''};
+        animation-duration: 500ms;
+        animation-fill-mode: forwards;
     }
 `
 

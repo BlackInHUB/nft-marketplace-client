@@ -17,9 +17,15 @@ export const List = styled.ul`
 export const ListItem = styled.li`
     min-width: 240px;
     position: relative;
-    background-color: ${p => p.theme.colors.main};
+    background-color: ${p => p.theme.colors.secondary};
     padding: 20px;
     border-radius: ${p => p.theme.radii.normal};
+    transition: all 250ms ease;
+
+    :hover,
+    :focus-visible {
+        transform: scale(1.01);
+    }
 `
 
 export const AuthorLink = styled(NavLink)`
@@ -40,7 +46,7 @@ export const AuthorRank = styled.div`
     width: 30px;
     height: 30px;
     border-radius: ${p => p.theme.radii.round};
-    background-color: ${p => p.theme.colors.secondary};
+    background-color: ${p => p.theme.colors.main};
     display: flex;
     justify-content: center;
     align-items: center;

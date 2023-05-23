@@ -45,6 +45,11 @@ export const getTopRanked = async () => {
     return data;
 };
 
+export const getRankings = async () => {
+    const {data} = await instance.get('/user/ranked/all');
+    return data;
+};
+
 export const getProfile = async (_id) => {
     const {data} = await instance.get(`/user/profile/${_id}`);
     return data;

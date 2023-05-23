@@ -21,7 +21,7 @@ export const TrendingCollection = () => {
     };
     
     return (
-        <Container>
+        <Container bgColor='secondary'>
             <PaddingWrapper>
                 <TitleBtnWrapper>
                     <TitleWrapper>

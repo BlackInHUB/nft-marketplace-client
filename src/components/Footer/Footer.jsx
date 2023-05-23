@@ -57,7 +57,7 @@ export const Footer = () => {
                         <Titles>Join Our Weekly Digest</Titles>
                         <Info mb='20px'>Get exclusive promotions & updates straight to your inbox.</Info>
                         <DigestForm>
-                            <DigestFormInput type='text' submit={submit} placeholder='Enter Your Email Address' />
+                            <DigestFormInput type='text' submit={submit} placeholder='Enter your email here' />
                             <DigestFormBtn type='submit' submit={submit} onClick={handleDigestSubmit}><DigestFormBtnIcon /> Subscribe</DigestFormBtn>
                         </DigestForm>
                     </DigestContainer>

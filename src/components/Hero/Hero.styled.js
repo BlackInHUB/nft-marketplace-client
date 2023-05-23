@@ -1,7 +1,17 @@
 import styled from "styled-components";
 
 export const HeroSection = styled.section`
-    background-color: ${p => p.theme.colors.secondary};
+    background-color: ${p => p.theme.colors.main};
+    display: flex;
+    align-items: center;
+    
+    @media (min-width: 768px) {
+        height: calc(100vh - 70px);
+    }
+
+    @media (min-width: 1280px) {
+        height: calc(100vh - 85px);
+    }
 `
 
 export const HeroContainer = styled.div`
@@ -16,11 +26,7 @@ export const HeroContainer = styled.div`
 
     @media (min-width: 767px) {
         flex-direction: row;
-    }
-
-    @media (min-width: 1280px) {
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding: 0;
     }
 `
 

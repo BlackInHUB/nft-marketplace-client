@@ -13,7 +13,7 @@ export const Collection = ({deleteCollection, toggleModal, collectionDetails}) =
             <PaddingWrapper>
                 <TopWrapper>
                     <Title>{title} - NFT collection</Title>
-                    {user._id === author && 
+                    {user._id === author._id && 
                         <BtnsWrapper>
                             <IconButton w='25px' h='25px' onClick={toggleModal} iconType='edit' position='static' />
                             <IconButton w='25px' h='25px' onClick={() => deleteCollection(_id)} iconType='delete' position='static' />

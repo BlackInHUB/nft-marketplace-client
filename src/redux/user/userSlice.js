@@ -3,6 +3,7 @@ import userOperations from "./userOperations";
 
 const initialState = {
     topCreators: null,
+    rankings: null,
     user: null,
     profile: null,
     token: null,
@@ -114,6 +115,19 @@ const userSlice = createSlice({
                 state.topCreators = payload;
             })
             .addCase(userOperations.getTopRanked.rejected, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(userOperations.getRankings.pending, state => {
+                state.isLoading = true;
+                state.error = null
+            })
+            .addCase(userOperations.getRankings.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                state.error = null;
+                state.rankings = payload;
+            })
+            .addCase(userOperations.getRankings.rejected, (state, {payload}) => {
                 state.isLoading = false;
                 state.error = payload;
             })

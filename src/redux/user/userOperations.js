@@ -61,6 +61,15 @@ const getTopRanked = createAsyncThunk('users/getTopRanked', async (_, thunkAPI) 
     };
 });
 
+const getRankings = createAsyncThunk('users/getRankings', async (_, thunkAPI) => {
+    try {
+        const result = await userApi.getRankings();
+        return result;
+    } catch ({response}) {
+        return thunkAPI.rejectWithValue(response.data.message);
+    };
+});
+
 const getProfile = createAsyncThunk('users/getProfile', async (_id, thunkAPI) => {
     try {
         const result = await userApi.getProfile(_id);
@@ -87,7 +96,8 @@ const userOperations = {
     refresh,
     getTopRanked,
     getProfile,
-    following
+    following,
+    getRankings
 };
 
 export default userOperations;

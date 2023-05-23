@@ -15,6 +15,8 @@ const MarketNfts = lazy(() => import('./components/Marketplace/MarketNfts'));
 const MarketCollections = lazy(() => import('./components/Marketplace/MarketCollections'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const CollectionPage = lazy(() => import('./pages/CollectionPage'));
+const RankingsPage = lazy(() => import('./pages/RankingsPage'));
+const RankingsList = lazy(() => import('./components/Rankings/RankingsList/RankingsList'));
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +37,10 @@ function App() {
             <Route index element={<Navigate to='nfts' />} />
             <Route path='nfts' element={<MarketNfts />} />
             <Route path='collections' element={<MarketCollections />} />
+          </Route>
+          <Route path='/rankings' element={<RankingsPage />}>
+            <Route index element={<Navigate to='today' />} />
+            <Route path=":period" element={<RankingsList />} />
           </Route>
         </Route>
       </Routes>

@@ -3,7 +3,7 @@ import { useNfts } from "../../hooks/useNfts";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import nftOperations from "../../redux/nft/nftOperations";
-import { UserNftsTabBar } from "../NftTabBars/UserNftsTabBar";
+import { UserNftsTabBar } from "../TabBars/UserNftsTabBar";
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { NftsWrapper } from "./Nfts.styled";
 import { CollectionList } from "../CollectionList/CollectionList";

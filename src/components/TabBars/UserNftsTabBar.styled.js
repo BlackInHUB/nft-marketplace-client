@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const TabContainer = styled.div`
+    width: 100%;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
 
-    @media (min-width: 1280px) {
+    @media (min-width: 768px) {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 `
 

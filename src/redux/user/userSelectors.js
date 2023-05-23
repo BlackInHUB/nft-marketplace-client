@@ -6,6 +6,8 @@ export const getIsRefreshing = ({users}) => users.isRefreshing;
 
 export const getTopRanked = ({users}) => users.topCreators;
 
+export const getRankings = ({users}) => users.rankings;
+
 export const getIsLoggedIn = ({users}) => users.isLoggedIn;
 
 export const getProfile = ({users}) => users.profile;

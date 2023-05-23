@@ -21,7 +21,7 @@ export const TopCreators = () => {
     };
 
     return (
-        <Container>
+        <Container bgColor='main'>
             <PaddingWrapper>
                 <TitleBtnWrapper>
                     <TitleWrapper>

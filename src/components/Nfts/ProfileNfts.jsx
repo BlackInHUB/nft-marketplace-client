@@ -1,7 +1,7 @@
 import {NftsList} from "../NftsList/NftsList";
 import { useNfts } from "../../hooks/useNfts";
 import { useState } from "react";
-import { ProfileNftsTabBar } from "../NftTabBars/ProfileNftsTabBar";
+import { ProfileNftsTabBar } from "../TabBars/ProfileNftsTabBar";
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { NftsWrapper } from "./Nfts.styled";
 import { CollectionList } from "../CollectionList/CollectionList";

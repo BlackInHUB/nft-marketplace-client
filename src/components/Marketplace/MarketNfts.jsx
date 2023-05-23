@@ -17,6 +17,7 @@ const MarketNfts = () => {
         });
         
         dispatch(nftOperations.getAll());
+        dispatch(nftOperations.getAllCollections());
     }, [dispatch]);
 
     if (!allNft) {

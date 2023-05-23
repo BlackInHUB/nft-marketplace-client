@@ -50,10 +50,12 @@ const Nft = ({nftDetails, toggleEditOpen, deleteNft}) => {
                     <InfoContainer>
                         <TopWrapper>
                             <NftTitle>{title}</NftTitle>
+                            {user._id === author._id &&
                             <BtnsWrapper>
                                 <IconButton w='25px' h='25px' onClick={toggleEditOpen} iconType='edit' position='static' />
                                 <IconButton w='25px' h='25px' onClick={() => deleteNft(_id)} iconType='delete' position='static' />
                             </BtnsWrapper>
+                            }
                         </TopWrapper>
                         <CreatedAt>Minted On {mintedOn}</CreatedAt>
                         <InfoTitle>Created by</InfoTitle>
@@ -83,10 +85,10 @@ const Nft = ({nftDetails, toggleEditOpen, deleteNft}) => {
                 <PaddingWrapper>
                     <MoreTopWrapper>
                         <MoreTitle>More from this artist</MoreTitle>
-                        {!isMobile && user._id !== author && <ToArtistLink to={`/profile/${author._id}`}><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' /></ToArtistLink>}
+                        {!isMobile && user._id !== author._id && <ToArtistLink to={`/profile/${author._id}`}><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' /></ToArtistLink>}
                     </MoreTopWrapper>
                         <NftsList nfts={isMobile ? nftDetails.moreFromAuthor.slice(0, 2) : isTablet ? nftDetails.moreFromAuthor.slice(0, 4) : nftDetails.moreFromAuthor.slice(0, 6)} />
-                    {isMobile && user._id !== author &&  <LinkWrapper><ToArtistLink to={`/profile/${author._id}`}><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' mt='30px' /></ToArtistLink></LinkWrapper>}
+                    {isMobile && user._id !== author._id &&  <LinkWrapper><ToArtistLink to={`/profile/${author._id}`}><Button type='button' iconType='arrowr' fill='accent' hfill='text' content='Go To Artist Page' mt='30px' /></ToArtistLink></LinkWrapper>}
                 </PaddingWrapper>
             </MoreContainer>
         </>
