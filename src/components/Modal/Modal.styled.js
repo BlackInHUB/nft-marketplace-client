@@ -5,7 +5,7 @@ export const ModalBackdrop = styled.div`
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     z-index: 10;
 `
 
@@ -17,7 +17,7 @@ export const ModalContainer = styled.div`
     opacity: ${p => p.show ? '1' : '0'};
     position: ${p => p.position ? p.position : 'fixed'};
     top: ${p => p.type === 'userMenu' ? '57px' : 0};
-    right: ${p => p.type === 'userMenu' ? '30px' : 0};
+    right: ${p => p.type === 'userMenu' ? '30px' : ''};
     height: ${p => p.type === 'userMenu' ? 'auto' : '100vh'};
     width: ${p => p.type === 'userMenu' ? 'auto' : '100vw'};
     padding: ${p => p.type ? '25px' : 0};
@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    z-index: 9;
     border: ${p => p.theme.borders.main} ${p => p.theme.colors.main};
     border-bottom-left-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
     border-bottom-right-radius: ${p => p.type === 'userMenu' ? p.theme.radii.normal : 0};
