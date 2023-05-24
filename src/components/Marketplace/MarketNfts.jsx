@@ -1,13 +1,12 @@
 import { useNfts } from "../../hooks/useNfts";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
 import { NftsList } from "../NftsList/NftsList";
 import { NftsWrapper } from "../Nfts/Nfts.styled";
-import nftOperations from "../../redux/nft/nftOperations";
+
 
 const MarketNfts = () => {
-    const dispatch = useDispatch();
     const {allNft} = useNfts();
 
     useEffect(() => {
@@ -15,10 +14,7 @@ const MarketNfts = () => {
             top: 0,
             left: 0,
         });
-        
-        dispatch(nftOperations.getAll());
-        dispatch(nftOperations.getAllCollections());
-    }, [dispatch]);
+    }, []);
 
     if (!allNft) {
         return;

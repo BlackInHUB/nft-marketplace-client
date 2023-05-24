@@ -20,8 +20,9 @@ export const getDetails = async (_id) => {
     return data;
 };
 
-export const getAll = async () => {
-    const {data} = await instance.get('/nfts');
+export const getAll = async (search) => {
+    const reqParams = search ? `/nfts?${new URLSearchParams({search})}` : '/nfts';
+    const {data} = await instance.get(reqParams);
     return data;
 };
 
@@ -30,8 +31,9 @@ export const createCollection = async (collection) => {
     return data;
 };
 
-export const getAllCollections = async () => {
-    const {data} = await instance.get('/collection');
+export const getAllCollections = async (search) => {
+    const reqParams = search ? `/collection?${new URLSearchParams({search})}` : '/collection';
+    const {data} = await instance.get(reqParams);
     return data;
 };
 

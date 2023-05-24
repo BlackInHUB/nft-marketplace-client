@@ -28,9 +28,9 @@ const getDetails = createAsyncThunk('nfts/getDetails', async (_id, thunkAPI) => 
     };
 });
 
-const getAll = createAsyncThunk('nfts/getAll', async (_, thunkAPI) => {
+const getAll = createAsyncThunk('nfts/getAll', async (search, thunkAPI) => {
     try {
-        const result = await nftApi.getAll();
+        const result = await nftApi.getAll(search);
         return result;
 
     } catch ({response}) {
@@ -56,9 +56,9 @@ const createCollection = createAsyncThunk('nfts/createCollection', async (collec
     };
 });
 
-const getAllCollections = createAsyncThunk('nfts/getAllCollections', async (_, thunkAPI) => {
+const getAllCollections = createAsyncThunk('nfts/getAllCollections', async (search, thunkAPI) => {
     try {
-        const result = await nftApi.getAllCollections();
+        const result = await nftApi.getAllCollections(search);
         return result;
     } catch ({response}) {
         return thunkAPI.rejectWithValue(response.data.message);
