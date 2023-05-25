@@ -5,14 +5,11 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import userOperations from "./redux/user/userOperations";
-// import { PublicRoute } from "./components/PublicRoute";
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
 const NftPage = lazy(() => import('./pages/NftPage'));
 const MarketPage = lazy(() => import('./pages/MarketPage'));
-// const MarketNfts = lazy(() => import('./components/Marketplace/MarketNfts'));
-// const MarketCollections = lazy(() => import('./components/Marketplace/MarketCollections'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const CollectionPage = lazy(() => import('./pages/CollectionPage'));
 const RankingsPage = lazy(() => import('./pages/RankingsPage'));
