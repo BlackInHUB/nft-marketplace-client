@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/nft-marketplace-client/static/css/main.1740bd28.css",
-    "main.js": "/nft-marketplace-client/static/js/main.600cfeb6.js",
+    "main.js": "/nft-marketplace-client/static/js/main.834c4645.js",
     "static/js/419.104a71a6.chunk.js": "/nft-marketplace-client/static/js/419.104a71a6.chunk.js",
     "static/js/90.41c496a6.chunk.js": "/nft-marketplace-client/static/js/90.41c496a6.chunk.js",
     "static/js/424.8d25d2ce.chunk.js": "/nft-marketplace-client/static/js/424.8d25d2ce.chunk.js",
@@ -43,7 +43,7 @@
     "static/media/List.svg": "/nft-marketplace-client/static/media/List.bfa1735d790223bc5776eeffbfa2a3d7.svg",
     "static/media/Plus.svg": "/nft-marketplace-client/static/media/Plus.acfc755d32b46963d5933f09c6c8326b.svg",
     "main.1740bd28.css.map": "/nft-marketplace-client/static/css/main.1740bd28.css.map",
-    "main.600cfeb6.js.map": "/nft-marketplace-client/static/js/main.600cfeb6.js.map",
+    "main.834c4645.js.map": "/nft-marketplace-client/static/js/main.834c4645.js.map",
     "419.104a71a6.chunk.js.map": "/nft-marketplace-client/static/js/419.104a71a6.chunk.js.map",
     "90.41c496a6.chunk.js.map": "/nft-marketplace-client/static/js/90.41c496a6.chunk.js.map",
     "424.8d25d2ce.chunk.js.map": "/nft-marketplace-client/static/js/424.8d25d2ce.chunk.js.map",
@@ -57,6 +57,6 @@
   },
   "entrypoints": [
     "static/css/main.1740bd28.css",
-    "static/js/main.600cfeb6.js"
+    "static/js/main.834c4645.js"
   ]
 }
