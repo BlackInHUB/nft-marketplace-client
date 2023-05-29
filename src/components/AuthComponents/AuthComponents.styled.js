@@ -8,8 +8,8 @@ export const RegisterContainer = styled.div`
     z-index: 10;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100vw;
+    height: 100vh;
 `
 
 export const ContentWrapper = styled.div`
@@ -19,7 +19,7 @@ export const ContentWrapper = styled.div`
     bottom: 0;
     right: 0;
     width: 100vw;
-    height: 67vh; 
+    height: 67%; 
     padding: 0 30px;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@ export const ImgWrapper = styled.div`
     top: 0;
     left: 0;
     width: 100vw;
-    height: 33vh;
+    height: 33%;
     background-image: url(${mobileImage});
     background-repeat: no-repeat;
     background-size: cover;

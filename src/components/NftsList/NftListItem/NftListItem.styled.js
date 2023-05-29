@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NftItem = styled.li`
     cursor: pointer;
     background-color: ${p => p.theme.colors.main};
-    width: 315px;
+    width: 100%;
     border-radius: ${p => p.theme.radii.normal};
     opacity: ${p => p.show ? '1;' : '0;'};
     transform: ${p => p.show ? 'translate(0, 0)' : 'translate(50%, 0)'};

@@ -23,8 +23,10 @@ export const NavMenu = ({edit, setEdit}) => {
 
     useEffect(() => {
         if (isRegisterOpen || isLoginOpen) {
+            console.log('hidden')
             document.body.style.overflow = 'hidden';
         } else {
+            console.log('unset')
             document.body.style.overflow = 'unset';
         }
 

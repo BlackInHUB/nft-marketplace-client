@@ -8,7 +8,7 @@ const hlAnimation = keyframes`
 `
 
 export const HeroHighlightContainer = styled.div`
-    min-width: 315px;
+    min-width: 100%;
     max-width: 500px;
     background-color: ${p => p.theme.colors.secondary};
     border-radius: ${p => p.theme.radii.normal};
@@ -33,8 +33,9 @@ export const HighlightImg = styled.div`
     background: url(${p => p.url}), ${p => p.theme.colors.main};
     background-repeat: no-repeat;
     background-size: cover;
-    width: 315px;
-    height: 210px;
+    background-position: center;
+    width: 100%;
+    height: 215px;
 
     @media (min-width: 768px) {
         width: 330px;
