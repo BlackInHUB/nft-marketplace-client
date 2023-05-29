@@ -5,6 +5,7 @@ export const List = styled.ul`
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    overflow: hidden;
 `
 
 export const ListItem = styled.li`

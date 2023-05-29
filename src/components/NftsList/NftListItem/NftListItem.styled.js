@@ -1,21 +1,17 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const NftItem = styled.li`
+    cursor: pointer;
     background-color: ${p => p.theme.colors.main};
     width: 315px;
     border-radius: ${p => p.theme.radii.normal};
     opacity: ${p => p.show ? '1;' : '0;'};
     transform: ${p => p.show ? 'translate(0, 0)' : 'translate(50%, 0)'};
-    transition: all 500ms ease; 
+    transition: all 500ms ease;
 
     @media (min-width: 768px) {
         width: 330px;
     }
-`
-
-export const NftLink = styled(NavLink)`
-    
 `
 
 export const ImageWrapper = styled.div`

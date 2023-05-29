@@ -5,6 +5,8 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import userOperations from "./redux/user/userOperations";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
@@ -24,23 +26,27 @@ function App() {
   }, [dispatch]);
 
   return (
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path='/userpage' element={<PrivateRoute><UserPage /></PrivateRoute>} />
-          <Route path='/profile/:_id' element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-          <Route path='/nft/:_id' element={<PrivateRoute><NftPage /></PrivateRoute>} />
-          <Route path='/nfts/collection/:_id' element={<CollectionPage />} />
-          <Route path='/marketplace' element={<MarketPage />}>
-            <Route index element={<Navigate to='nfts' />} />
-            <Route path=':category' element={<Marketplace />} />
+      <>
+        <ToastContainer position="top-center" />
+        
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path='/userpage' element={<PrivateRoute><UserPage /></PrivateRoute>} />
+            <Route path='/profile/:_id' element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path='/nft/:_id' element={<PrivateRoute><NftPage /></PrivateRoute>} />
+            <Route path='/nfts/collection/:_id' element={<CollectionPage />} />
+            <Route path='/marketplace' element={<MarketPage />}>
+              <Route index element={<Navigate to='nfts' />} />
+              <Route path=':category' element={<Marketplace />} />
+            </Route>
+            <Route path='/rankings' element={<RankingsPage />}>
+              <Route index element={<Navigate to='today' />} />
+              <Route path=":period" element={<RankingsList />} />
+            </Route>
           </Route>
-          <Route path='/rankings' element={<RankingsPage />}>
-            <Route index element={<Navigate to='today' />} />
-            <Route path=":period" element={<RankingsList />} />
-          </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </>
   );
 }
 

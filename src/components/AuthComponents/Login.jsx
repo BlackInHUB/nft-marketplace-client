@@ -38,7 +38,7 @@ export const Login = ({isOpen, loginToggle}) => {
     }, [isLoggedIn, navigate]);
 
     useEffect(() => {
-        setShow(isOpen)
+        setShow(isOpen);
     }, [isOpen]);
     
     const handleClose = () => {

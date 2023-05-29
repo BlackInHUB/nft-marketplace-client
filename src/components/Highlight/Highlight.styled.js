@@ -17,6 +17,7 @@ export const HeroHighlightContainer = styled.div`
     animation: ${hlAnimation};
     animation-duration: 1000ms;
     animation-fill-mode: forwards;
+    cursor: pointer;
 
     @media (min-width: 768px) {
         min-width: 330px;

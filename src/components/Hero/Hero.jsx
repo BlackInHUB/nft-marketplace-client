@@ -16,6 +16,7 @@ import { useMQ } from "../../hooks/useMQ";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import nftOperations from "../../redux/nft/nftOperations";
+import { NavLink } from "react-router-dom";
 
 export const Hero = () => {
     const {isMobile} = useMQ();
@@ -37,7 +38,7 @@ export const Hero = () => {
                         <HeroTitle>Discover Digital art & Collect NFTs</HeroTitle>
                         <HeroDescription>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</HeroDescription>
                         {isMobile && <Highlight show={hlShow} />}
-                            <Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' />
+                            <NavLink to='/marketplace'><Button type='button' content='Get Started' fill='accent' hfill='text' iconType='rocketlaunch' /></NavLink>
                         <HeroInfoList>
                             <HeroInfoListItem>
                                 <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>

@@ -17,3 +17,5 @@ export const getHighlight = ({nfts}) => nfts.highlight;
 export const getTrendingCollections = ({nfts}) => nfts.trendingCollections;
 
 export const getTrendingNfts = ({nfts}) => nfts.trendingNfts;
+
+export const getLoadingNft = ({nfts}) => nfts.isLoading;

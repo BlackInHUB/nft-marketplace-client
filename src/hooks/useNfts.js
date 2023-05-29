@@ -9,7 +9,8 @@ import {
     getAllCollections,
     getCollectionDetails,
     getNftsLoading,
-    getTrendingNfts
+    getTrendingNfts,
+    getLoadingNft
 } from "../redux/nft/nftSelectors";
 
 export const useNfts = () => {
@@ -23,6 +24,7 @@ export const useNfts = () => {
     const highlight = useSelector(getHighlight);
     const trendingCollections = useSelector(getTrendingCollections);
     const trendingNfts = useSelector(getTrendingNfts);
+    const isLoadingNfts = useSelector(getLoadingNft);
 
     return {
         usersNft,
@@ -34,6 +36,7 @@ export const useNfts = () => {
         allCollections,
         collectionDetails,
         nftsLoading,
-        trendingNfts
+        trendingNfts,
+        isLoadingNfts
     };
 };

@@ -11,6 +11,7 @@ import { useUsers } from "../../hooks/useUsers";
 import { createPortal } from "react-dom";
 import { UserMenuList } from "../UserMenuList/UserMenuList";
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
+import { useEffect } from "react";
 
 export const NavMenu = ({edit, setEdit}) => {
     const {user, isLoggedIn} = useUsers();
@@ -19,6 +20,15 @@ export const NavMenu = ({edit, setEdit}) => {
     const [menuShow, setMenuShow] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+    useEffect(() => {
+        if (isRegisterOpen || isLoginOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+    }, [isLoginOpen, isRegisterOpen]);
 
     const menuToggle = (menu) => {
         if (menuOpen[menu]) {

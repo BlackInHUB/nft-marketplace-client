@@ -1,5 +1,4 @@
 import { NftItem,
-    NftLink,
     ImageWrapper,
     InfoWrapper,
     Title,
@@ -12,17 +11,40 @@ import { NftItem,
     PriceValue,
     ImageSkeleton } from "./NftListItem.styled";
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify';
+import { useUsers } from "../../../hooks";
 
 export const NftListItem = ({nft}) => {
+    const {isLoggedIn} = useUsers();
+    const navigate = useNavigate();
     const {ref, inView} = useInView({
         threshold: 0.2,
         triggerOnce: true
-    })
+    });
+
+    const toNftPage = () => {
+        if (!isLoggedIn) {
+            return toast.error('You need Log In to see details!', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        };
+
+        navigate(`/nft/${_id}`)
+    }
+
     const {imageUrl, title, price, author, _id} = nft;
 
     return (
-        <NftItem ref={ref} show={inView}>
-            <NftLink to={`/nft/${_id}`}>
+        <NftItem ref={ref} show={inView} onClick={toNftPage}>
+            {/* <NftLink to={`/nft/${_id}`}> */}
                 {inView ? <ImageWrapper imageUrl={imageUrl} /> : <ImageSkeleton />}
                 <InfoWrapper>
                     <Title>{title}</Title>
@@ -41,7 +63,7 @@ export const NftListItem = ({nft}) => {
                         </PriceWrapper>
                     </PricesWrapper>
                 </InfoWrapper>
-            </NftLink>
+            {/* </NftLink> */}
         </NftItem>
     )
 };
