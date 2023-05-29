@@ -4,14 +4,11 @@ import { Logo } from "../Logo/Logo";
 import { Navigation } from "./Navigation";
 import { Modal } from "../Modal/Modal";
 import { useState } from "react";
-import { Register } from "../AuthComponents/Register";
-import { Login } from "../AuthComponents/Login";
 import { useMQ } from '../../hooks/useMQ';
 import { useUsers } from "../../hooks/useUsers";
 import { createPortal } from "react-dom";
 import { UserMenuList } from "../UserMenuList/UserMenuList";
 import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
-import { useEffect } from "react";
 
 export const NavMenu = ({edit, setEdit}) => {
     const {user, isLoggedIn} = useUsers();
@@ -20,17 +17,6 @@ export const NavMenu = ({edit, setEdit}) => {
     const [menuShow, setMenuShow] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-    useEffect(() => {
-        if (isRegisterOpen || isLoginOpen) {
-            console.log('hidden')
-            document.body.style.overflow = 'hidden';
-        } else {
-            console.log('unset')
-            document.body.style.overflow = 'unset';
-        }
-
-    }, [isLoginOpen, isRegisterOpen]);
 
     const menuToggle = (menu) => {
         if (menuOpen[menu]) {
@@ -122,8 +108,6 @@ export const NavMenu = ({edit, setEdit}) => {
                 />,
             document.querySelector('#modal-root')
         )}
-        {isRegisterOpen && <Register isOpen={isRegisterOpen} registerToggle={registerToggle} />}
-        {isLoginOpen && <Login isOpen={isLoginOpen} loginToggle={loginToggle} />}
         </>
     )
 }

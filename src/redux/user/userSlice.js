@@ -26,7 +26,6 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.error = null;
                 state.user = payload.user;
-                state.allUsers = [...state.allUsers, {_id: payload.user._id, name: payload.user.name, avatarUrl: payload.user.avatarUrl }];
                 state.token = payload.token;
                 state.isLoggedIn = true;
             })

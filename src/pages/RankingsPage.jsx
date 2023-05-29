@@ -7,6 +7,11 @@ const RankingsPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+        });
+
         dispatch(userOperations.getRankings());
     }, [dispatch]);
 

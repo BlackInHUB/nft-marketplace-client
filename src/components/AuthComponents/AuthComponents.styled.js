@@ -4,12 +4,17 @@ import tabletImage from '../../images/registerBgTablet.jpg';
 import desktopImage from '../../images/registerBgDesktop.jpg';
 
 export const RegisterContainer = styled.div`
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 55px);
+
+    @media (min-width: 768px) {
+        height: calc(100vh - 65px);
+    }
+
+    @media (min-width: 1280px) {
+        height: calc(100vh - 93px);
+    }
 `
 
 export const ContentWrapper = styled.div`
@@ -19,21 +24,21 @@ export const ContentWrapper = styled.div`
     bottom: 0;
     right: 0;
     width: 100vw;
-    height: 67%; 
+    height: 70%; 
     padding: 0 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: ${p => p.theme.colors.main};
+    background-color: ${p => p.theme.colors.secondary};
     transition: all 500ms ease;
 
 
     @media (min-width: 768px) {
-        top: 0;
+        /* top: 0; */
         width: 50%;
-        height: 100vh;
+        height: 100%;
         padding: 0 40px;
         transform: ${p => p.show ? 'translate(0, 0)' : 'translate(100%, 0)'};
     }
@@ -50,7 +55,7 @@ export const ImgWrapper = styled.div`
     top: 0;
     left: 0;
     width: 100vw;
-    height: 33%;
+    height: 30%;
     background-image: url(${mobileImage});
     background-repeat: no-repeat;
     background-size: cover;
@@ -60,7 +65,7 @@ export const ImgWrapper = styled.div`
     @media (min-width: 768px) {
         top: 0;
         width: 50%;
-        height: 100vh;
+        height: 100%;
         transform: ${p => p.show ? 'translate(0, 0)' : 'translate(-100%, 0)'};
         background-image: url(${tabletImage});
     }
