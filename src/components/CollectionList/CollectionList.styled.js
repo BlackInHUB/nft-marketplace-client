@@ -13,10 +13,15 @@ export const ListItem = styled.li`
     opacity: ${p => p.show ? '1;' : '0;'};
     transform: ${p => p.show ? 'translate(0, 0)' : 'translate(50%, 0)'};
     transition: all 500ms ease;
+    max-width: 100%;
+
+    @media (min-width: 768px) {
+        width: 330px;
+    }
 `
 
 export const MainImg = styled.img`
-    width: 315px;
+    width: 100%;
     height: 315px;
     border-radius: ${p => p.theme.radii.normal};
     margin-bottom: 15px;
