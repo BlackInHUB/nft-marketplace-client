@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const Marketplace = () => {
     const {category} = useParams();
     const {params} = useOutletContext();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         if (params) {
