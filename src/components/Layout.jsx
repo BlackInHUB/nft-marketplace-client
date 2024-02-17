@@ -10,12 +10,12 @@ export const Layout = () => {
     return (
         <Box>
             <NavMenu />
-            <Box display='flex' flexDirection='column' justifyContent='space-between'>
+            <Box display='flex' flexDirection='column' justifyContent='space-between' minHeight='100vh'>
                 <Suspense fallback={<Loader />}>
                     <Outlet />
                 </Suspense>
-                <Footer />
             </Box>
+            <Footer />
         </Box>
     )
 }

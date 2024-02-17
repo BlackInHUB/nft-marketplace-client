@@ -18,10 +18,10 @@ import {MdDone} from 'react-icons/md';
 import {AiOutlineDelete} from 'react-icons/ai';
 
 
-export const Button = ({type, content, iconType, onClick, width, p, w, h, mt}) => {
-
+export const Button = ({disabled, type, content, iconType, onClick, width, p, w, h, mt}) => {
+    
     return (
-        <Btn type={type} onClick={onClick} width={width} p={p} mt={mt}>
+        <Btn type={type} disabled={disabled} onClick={onClick} width={width} p={p} mt={mt}>
                 {iconType &&
                 <StyledIcon w={w} h={h} 
                     as={iconType === 'user' ? User :

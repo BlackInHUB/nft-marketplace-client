@@ -2,9 +2,13 @@ import { Form } from "./Forms.styled";
 import { Input } from "./Input";
 import { Button } from "../Buttons/Button";
 import { useForm } from "../../../hooks/useForm";
+import { useUsers } from "../../../hooks/useUsers";
 
-export const Forms = ({inputs, onSubmit, initialState, buttonText}) => {
-    const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
+export const Forms = ({ inputs, onSubmit, initialState, buttonText }) => {
+    const { error } = useUsers();
+    const { state, handleChange, handleSubmit } = useForm({ initialState, onSubmit, error });
+    
+    const disabledBtn = Object.values(state).some(v => v === '') ? true : false;
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -18,7 +22,7 @@ export const Forms = ({inputs, onSubmit, initialState, buttonText}) => {
                     onChange={handleChange}
                 />
             )}
-            <Button content={buttonText} type='submit' width='100%' p='12px 50px' />
+            <Button content={buttonText} disabled={disabledBtn} type='submit' width='100%' p='12px 50px' />
         </Form>
     )
 }
