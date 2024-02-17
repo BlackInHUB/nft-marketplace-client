@@ -1,8 +1,9 @@
 import axios from "axios";
 
+const URL = process.env.BACK_URL;
+
 export const instance = axios.create({
-  baseURL: "http://localhost:8080",
-  // baseURL: 'https://nft-marketplace-7gev.onrender.com'
+  baseURL: URL,
 });
 
 const setToken = (token) => {
