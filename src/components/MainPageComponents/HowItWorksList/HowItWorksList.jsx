@@ -1,32 +1,36 @@
-import { List, ListItem, ListItemImg, TextWrapper, Title, Description } from "./HowItWorksList.styled";
+import { List } from './HowItWorksList.styled';
 import setup from '../../../images/setup.png';
 import create from '../../../images/create.png';
 import earning from '../../../images/earning.png';
+import { HowItWorksListItem } from './HowItWorksListItem';
+
+const listItems = [
+  {
+    title: 'Setup Your wallet',
+    description:
+      'Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner.',
+    image: setup,
+  },
+  {
+    title: 'Create Collection',
+    description:
+      'Upload your work and setup your collection. Add a description, social links and floor price.',
+    image: create,
+  },
+  {
+    title: 'Start Earning',
+    description:
+      'Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others.',
+    image: earning,
+  },
+];
 
 export const HowItWorksList = () => {
-    return (
-        <List>
-            <ListItem>
-                <ListItemImg src={setup} />
-                <TextWrapper>
-                    <Title>Setup Your wallet</Title>
-                    <Description>Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner.</Description>
-                </TextWrapper>
-            </ListItem>
-            <ListItem>
-                <ListItemImg src={create} />
-                <TextWrapper>
-                    <Title>Create Collection</Title>
-                    <Description>Upload your work and setup your collection. Add a description, social links and floor price.</Description>
-                </TextWrapper>
-            </ListItem>
-            <ListItem>
-                <ListItemImg src={earning} />
-                <TextWrapper>
-                    <Title>Start Earning</Title>
-                    <Description>Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others.</Description>
-                </TextWrapper>
-            </ListItem>
-        </List>
-    )
-}
+  return (
+    <List>
+      {listItems.map((item, i) => (
+        <HowItWorksListItem key={i} item={item} i={i} />
+      ))}
+    </List>
+  );
+};

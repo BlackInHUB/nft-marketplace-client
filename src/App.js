@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-import { Layout } from './components/Layout';
+import { Layout } from './components/Layout/Layout.jsx';
 import { PrivateRoute } from './components/PrivateRoute';
 import { PublicRoute } from './components/PublicRoute.jsx';
 import { useDispatch } from 'react-redux';

@@ -3,7 +3,7 @@ import { keyframes } from 'styled-components';
 
 const hlAnimation = keyframes`
     0% {opacity: 0; transform: translate(100%, 0) scale(1.05)}
-    80% {opacity: 1; transform: translate(0, 0) scale(1.05)}
+    80% {opacity: 0.5; transform: translate(0, 0) scale(1.05)}
     100% {opacity: 1; transform: translate(0, 0) scale(1)}
 `;
 
@@ -13,15 +13,13 @@ export const HeroHighlightContainer = styled.div`
   background-color: ${p => p.theme.colors.secondary};
   border-radius: ${p => p.theme.radii.normal};
   overflow: hidden;
-  margin-bottom: 40px;
   animation: ${hlAnimation};
-  animation-duration: 1000ms;
+  animation-duration: 500ms;
   animation-fill-mode: forwards;
   cursor: pointer;
 
   @media (min-width: 768px) {
     min-width: 330px;
-    margin-bottom: 0;
   }
 
   @media (min-width: 1280px) {

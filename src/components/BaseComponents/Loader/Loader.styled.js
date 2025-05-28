@@ -14,6 +14,7 @@ export const LoaderBackdrop = styled.div`
 `;
 
 export const LoaderText = styled.p`
+  max-width: 90%;
   text-align: center;
   color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.h4};

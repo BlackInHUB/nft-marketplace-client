@@ -9,6 +9,7 @@ import {
   HeroInfoListItem,
   HeroInfoListItemNumber,
   HeroInfoListItemText,
+  HeroLink,
 } from './Hero.styled';
 import { Button } from '../BaseComponents/Buttons/Button';
 import { Highlight } from '../Highlight/Highlight';
@@ -16,7 +17,6 @@ import { useMQ } from '../../hooks/useMQ';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import nftOperations from '../../redux/nft/nftOperations';
-import { NavLink } from 'react-router-dom';
 
 export const Hero = () => {
   const { isMobile } = useMQ();
@@ -41,15 +41,16 @@ export const Hero = () => {
               than 20k NFT artists.
             </HeroDescription>
             {isMobile && <Highlight show={hlShow} />}
-            <NavLink to="/marketplace">
+            <HeroLink to="/marketplace">
               <Button
+                width={isMobile ? '100%' : 'fit-content'}
                 type="button"
                 content="Get Started"
                 fill="accent"
                 hfill="text"
                 iconType="rocketlaunch"
               />
-            </NavLink>
+            </HeroLink>
             <HeroInfoList>
               <HeroInfoListItem>
                 <HeroInfoListItemNumber>240k+</HeroInfoListItemNumber>
