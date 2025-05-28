@@ -1,10 +1,9 @@
-import { LogoLink, LogoIcon, LogoText } from "./Logo.styled";
+import { LogoLink, LogoText } from './Logo.styled';
 
-export const Logo = ({footer}) => {
-    return (
-        <LogoLink to='/'>
-            <LogoIcon footer={footer} />
-            <LogoText footer={footer} />
-        </LogoLink>
-    )
-}
+export const Logo = ({ footer }) => {
+  return (
+    <LogoLink to="/">
+      <LogoText footer={footer} />
+    </LogoLink>
+  );
+};
