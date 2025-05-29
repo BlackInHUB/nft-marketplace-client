@@ -9,8 +9,6 @@ import {
   Author,
   AuthorAvatar,
   AuthorName,
-  MainSceleton,
-  OtherSceleton,
 } from './CollectionList.styled';
 import { NavLink } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
