@@ -26,10 +26,14 @@ export const CollectionListItem = ({ item, index }) => {
   return (
     <ListItem ref={ref} show={inView} i={index}>
       <NavLink to={`/nfts/collection/${_id}`}>
-        {inView ? <MainImg src={nfts[0].imageUrl} /> : <MainSceleton />}
+        {/* {inView ? <MainImg src={nfts[0].imageUrl} /> : <MainSceleton />} */}
+        <MainImg src={nfts[0].imageUrl} />
         <OtherWrapper>
-          {inView ? <OtherImgs src={nfts[1].imageUrl} /> : <OtherSceleton />}
-          {nfts.length > 2 && inView ? <OtherImgs src={nfts[2].imageUrl} /> : <OtherSceleton />}
+          {/* {inView ? <OtherImgs src={nfts[1].imageUrl} /> : <OtherSceleton />} */}
+          {/* {nfts.length > 2 && inView ? <OtherImgs src={nfts[2].imageUrl} /> : <OtherSceleton />} */}
+          {nfts.slice(1, 3).map(nft => (
+            <OtherImgs src={nft.imageUrl} key={nft._id} alt={nft.title} />
+          ))}
           <ImgsCounter>
             <Counter>{nfts.length}+</Counter>
           </ImgsCounter>

@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const NftItem = styled.li`
   cursor: pointer;
-  background-color: ${p => p.theme.colors.main};
+  background-color: ${props =>
+    props.bgColor ? props.theme.colors[props.bgColor] : props.theme.colors.main};
   width: 100%;
   border-radius: ${p => p.theme.radii.normal};
+  overflow: hidden;
   opacity: ${p => (p.show ? '1;' : '0;')};
   transform: ${p => (p.show ? 'translate(0, 0)' : 'translate(50%, 0)')};
   transition: all 300ms ease;
@@ -15,11 +17,11 @@ export const NftItem = styled.li`
   }
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.img`
   width: 100%;
   height: 240px;
-  background: url(${p => p.imageUrl});
-  background-repeat: no-repeat;
+  /* background: url(${p => p.imageUrl});
+  background-repeat: no-repeat; */
   background-size: cover;
 
   @media (min-width: 768px) {

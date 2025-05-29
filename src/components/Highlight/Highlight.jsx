@@ -41,7 +41,7 @@ export const Highlight = ({ show }) => {
   return (
     <HeroHighlightContainer show={show} onClick={toNftPage}>
       {/* <NavLink to={`/nft/${_id}`}> */}
-      <HighlightImg url={imageUrl} />
+      <HighlightImg src={imageUrl} alt={title} />
       <HighlightInfoContainer>
         <HighlightTitle>{title}</HighlightTitle>
         <HighlightAuthor>

@@ -27,13 +27,14 @@ export const HeroHighlightContainer = styled.div`
   }
 `;
 
-export const HighlightImg = styled.div`
-  background: url(${p => p.url}), ${p => p.theme.colors.main};
+export const HighlightImg = styled.img`
+  /* background: url(${p => p.url}), ${p => p.theme.colors.main};
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center; */
   width: 100%;
   height: 215px;
+  object-fit: cover;
 
   @media (min-width: 768px) {
     width: 330px;

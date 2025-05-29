@@ -50,7 +50,7 @@ export const TrendingNfts = () => {
               </BtnLink>
             )}
           </TitleBtnWrapper>
-          <NftsList nfts={isTablet ? trendingNfts.slice(0, 2) : trendingNfts} />
+          <NftsList bgColor="secondary" nfts={isTablet ? trendingNfts.slice(0, 2) : trendingNfts} />
           {isMobile && (
             <BtnLink to="/marketplace/nfts">
               <Button
