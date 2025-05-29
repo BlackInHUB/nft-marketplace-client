@@ -1,32 +1,24 @@
-import { useNfts } from "../../hooks/useNfts";
-import { useEffect } from "react";
-
-import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
-import { NftsList } from "../NftsList/NftsList";
-import { NftsWrapper } from "../Nfts/Nfts.styled";
-
+import { useNfts } from '../../hooks/useNfts';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
+import { NftsList } from '../NftsList/NftsList';
+import { useScrollToTop } from '../../hooks/useScrollToTop';
 
 const MarketNfts = () => {
-    const {allNft} = useNfts();
+  const { allNft } = useNfts();
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-        });
-    }, []);
+  useScrollToTop();
 
-    if (!allNft) {
-        return;
-    };
+  if (!allNft) {
+    return;
+  }
 
-    return (
-        <NftsWrapper>
-            <PaddingWrapper>
-                <NftsList nfts={allNft} />
-            </PaddingWrapper>
-        </NftsWrapper>
-    )
+  return (
+    <SectionWrapper bgColor="secondary">
+      <PaddingWrapper>
+        <NftsList nfts={allNft} />
+      </PaddingWrapper>
+    </SectionWrapper>
+  );
 };
 
 export default MarketNfts;

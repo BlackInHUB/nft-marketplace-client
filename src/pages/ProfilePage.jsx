@@ -1,17 +1,7 @@
-import { ProfileData } from "../components/UserData/ProfileData";
-import { useEffect } from "react";
+import { ProfileData } from '../components/UserData/ProfileData';
 
 const ProfilePage = () => {
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-        });
-    }, []);
-
-    return (
-        <ProfileData />
-    )
+  return <ProfileData />;
 };
 
 export default ProfilePage;

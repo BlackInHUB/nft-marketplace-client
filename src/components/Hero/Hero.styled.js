@@ -1,12 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeroSection = styled.section`
-  background-color: ${p => p.theme.colors.main};
-  display: flex;
-  align-items: center;
-`;
-
 export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;

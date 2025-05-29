@@ -32,7 +32,6 @@ function App() {
   const isLoading = nftsLoading || userLoading;
 
   useEffect(() => {
-    console.log('i work');
     dispatch(userOperations.refresh());
   }, [dispatch]);
 

@@ -71,14 +71,6 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.user = { ...state.user, ...payload };
-        if (payload.avatarUrl) {
-          state.allUsers = state.allUsers.map(user => {
-            if (user._id === state.user._id) {
-              return { ...user, avatarUrl: payload.avatarUrl };
-            }
-            return user;
-          });
-        }
       })
       .addCase(userOperations.update.rejected, (state, { payload }) => {
         state.isLoading = false;

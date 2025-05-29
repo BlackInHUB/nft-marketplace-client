@@ -12,10 +12,6 @@ const inputAnim = keyframes`
     100% {width: 200px;}
 `;
 
-export const Container = styled.section`
-  background-color: ${p => p.theme.colors[p.bgColor]};
-`;
-
 export const BtnLink = styled(NavLink)`
   width: 100%;
 

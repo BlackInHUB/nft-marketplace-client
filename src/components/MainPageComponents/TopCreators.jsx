@@ -1,5 +1,4 @@
 import {
-  Container,
   BtnLink,
   TitleWrapper,
   TitleBtnWrapper,
@@ -7,7 +6,7 @@ import {
   Description,
   ContentWrapper,
 } from './MainPageComponents.styled';
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import { Button } from '../BaseComponents/Buttons/Button';
 import { useMQ, useUsers } from '../../hooks';
 import { CreatorsList } from './CreatorsList/CreatorsList';
@@ -35,7 +34,7 @@ export const TopCreators = () => {
     : topCreators;
 
   return (
-    <Container bgColor="main">
+    <SectionWrapper>
       <PaddingWrapper>
         <ContentWrapper>
           <TitleBtnWrapper>
@@ -74,6 +73,6 @@ export const TopCreators = () => {
           )}
         </ContentWrapper>
       </PaddingWrapper>
-    </Container>
+    </SectionWrapper>
   );
 };

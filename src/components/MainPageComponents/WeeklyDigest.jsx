@@ -1,5 +1,4 @@
 import {
-  Container,
   Title,
   Description,
   DigestWrapper,
@@ -11,7 +10,7 @@ import {
   DigestFormBtnIcon,
 } from './MainPageComponents.styled';
 import digestimg from '../../images/digestimg.jpg';
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import { useState } from 'react';
 
 export const WeeklyDigest = () => {
@@ -24,7 +23,7 @@ export const WeeklyDigest = () => {
   };
 
   return (
-    <Container bgColor="main">
+    <SectionWrapper>
       <PaddingWrapper>
         <DigestWrapper>
           <DigestImg img={digestimg} />
@@ -41,6 +40,6 @@ export const WeeklyDigest = () => {
           </DigestContentWrapper>
         </DigestWrapper>
       </PaddingWrapper>
-    </Container>
+    </SectionWrapper>
   );
 };

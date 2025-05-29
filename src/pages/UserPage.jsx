@@ -1,20 +1,7 @@
-import { UserData } from "../components/UserData/UserData";
-import { useEffect } from "react";
+import { UserData } from '../components/UserData/UserData';
 
 const UserPage = () => {
-
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-        });
-    }, [])
-
-    return (
-        <>
-            <UserData />
-        </>
-    );
+  return <UserData />;
 };
 
 export default UserPage;

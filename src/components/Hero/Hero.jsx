@@ -1,6 +1,5 @@
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import {
-  HeroSection,
   HeroContainer,
   HeroInfoContainer,
   HeroTitle,
@@ -31,7 +30,7 @@ export const Hero = () => {
   }, [dispatch]);
 
   return (
-    <HeroSection>
+    <SectionWrapper>
       <PaddingWrapper>
         <HeroContainer>
           <HeroInfoContainer>
@@ -69,6 +68,6 @@ export const Hero = () => {
           {!isMobile && <Highlight show={hlShow} />}
         </HeroContainer>
       </PaddingWrapper>
-    </HeroSection>
+    </SectionWrapper>
   );
 };

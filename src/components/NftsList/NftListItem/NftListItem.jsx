@@ -21,7 +21,7 @@ export const NftListItem = ({ nft, index }) => {
   const { isLoggedIn } = useUsers();
   const navigate = useNavigate();
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.2,
     triggerOnce: true,
   });
 

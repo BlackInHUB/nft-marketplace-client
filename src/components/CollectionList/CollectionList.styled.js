@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  display: flex;
-  justify-content: center;
+  display: grid;
   gap: 30px;
-  flex-wrap: wrap;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const ListItem = styled.li`
@@ -17,7 +23,7 @@ export const ListItem = styled.li`
 
   @media (min-width: 768px) {
     width: 330px;
-    transition-delay: ${props => (props.i + 1) * 150}ms;
+    transition-delay: ${props => (props.i + 1) * 10}ms;
   }
 `;
 
@@ -99,4 +105,10 @@ export const AuthorAvatar = styled.img`
   width: 24px;
   height: 24px;
   border-radius: ${p => p.theme.radii.round};
+`;
+
+export const NoInfo = styled.p`
+  padding: 60px 0;
+  font-size: ${p => p.theme.fontSizes.h3};
+  line-height: ${p => p.theme.lineHeights.h3};
 `;

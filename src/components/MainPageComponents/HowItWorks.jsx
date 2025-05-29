@@ -1,17 +1,16 @@
 import {
-  Container,
   TitleWrapper,
   Title,
   Description,
   TitleBtnWrapper,
   ContentWrapper,
 } from './MainPageComponents.styled';
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import { HowItWorksList } from './HowItWorksList/HowItWorksList';
 
 export const HowItWorks = () => {
   return (
-    <Container bgColor="main">
+    <SectionWrapper>
       <PaddingWrapper>
         <ContentWrapper>
           <TitleBtnWrapper>
@@ -23,6 +22,6 @@ export const HowItWorks = () => {
           <HowItWorksList />
         </ContentWrapper>
       </PaddingWrapper>
-    </Container>
+    </SectionWrapper>
   );
 };

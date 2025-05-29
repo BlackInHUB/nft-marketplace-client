@@ -1,7 +1,6 @@
 import { useMQ, useNfts } from '../../hooks';
 import { NftsList } from '../NftsList/NftsList';
 import {
-  Container,
   TitleWrapper,
   TitleBtnWrapper,
   Title,
@@ -9,7 +8,7 @@ import {
   BtnLink,
   ContentWrapper,
 } from './MainPageComponents.styled';
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import { Button } from '../BaseComponents/Buttons/Button';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -29,7 +28,7 @@ export const TrendingNfts = () => {
   }
 
   return (
-    <Container bgColor="main">
+    <SectionWrapper>
       <PaddingWrapper>
         <ContentWrapper>
           <TitleBtnWrapper>
@@ -68,6 +67,6 @@ export const TrendingNfts = () => {
           )}
         </ContentWrapper>
       </PaddingWrapper>
-    </Container>
+    </SectionWrapper>
   );
 };

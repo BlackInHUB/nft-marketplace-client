@@ -14,7 +14,7 @@ const theme = {
     gradientPurple: 'linear-gradient(128.15deg, #A259FF 49.75%, #377DF7 136.56%)',
     gradientPink: 'linear-gradient(100.92deg, #A259FF 13.57%, #FF6250 97.65%)',
     confirmGreen: '#00AC4F',
-    backdrop: 'rgba(43, 43, 43, 0.5)',
+    backdrop: 'rgba(43, 43, 43, 0.8)',
   },
   fontSizes: {
     h1: '67px',

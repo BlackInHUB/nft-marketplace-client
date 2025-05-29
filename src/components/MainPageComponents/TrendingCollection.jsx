@@ -1,7 +1,6 @@
 import { useMQ, useNfts } from '../../hooks';
 import { CollectionList } from '../CollectionList/CollectionList';
 import {
-  Container,
   TitleWrapper,
   TitleBtnWrapper,
   Title,
@@ -9,7 +8,7 @@ import {
   BtnLink,
   ContentWrapper,
 } from './MainPageComponents.styled';
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import { Button } from '../BaseComponents/Buttons/Button';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -29,7 +28,7 @@ export const TrendingCollection = () => {
   }
 
   return (
-    <Container bgColor="background">
+    <SectionWrapper>
       <PaddingWrapper>
         <ContentWrapper>
           <TitleBtnWrapper>
@@ -75,6 +74,6 @@ export const TrendingCollection = () => {
           )}
         </ContentWrapper>
       </PaddingWrapper>
-    </Container>
+    </SectionWrapper>
   );
 };

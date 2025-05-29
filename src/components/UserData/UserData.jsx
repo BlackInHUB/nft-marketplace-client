@@ -1,5 +1,4 @@
 import {
-  Container,
   CoverWrapper,
   AvatarWrapper,
   Avatar,
@@ -19,6 +18,7 @@ import {
   EditIcon,
   EditWrapper,
   BtnsWrapper,
+  DefaultAvatar,
 } from './UserData.styled';
 import { Button } from '../BaseComponents/Buttons/Button';
 import { IconButton } from '../BaseComponents/Buttons/IconButton';
@@ -30,7 +30,6 @@ import { FieldEditForm } from '../FieldEditForm/FieldEditForm';
 import { UserSocialList } from '../UserSocialList/UserSocialList';
 import { useEffect } from 'react';
 import { useMQ } from '../../hooks/useMQ';
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
 import { UserNfts } from '../Nfts/UserNfts';
 import { NftModal } from '../NftModal/NftModal';
 import { CollectionModal } from '../CollectionModal/CollectionModal';
@@ -38,6 +37,7 @@ import { createPortal } from 'react-dom';
 import { EditorBtn } from '../EditorBtn/EditorBtn';
 import { useNfts, useUsers } from '../../hooks';
 import { toast } from 'react-toastify';
+import { SectionWrapper, PaddingWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 
 export const UserData = () => {
   const { user } = useUsers();
@@ -49,7 +49,7 @@ export const UserData = () => {
   const [addOpen, setAddOpen] = useState(false);
   const [collectionOpen, setCollectionOpen] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-  const { isTablet, isDesktop } = useMQ();
+  const { isMobile, isTablet, isDesktop } = useMQ();
   const dispatch = useDispatch();
 
   const getVolume = nfts => {
@@ -72,8 +72,7 @@ export const UserData = () => {
     return;
   }
 
-  const { name, bio, avatarUrl, socialLinks, followers, profileCover } = user;
-  const { created, owned } = usersNft;
+  const { name, bio, avatarUrl, socialLinks, followers, profileCover, created, owned } = user;
 
   const toggleEdit = () => {
     if (addLink) {
@@ -138,7 +137,7 @@ export const UserData = () => {
   };
 
   const toggleCollectionOpen = () => {
-    if (created.length < 1 || owned.length < 1) {
+    if (created.length + owned.length < 2) {
       return toast.warning('You have not enough nfts to create collection');
     } else {
       if (collectionOpen) {
@@ -178,7 +177,7 @@ export const UserData = () => {
 
   return (
     <>
-      <Container>
+      <SectionWrapper>
         <CoverWrapper background={profileCover} show={show}>
           {edit && (
             <FileInputLabel>
@@ -194,10 +193,10 @@ export const UserData = () => {
             right={isDesktop ? '115px' : isTablet ? '72px' : '30px'}
           />
         </CoverWrapper>
-        <PaddingWrapper>
+        <PaddingWrapper pb="40px">
           <InfoWrapper show={show}>
             <AvatarWrapper show={show}>
-              <Avatar src={avatarUrl} />
+              {avatarUrl.includes('no-avatar') ? <DefaultAvatar /> : <Avatar src={avatarUrl} />}
               {edit && (
                 <FileInputLabel>
                   <EditIcon />
@@ -229,6 +228,7 @@ export const UserData = () => {
               </EditWrapper>
               <MainBtnsWrapper>
                 <Button
+                  width={isMobile ? '100%' : 'fit-content'}
                   type="button"
                   iconType="plus"
                   fill="accent"
@@ -239,6 +239,7 @@ export const UserData = () => {
                   onClick={toggleAddOpen}
                 />
                 <Button
+                  width={isMobile ? '100%' : 'fit-content'}
                   type="button"
                   iconType="copy"
                   fill="accent"
@@ -307,6 +308,8 @@ export const UserData = () => {
                       iconType="close"
                       position="static"
                       onClick={() => toggleEditField(null)}
+                      w="25px"
+                      h="25px"
                       ml="10px"
                     />
                   </BtnsWrapper>
@@ -331,7 +334,7 @@ export const UserData = () => {
           </InfoWrapper>
         </PaddingWrapper>
         <UserNfts />
-      </Container>
+      </SectionWrapper>
       {addOpen &&
         createPortal(
           <NftModal

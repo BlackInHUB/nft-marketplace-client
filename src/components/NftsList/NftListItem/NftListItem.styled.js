@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NftItem = styled.li`
   cursor: pointer;
-  background-color: ${p => p.theme.colors.secondary};
+  background-color: ${p => p.theme.colors.main};
   width: 100%;
   border-radius: ${p => p.theme.radii.normal};
   opacity: ${p => (p.show ? '1;' : '0;')};
@@ -11,7 +11,7 @@ export const NftItem = styled.li`
 
   @media (min-width: 768px) {
     width: 330px;
-    transition-delay: ${props => (props.i + 1) * 150}ms;
+    transition-delay: ${props => (props.i + 1) * 10}ms;
   }
 `;
 

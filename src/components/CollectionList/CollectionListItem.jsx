@@ -20,7 +20,7 @@ export const CollectionListItem = ({ item, index }) => {
 
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 0.2,
   });
 
   return (

@@ -1,35 +1,24 @@
-import { useNfts } from "../../hooks";
-import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-import { CollectionList } from "../CollectionList/CollectionList";
-import { NftsWrapper } from "../Nfts/Nfts.styled";
-import { PaddingWrapper } from "../BaseComponents/PaddingWrapper/PaddingWrapper.styled";
-// import nftOperations from "../../redux/nft/nftOperations";
+import { useNfts } from '../../hooks';
+import { CollectionList } from '../CollectionList/CollectionList';
+import { PaddingWrapper, SectionWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
+import { useScrollToTop } from '../../hooks/useScrollToTop';
 
 const MarketCollections = () => {
-    // const dispatch = useDispatch();
-    const {allCollections} = useNfts();
+  const { allCollections } = useNfts();
 
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-        });
-        
-        // dispatch(nftOperations.getAllCollections());
-    }, []);
+  useScrollToTop();
 
-    if (!allCollections) {
-        return;
-    };
+  if (!allCollections) {
+    return;
+  }
 
-    return (
-        <NftsWrapper>
-            <PaddingWrapper>
-                <CollectionList collections={allCollections} />
-            </PaddingWrapper>
-        </NftsWrapper>
-    )
+  return (
+    <SectionWrapper bgColor="secondary">
+      <PaddingWrapper>
+        <CollectionList collections={allCollections} />
+      </PaddingWrapper>
+    </SectionWrapper>
+  );
 };
 
 export default MarketCollections;

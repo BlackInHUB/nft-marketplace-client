@@ -1,4 +1,4 @@
-import { PaddingWrapper } from '../BaseComponents/PaddingWrapper/PaddingWrapper.styled';
+import { PaddingWrapper } from '../BaseComponents/Wrappers/Wrappers.styled';
 import {
   FooterSctn,
   FooterContainer,

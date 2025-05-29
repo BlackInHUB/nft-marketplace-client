@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   gap: 20px;
   overflow: hidden;
 
   @media (min-width: 768px) {
     gap: 30px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
